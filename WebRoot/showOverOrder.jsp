@@ -110,6 +110,7 @@ body {
              
             <td><font color="#ff0000" size="5"><h:property value="#o.content"/></font></td>
              <td><h:property value="#o.time"/></td>
+             <td><a href="getUserOrder?uid=<h:property value="#o.user.id"/>">兑换记录</a> </td>
            <td>  <a href="dealOrder?id=<h:property value="#o.id"/>">未处理<img src="images/icon/del.png" width="16" height="16" /></a> </td>
           </tr>
           </h:iterator>

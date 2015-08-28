@@ -13,37 +13,62 @@ public class User implements java.io.Serializable {
 	// Fields
 
 	private Long id;
-	private String tjm;
 	private Integer isok;
 	private String nicheng;
 	private Timestamp time;
 	private int xinshou;
-	private int shareQQ;
-	private int yaoqingQQ;
-	private int shareXinLang;
+    private Long shangjia1;
+    private Long shangjia2;
+    private Long shangjia3;
+    private Long shangjia4;
+    private Long shangjia5;
+    private String mac;
+	private String phone;
+	private Long tj;
 	
-	public int getShareQQ() {
-		return shareQQ;
+	private String xinghao;
+	private String zhifubao;
+	private String qq;
+    
+
+	public Long getShangjia4() {
+		return shangjia4;
 	}
 
-	public void setShareQQ(int shareQQ) {
-		this.shareQQ = shareQQ;
+	public void setShangjia4(Long shangjia4) {
+		this.shangjia4 = shangjia4;
 	}
 
-	public int getYaoqingQQ() {
-		return yaoqingQQ;
+	public Long getShangjia5() {
+		return shangjia5;
 	}
 
-	public void setYaoqingQQ(int yaoqingQQ) {
-		this.yaoqingQQ = yaoqingQQ;
+	public void setShangjia5(Long shangjia5) {
+		this.shangjia5 = shangjia5;
 	}
 
-	public int getShareXinLang() {
-		return shareXinLang;
+	public Long getShangjia1() {
+		return shangjia1;
 	}
 
-	public void setShareXinLang(int shareXinLang) {
-		this.shareXinLang = shareXinLang;
+	public void setShangjia1(Long shangjia1) {
+		this.shangjia1 = shangjia1;
+	}
+
+	public Long getShangjia2() {
+		return shangjia2;
+	}
+
+	public void setShangjia2(Long shangjia2) {
+		this.shangjia2 = shangjia2;
+	}
+
+	public Long getShangjia3() {
+		return shangjia3;
+	}
+
+	public void setShangjia3(Long shangjia3) {
+		this.shangjia3 = shangjia3;
 	}
 
 	public int getXinshou() {
@@ -54,22 +79,7 @@ public class User implements java.io.Serializable {
 		this.xinshou = xinshou;
 	}
 
-	public String getSdk() {
-		return sdk;
-	}
-
-	public void setSdk(String sdk) {
-		this.sdk = sdk;
-	}
-
-	public String getIps() {
-		return ips;
-	}
-
-	public void setIps(String ips) {
-		this.ips = ips;
-	}
-
+	
 	public String getXinghao() {
 		return xinghao;
 	}
@@ -78,16 +88,7 @@ public class User implements java.io.Serializable {
 		this.xinghao = xinghao;
 	}
 
-	private String mac;
-	private String yqh;
-	private String phone;
-	private Long tj;
-	private String sdk;
-	private String ips;
-	private String xinghao;
-	private String zhifubao;
-	private String qq;
-	
+
 	public String getZhifubao() {
 		return zhifubao;
 	}
@@ -105,7 +106,7 @@ public class User implements java.io.Serializable {
 	}
 
 	private Set orderses = new HashSet(0);
-	
+
 	private Set usermoneies = new HashSet(0);
 
 	// Constructors
@@ -117,26 +118,22 @@ public class User implements java.io.Serializable {
 	/** full constructor */
 	public User(String tjm, Integer isok, String nicheng, Timestamp time,
 			String mac, String yqh, String phone, Long tj, Set orderses,
-			 Set usermoneies) {
-		this.tjm = tjm;
+			Set usermoneies) {
 		this.isok = isok;
 		this.nicheng = nicheng;
 		this.time = time;
 		this.mac = mac;
-		this.yqh = yqh;
 		this.phone = phone;
 		this.tj = tj;
 		this.orderses = orderses;
-		
+
 		this.usermoneies = usermoneies;
 	}
 
-	public  User(long id,int isok,String nicheng,String tjm)
-	{
-		this.id=id;
-		this.isok=isok;
-		this.nicheng=nicheng;
-		this.tjm=tjm;
+	public User(long id, int isok, String nicheng) {
+		this.id = id;
+		this.isok = isok;
+		this.nicheng = nicheng;
 	}
 
 	public Long getId() {
@@ -145,14 +142,6 @@ public class User implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTjm() {
-		return this.tjm;
-	}
-
-	public void setTjm(String tjm) {
-		this.tjm = tjm;
 	}
 
 	public Integer getIsok() {
@@ -187,14 +176,6 @@ public class User implements java.io.Serializable {
 		this.mac = mac;
 	}
 
-	public String getYqh() {
-		return this.yqh;
-	}
-
-	public void setYqh(String yqh) {
-		this.yqh = yqh;
-	}
-
 	public String getPhone() {
 		return this.phone;
 	}
@@ -218,8 +199,6 @@ public class User implements java.io.Serializable {
 	public void setOrderses(Set orderses) {
 		this.orderses = orderses;
 	}
-
-	
 
 	public Set getUsermoneies() {
 		return this.usermoneies;

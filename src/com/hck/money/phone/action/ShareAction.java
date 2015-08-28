@@ -17,10 +17,7 @@ import net.sf.json.JSONObject;
 
 
 public class ShareAction extends BaseAction{
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
+	
 	private ShareDao shareDao;
 	
 
@@ -32,33 +29,7 @@ public class ShareAction extends BaseAction{
 		this.shareDao = shareDao;
 	}
 
-	public void init() {
-		json=new JSONObject();
-		response = ServletActionContext.getResponse();
-		request = ServletActionContext.getRequest();
-		response.setContentType("text/json;charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
-		
-	}
-
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		response=null;
-		request=null;
-	}
+	
 	
 	public void getShareP()
 	{

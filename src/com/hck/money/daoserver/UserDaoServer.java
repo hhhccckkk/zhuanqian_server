@@ -1,7 +1,10 @@
 package com.hck.money.daoserver;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -17,10 +20,12 @@ import com.hck.money.dao.UserDao;
 import com.opensymphony.xwork2.ActionContext;
 
 public class UserDaoServer extends HibernateDaoSupport implements UserDao {
+	private static final int TODY_SIZE = 1;
+	private static final int ZUOTIAN_SIZE = 2;
 
-	public User SearchUser(String key) {
+	public User SearchUser(long id) {
 
-		String sqlString = "from User u where u.tjm='" + key + "'";
+		String sqlString = "from User u where u.id='"+id;
 		List<User> users = getHibernateTemplate().find(sqlString);
 		if (users != null && !users.isEmpty()) {
 			return users.get(0);
@@ -30,8 +35,12 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 	}
 
 	public User addUser(User user) {
-		System.out.print("adduser: " + user.getMac());
-		getHibernateTemplate().save(user);
+		try {
+			getHibernateTemplate().save(user);
+		} catch (Exception e) {
+			System.err.println("addUser error: "+e.toString());
+		}
+		
 
 		return getUser(user.getMac());
 	}
@@ -46,7 +55,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 	}
 
 	public List<User> getUsers(int page) {
-		String sql = "select new User(id,isok,nicheng,tjm) from User u order by u.id desc";
+		String sql = "select new User(id,isok,nicheng) from User u order by u.id desc";
 		ActionContext.getContext().getSession().put("userSize", getCount(sql));
 
 		return getList(sql, page, 12);
@@ -82,27 +91,23 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 	}
 
 	public boolean updateUser(User user) {
-		
+
 		try {
 			getHibernateTemplate().update(user);
 			return true;
 		} catch (Exception e) {
-			System.out.print("修改用户失败: "+e.toString());
+			System.out.print("修改用户失败: " + e.toString());
 			return false;
 		}
-		
+
 	}
 
-	public long getUserSize() {
-
-		return getCount("select id from User");
-	}
 
 	public List<User> getXiaJia(String jhm, int page) {
 		String sqlString = "select new User(id,isok,nicheng,tjm) from User u where u.yqh='"
 				+ jhm + "' order by u.id desc";
-		ActionContext.getContext().getSession().put("userSize",
-				getCount(sqlString));
+		ActionContext.getContext().getSession()
+				.put("userSize", getCount(sqlString));
 		return getList(sqlString, page, 12);
 	}
 
@@ -118,14 +123,12 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 
 	@SuppressWarnings("unchecked")
 	private User getUser(String mac) {
-		System.out.print("getUser mac:" + mac);
 		String sqlString = "from User u where u.mac='" + mac + "'";
 		List<User> users = new ArrayList<User>();
 		users = getHibernateTemplate().find(sqlString);
 		if (users.isEmpty()) {
 			return null;
 		} else {
-			System.out.print("getUser:" + users.get(0).getMac());
 			return users.get(0);
 		}
 	}
@@ -151,13 +154,13 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		return user;
 	}
 
-	public boolean addYQM(User user, String qym,int jinbi) {
+	public boolean addYQM(User user, String qym, int jinbi) {
 		try {
 			boolean b = isExitJHM(qym);
 			if (b) {
 				addTJ(qym);
 				updateUserYQM(user.getId(), qym);
-				//addTJMoney(jinbi, qym,user);
+				// addTJMoney(jinbi, qym,user);
 				return true;
 			}
 		} catch (Exception e) {
@@ -165,16 +168,18 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		}
 		return false;
 	}
-	public boolean addTJMoney(long kedoubi,String yqm,User user1) {
+
+	public boolean addTJMoney(long kedoubi, String yqm, User user1) {
 		if (yqm != null && !"".equals(yqm)) {
-			String sqlString = "from User u where u.tjm='" + yqm+ "'";
+			String sqlString = "from User u where u.tjm='" + yqm + "'";
 			List<User> objects = getHibernateTemplate().find(sqlString);
 			if (objects != null) {
-				User user= objects.get(0);
+				User user = objects.get(0);
 				updateMoney(user.getId(), kedoubi, 1);
-				
-				Tg tg=new Tg();
-				tg.setContent("用户"+user1.getNicheng()+"填入邀请码奖励金币 "+kedoubi+"个");
+
+				Tg tg = new Tg();
+				tg.setContent("用户" + user1.getNicheng() + "填入邀请码奖励金币 "
+						+ kedoubi + "个");
 				tg.setUserName(user.getNicheng());
 				tg.setUid(user.getId());
 				tg.setTime(new Timestamp(System.currentTimeMillis()));
@@ -185,8 +190,8 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		}
 		return false;
 	}
-	private void addJiLu(long uid,long jf)
-	{
+
+	private void addJiLu(long uid, long jf) {
 		Jilu jilu = new Jilu();
 		jilu.setJifeng(jf);
 		jilu.setTime(new Timestamp(System.currentTimeMillis()));
@@ -194,24 +199,24 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		jilu.setUid(uid);
 		getHibernateTemplate().save(jilu);
 	}
-	private void saveTg(Tg tg)
-	{
+
+	private void saveTg(Tg tg) {
 		getHibernateTemplate().save(tg);
 	}
-	public boolean updateMoney(long uid, long value,int type) {
-		Usermoney usermoney=getUsermoney(uid);
-		if (usermoney==null) {
+
+	public boolean updateMoney(long uid, long value, int type) {
+		Usermoney usermoney = getUsermoney(uid);
+		if (usermoney == null) {
 			return false;
-		}
-		else {
+		} else {
 			switch (type) {
-			case 1: //增加蝌蚪币
-				usermoney.setAlljifeng(usermoney.getAlljifeng()+value);
-				
+			case 1: // 增加蝌蚪币
+				usermoney.setAlljifeng(usermoney.getAlljifeng() + value);
+
 				break;
-			case 2: //减少蝌蚪币
-				usermoney.setAllmoney(usermoney.getAllmoney()+value/1000);
-				usermoney.setAlljifeng(usermoney.getAlljifeng()-value);
+			case 2: // 减少蝌蚪币
+				usermoney.setAllmoney(usermoney.getAllmoney() + value / 1000);
+				usermoney.setAlljifeng(usermoney.getAlljifeng() - value);
 				break;
 			default:
 				break;
@@ -220,20 +225,21 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 			return true;
 		}
 	}
+
 	@SuppressWarnings("unchecked")
 	public Usermoney getUsermoney(long uid) {
-		List<Usermoney> usermoneys=new ArrayList<Usermoney>();
-		String sqlString="from Usermoney u where u.user.id="+uid;
-		usermoneys=getHibernateTemplate().find(sqlString);
+		List<Usermoney> usermoneys = new ArrayList<Usermoney>();
+		String sqlString = "from Usermoney u where u.user.id=" + uid;
+		usermoneys = getHibernateTemplate().find(sqlString);
 		if (!usermoneys.isEmpty()) {
 			return usermoneys.get(0);
 		}
 		return null;
 	}
+
 	private void updateUserYQM(long uid, String qym) {
-        User user=(User) getHibernateTemplate().get(User.class, uid);
-        if (user!=null) {
-			user.setYqh(qym);
+		User user = (User) getHibernateTemplate().get(User.class, uid);
+		if (user != null) {
 			getHibernateTemplate().update(user);
 		}
 	}
@@ -248,13 +254,52 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 
 		}
 	}
-	public void addMessage(String uName,Long kedoubi,long uid){
-		Message message=new Message();
-		message.setContent("用户"+uName+"填入邀请码，奖励您金币"+kedoubi+"个");
+
+	public void addMessage(String uName, Long kedoubi, long uid) {
+		Message message = new Message();
+		message.setContent("用户" + uName + "填入邀请码，奖励您金币" + kedoubi + "个");
 		message.setState(0);
 		message.setTime(new Timestamp(System.currentTimeMillis()));
 		message.setUid(uid);
 		getHibernateTemplate().save(message);
 	}
 
+	public long getUserSize(int type) {
+		Date endDate = new Date();
+		Calendar cl = Calendar.getInstance();
+		cl.setTime(endDate);
+		String sql = "from User u WHERE date(u.time) = curdate()";
+		if (type == TODY_SIZE) {
+			return getCount(sql);
+		} else if (type == ZUOTIAN_SIZE) {
+			cl.add(Calendar.DATE, -1);
+			Date startDate = cl.getTime();
+			SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
+			// 格式化开始日期和结束日期
+			String start = dd.format(startDate);
+			String end = dd.format(endDate);
+
+			sql = "from User u where u.time >= '" + start + "' and u.time <= '"
+					+ end + "'";
+			return getCount(sql);
+		}
+		else {
+			return getCount("select id from User");
+		}
+		
+
+	}
+
+	public void updateUserTgSize(long uid) {
+		try {
+			User user =getOneUser(uid);
+			long tgSize=user.getTj();
+			user.setTj(tgSize+1);
+			updateUser(user);
+		} catch (Exception e) {
+		}
+		
+		
+		
+	}
 }

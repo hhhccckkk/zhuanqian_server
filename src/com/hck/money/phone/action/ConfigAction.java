@@ -9,29 +9,44 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.hck.money.bean.Config;
+import com.hck.money.dao.Messagedao;
 import com.hck.money.dao.NewDao;
+import com.hck.money.daoserver.ConfigServer;
+import com.hck.money.daoserver.HongBaoServer;
 
 import net.sf.json.JSONObject;
 
 public class ConfigAction extends BaseAction {
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
-	private NewDao newDao;
-    private int configId;
 	
+	private ConfigServer configServer;
+    private int configId;
+	private HongBaoServer hBaoServer;
+	private Messagedao messagedao;
+	
+	public HongBaoServer gethBaoServer() {
+		return hBaoServer;
+	}
+	public void sethBaoServer(HongBaoServer hBaoServer) {
+		this.hBaoServer = hBaoServer;
+	}
+	public Messagedao getMessagedao() {
+		return messagedao;
+	}
+	public void setMessagedao(Messagedao messagedao) {
+		this.messagedao = messagedao;
+	}
 	public int getConfigId() {
 		return configId;
 	}
 	public void setConfigId(int configId) {
 		this.configId = configId;
 	}
-	public NewDao getNewDao() {
-		return newDao;
+
+	public ConfigServer getConfigServer() {
+		return configServer;
 	}
-	public void setNewDao(NewDao newDao) {
-		this.newDao = newDao;
+	public void setConfigServer(ConfigServer configServer) {
+		this.configServer = configServer;
 	}
 	public void init() {
 		json = new JSONObject();
@@ -40,40 +55,33 @@ public class ConfigAction extends BaseAction {
 		response.setContentType("text/json;charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
 	}
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 	public void getConfigP()
 	{
 		init();
-		if (!isPasswordOk(request.getParameter("password"))) {
-			return;
-		}
-		if (configId<=0) {
-			configId=1;
-		}
-		Config news=newDao.getNew(configId);
-		if (news==null) {
+		Config config=configServer.getConfig();
+		if (config==null) {
 			json.put("isok", false);
 		}
 		else {
 			json.put("isok", true);
-			json.put("news", news);
+			json.put("data", config);
 		}
 		write();
+		response=null;
+		request=null;
+	}
+	/**
+	 * 获取红包数量消息条数
+	 */
+	public void getSize(){
+		init();
+		long uid =getLongData("uid");
+		long megId =messagedao.getNewMsgId(uid);
+		int hongbaoSize = hBaoServer.getCountNoDaKai(uid);
+		json.put("msgId", megId);
+		json.put("hongbaoSize", hongbaoSize);
+		write();	
 		response=null;
 		request=null;
 	}

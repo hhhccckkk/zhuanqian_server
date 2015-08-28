@@ -10,8 +10,20 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="tjm" type="java.lang.String">
-            <column name="tjm" length="100" />
+        <property name="shangjia1" type="java.lang.Long">
+            <column name="shangjia1" length="255" />
+        </property>
+          <property name="shangjia2" type="java.lang.Long">
+            <column name="shangjia2" length="255" />
+        </property>
+          <property name="shangjia3" type="java.lang.Long">
+            <column name="shangjia3" length="255" />
+        </property>
+         <property name="shangjia4" type="java.lang.Long">
+            <column name="shangjia4" length="255" />
+        </property>
+         <property name="shangjia5" type="java.lang.Long">
+            <column name="shangjia5" length="255" />
         </property>
         <property name="isok" type="java.lang.Integer">
             <column name="isok" />
@@ -25,18 +37,12 @@
         <property name="mac" type="java.lang.String">
             <column name="mac" length="200" />
         </property>
-        <property name="yqh" type="java.lang.String">
-            <column name="yqh" length="100" />
-        </property>
+      
         <property name="phone" type="java.lang.String">
             <column name="phone" length="100" />
         </property>
-         <property name="sdk" type="java.lang.String">
-            <column name="sdk" length="100" />
-        </property>
-          <property name="ips" type="java.lang.String">
-            <column name="address" length="100" />
-        </property>
+         
+         
          <property name="qq" type="java.lang.String">
             <column name="qq" length="100" />
         </property>
@@ -49,15 +55,7 @@
            <property name="xinshou" type="java.lang.Integer">
             <column name="isxinshou" length="5" />
         </property>
-           <property name="shareQQ" type="java.lang.Integer">
-            <column name="shareqq" length="3" />
-        </property>
-           <property name="yaoqingQQ" type="java.lang.Integer">
-            <column name="yaoqingqq" length="3" />
-        </property>
-          <property name="shareXinLang" type="java.lang.Integer">
-            <column name="sharexinlang" length="3" />
-        </property>
+          
         <property name="tj" type="java.lang.Long">
             <column name="tj" />
         </property>

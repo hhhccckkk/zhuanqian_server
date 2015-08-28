@@ -18,15 +18,22 @@ import com.hck.money.vo.TgBean;
 import net.sf.json.JSONObject;
 
 public class TgAction extends BaseAction {
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
+	
 	private TgDao tgDao;
 	private long uid;
 	private long tid;
 	private String content;
     private String name;
+    private int page;
+    
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -67,39 +74,6 @@ public class TgAction extends BaseAction {
 		this.content = content;
 	}
 
-	public void init() {
-		json = new JSONObject();
-		if (response == null) {
-			response = ServletActionContext.getResponse();
-		}
-		if (request == null) {
-			request = ServletActionContext.getRequest();
-		}
-		response = ServletActionContext.getResponse();
-		request = ServletActionContext.getRequest();
-		response.setContentType("text/json;charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
-
-	}
-
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		response = null;
-		request = null;
-	}
 
 	public void addTg() {
 		init();
@@ -119,8 +93,9 @@ public class TgAction extends BaseAction {
 
 	public void getTg() {
 		init();
-		List<Tg> tgs = tgDao.getList(uid);
+		List<Tg> tgs = tgDao.getList(uid,page);
 		if (tgs != null) {
+			System.err.println("getTg size: "+tgs.size());
 			json.put("isok", true);
 			json.put("tgs", change(tgs));
 		} else {

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
-		  <property name="url"
+		<property name="url"
 			value="jdbc:mysql://127.0.0.1/zhuanqian?characterEncoding=utf8">
-		</property>  
+		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value="7878168"></property>
 	</bean>
@@ -18,15 +16,15 @@
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
-		<property name="hibernateProperties">
-			<props>
-		  <!-- 	<prop key="hibernate.hbm2ddl.auto">create</prop> -->
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
-				</prop>
-				
-			</props>
-		</property>
+		 <property name="hibernateProperties"> 
+		<props>
+		<!--	<prop key="hibernate.hbm2ddl.auto">create</prop> -->
+			<prop key="hibernate.dialect">
+				org.hibernate.dialect.MySQLDialect
+			</prop>
+
+		</props>
+	</property>
 		<property name="mappingResources">
 			<list>
 				<value>com/hck/money/bean/Admin.hbm.xml</value>
@@ -43,185 +41,426 @@
 				<value>com/hck/money/bean/Userdownapp.hbm.xml</value>
 				<value>com/hck/money/bean/Apps.hbm.xml</value>
 				<value>com/hck/money/bean/Tg.hbm.xml</value>
-				</list>
-		</property></bean>
-<bean id="adminDao" class="com.hck.money.daoserver.AdminServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="AdminAction" class="com.hck.money.pc.action.AdminAction"  scope="prototype">
-<property name="aServer"><ref bean="adminDao"/></property>
-</bean>
-<!-- 赚钱类别 -->
-<bean id="kindDao" class="com.hck.money.daoserver.KindServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="KindAction" class="com.hck.money.pc.action.KindAction"  scope="prototype">
-<property name="kindDao"><ref bean="kindDao"/></property>
-</bean>
-<bean id="jlDao" class="com.hck.money.daoserver.JiLuServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
+				<value>com/hck/money/bean/UserTg.hbm.xml</value>
+				<value>com/hck/money/bean/hongbao.hbm.xml</value>
+				<value>com/hck/money/bean/FanKui.hbm.xml</value>
+				<value>com/hck/money/bean/TGApp.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 打包 -->
+	<bean id="tgapp" class="com.hck.money.daoserver.TGAppServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 管理员 -->
+	<bean id="adminDao" class="com.hck.money.daoserver.AdminServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AdminAction" class="com.hck.money.pc.action.AdminAction"
+		scope="prototype">
+		<property name="aServer">
+			<ref bean="adminDao" />
+		</property>
+	</bean>
+	<!-- 赚钱类别 -->
+	<bean id="kindDao" class="com.hck.money.daoserver.KindServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="KindAction" class="com.hck.money.pc.action.KindAction"
+		scope="prototype">
+		<property name="kindDao">
+			<ref bean="kindDao" />
+		</property>
+	</bean>
+	<bean id="jlDao" class="com.hck.money.daoserver.JiLuServer" scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 
-<!-- 用户 -->
-<bean id="userDao" class="com.hck.money.daoserver.UserDaoServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="moneyDao" class="com.hck.money.daoserver.UserMoneyServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="UserAction" class="com.hck.money.pc.action.UserAction"  scope="prototype">
-<property name="uDao"><ref bean="userDao"/></property>
-<property name="userMoneyDao"><ref bean="moneyDao"/></property>
+	<!-- 用户 -->
+	<bean id="userDao" class="com.hck.money.daoserver.UserDaoServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="moneyDao" class="com.hck.money.daoserver.UserMoneyServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserAction" class="com.hck.money.pc.action.UserAction"
+		scope="prototype">
+		<property name="uDao">
+			<ref bean="userDao" />
+		</property>
+		<property name="userMoneyDao">
+			<ref bean="moneyDao" />
+		</property>
 
-</bean>
+	</bean>
 
-<!-- 订单 -->
-<bean id="orderDao" class="com.hck.money.daoserver.OrderServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="OrderAction" class="com.hck.money.pc.action.OrderAction"  scope="prototype">
-<property name="oDao"><ref bean="orderDao"/></property>
-</bean>
+	<!-- 订单 -->
+	<bean id="orderDao" class="com.hck.money.daoserver.OrderServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OrderAction" class="com.hck.money.pc.action.OrderAction"
+		scope="prototype">
+		<property name="oDao">
+			<ref bean="orderDao" />
+		</property>
+	</bean>
 
-<!-- 信息 -->
-<bean id="mDao" class="com.hck.money.daoserver.MessageServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="MessageAction" class="com.hck.money.pc.action.MessageAction"  scope="prototype">
-<property name="messagedao"><ref bean="mDao"/></property>
-</bean>
+	<!-- 信息 -->
+	<bean id="mDao" class="com.hck.money.daoserver.MessageServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MessageAction" class="com.hck.money.pc.action.MessageAction"
+		scope="prototype">
+		<property name="messagedao">
+			<ref bean="mDao" />
+		</property>
+	</bean>
 
-<!-- 版本 -->
-<bean id="vDao" class="com.hck.money.daoserver.InfoServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="InfoAction" class="com.hck.money.pc.action.VisonAction"  scope="prototype">
-<property name="dao"><ref bean="vDao"/></property>
-</bean>
+	<!-- 版本 -->
+	<bean id="vDao" class="com.hck.money.daoserver.InfoServer" scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="InfoAction" class="com.hck.money.pc.action.VisonAction"
+		scope="prototype">
+		<property name="dao">
+			<ref bean="vDao" />
+		</property>
+	</bean>
 
-<!-- 新闻-->
-<bean id="nDao" class="com.hck.money.daoserver.NewServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="NewAction" class="com.hck.money.pc.action.NewAction"  scope="prototype">
-<property name="dao"><ref bean="nDao"/></property>
-</bean>
-
-
-<!-- 分享-->
-<bean id="shareDao" class="com.hck.money.daoserver.ShareServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="shareAction" class="com.hck.money.pc.action.ShareAction"  scope="prototype">
-<property name="sDao"><ref bean="shareDao"/></property>
-</bean>
-
-<!-- 赚钱记录-->
-<bean id="JLAction" class="com.hck.money.pc.action.JiLuAction"  scope="prototype">
-<property name="jDao"><ref bean="jlDao"/></property>
-</bean>
-
-<!-- 赚钱排行-->
-<bean id="moneyServer" class="com.hck.money.daoserver.UserMoneyServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>
-<bean id="RankAction" class="com.hck.money.pc.action.RankAction"  scope="prototype">
-<property name="moneyDaoServer"><ref bean="moneyServer"/></property>
-</bean>
-
-
-<!-- 赚钱统计-->
-
-<bean id="GetMoneyAction" class="com.hck.money.pc.action.GetMoneyTJAction"  scope="prototype">
-<property name="moneyDao"><ref bean="jlDao"/></property>
-<property name="kDao"><ref bean="kindDao"/></property>
-</bean>
-
-<!-- 我的应用
--->
-<bean id="appDao" class="com.hck.money.daoserver.AppServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="GetAppAction" class="com.hck.money.pc.action.AppAction"  scope="prototype">
-<property name="aDao"><ref bean="appDao"/></property>
-</bean>
-<bean id="uaDao" class="com.hck.money.daoserver.UserAppServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="GetUserAppAction" class="com.hck.money.pc.action.UserAppAction"  scope="prototype">
-<property name="uDao"><ref bean="uaDao"/></property>
-</bean>
-<!-- 手机用户-->
-
-<bean id="UserActionP" class="com.hck.money.phone.action.UserAction"  scope="prototype">
-<property name="uDao"><ref bean="userDao"/></property>
-<property name="userMoneyDao"><ref bean="moneyDao"/></property>
-<property name="jDao"><ref bean="jlDao"/></property>
-</bean>
-<!-- 列表-->
-<bean id="KindActionP" class="com.hck.money.phone.action.KindAction"  scope="prototype">
-<property name="kDao"><ref bean="kindDao"/></property>
-</bean>
-<bean id="OrderActionP" class="com.hck.money.phone.action.OrderAction"  scope="prototype">
-<property name="oDao"><ref bean="orderDao"/></property>
-</bean>
-<bean id="configActionP" class="com.hck.money.phone.action.ConfigAction"  scope="prototype">
-<property name="newDao"><ref bean="nDao"/></property>
-</bean>
-<bean id="MessageActionP" class="com.hck.money.phone.action.MessageAction"  scope="prototype">
-<property name="messagedao"><ref bean="mDao"/></property>
-</bean>
+	<!-- 新闻 -->
+	<bean id="nDao" class="com.hck.money.daoserver.NewServer" scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="NewAction" class="com.hck.money.pc.action.NewAction"
+		scope="prototype">
+		<property name="dao">
+			<ref bean="nDao" />
+		</property>
+	</bean>
 
 
+	<!-- 分享 -->
+	<bean id="shareDao" class="com.hck.money.daoserver.ShareServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="shareAction" class="com.hck.money.pc.action.ShareAction"
+		scope="prototype">
+		<property name="sDao">
+			<ref bean="shareDao" />
+		</property>
+	</bean>
 
-<bean id="MoneyActionP" class="com.hck.money.phone.action.UserMoneyAction"  scope="prototype">
-<property name="userMoneyDao"><ref bean="moneyDao"/></property>
-<property name="jDao"><ref bean="jlDao"/></property>
-</bean>
+	<!-- 赚钱记录 -->
+	<bean id="JLAction" class="com.hck.money.pc.action.JiLuAction"
+		scope="prototype">
+		<property name="jDao">
+			<ref bean="jlDao" />
+		</property>
+	</bean>
 
-<!-- 获取版本信息 -->
-<bean id="InfoActionP" class="com.hck.money.phone.action.InfoAction"  scope="prototype">
-<property name="infoDao"><ref bean="vDao"/></property>
-</bean>
-<!-- 获取分享信息 -->
-<bean id="ShareActionP" class="com.hck.money.phone.action.ShareAction"  scope="prototype">
-<property name="shareDao"><ref bean="shareDao"/></property>
-</bean>
+	<!-- 赚钱排行 -->
+	<bean id="moneyServer" class="com.hck.money.daoserver.UserMoneyServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="RankAction" class="com.hck.money.pc.action.RankAction"
+		scope="prototype">
+		<property name="moneyDaoServer">
+			<ref bean="moneyServer" />
+		</property>
+	</bean>
+	<!-- 红包 -->
+	<bean id="hongbao" class="com.hck.money.daoserver.HongBaoServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 
-<!-- 增加订单 -->
-<bean id="orderActionP" class="com.hck.money.phone.action.OrderAction"  scope="prototype">
-<property name="oDao"><ref bean="orderDao"/></property>
-<property name="moneyDao"><ref bean="moneyDao"/></property>
-</bean>
+	<!-- 赚钱统计 -->
+
+	<bean id="GetMoneyAction" class="com.hck.money.pc.action.GetMoneyTJAction"
+		scope="prototype">
+		<property name="moneyDao">
+			<ref bean="jlDao" />
+		</property>
+		<property name="kDao">
+			<ref bean="kindDao" />
+		</property>
+	</bean>
+
+	<!-- 我的应用 -->
+	<bean id="appDao" class="com.hck.money.daoserver.AppServer" scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GetAppAction" class="com.hck.money.pc.action.AppAction"
+		scope="prototype">
+		<property name="aDao">
+			<ref bean="appDao" />
+		</property>
+	</bean>
+	<bean id="uaDao" class="com.hck.money.daoserver.UserAppServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GetUserAppAction" class="com.hck.money.pc.action.UserAppAction"
+		scope="prototype">
+		<property name="uDao">
+			<ref bean="uaDao" />
+		</property>
+	</bean>
+	<!-- 反馈 -->
+	<bean id="fankui" class="com.hck.money.daoserver.FanKuiServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 反馈信息 -->
+
+	<bean id="FankuiAction" class="com.hck.money.pc.action.FanKuiAction"
+		scope="prototype">
+		<property name="fServer">
+			<ref bean="fankui" />
+		</property>
+	</bean>
+
+	<bean id="TGAppAction" class="com.hck.money.pc.action.TGBaoAction"
+		scope="prototype">
+		<property name="tServer">
+			<ref bean="tgapp" />
+		</property>
+	</bean>
+
+	<!-- 手机用户 -->
+
+	<bean id="UserActionP" class="com.hck.money.phone.action.UserAction"
+		scope="prototype">
+		<property name="uDao">
+			<ref bean="userDao" />
+		</property>
+		<property name="userMoneyDao">
+			<ref bean="moneyDao" />
+		</property>
+		<property name="jDao">
+			<ref bean="jlDao" />
+		</property>
+		<property name="hServer">
+			<ref bean="hongbao" />
+		</property>
+		<property name="tServer">
+			<ref bean="tgapp" />
+		</property>
+	</bean>
+	<!-- 列表 -->
+	<bean id="KindActionP" class="com.hck.money.phone.action.KindAction"
+		scope="prototype">
+		<property name="kDao">
+			<ref bean="kindDao" />
+		</property>
+	</bean>
+	<bean id="OrderActionP" class="com.hck.money.phone.action.OrderAction"
+		scope="prototype">
+		<property name="oDao">
+			<ref bean="orderDao" />
+		</property>
+	</bean>
+
+	<bean id="MessageActionP" class="com.hck.money.phone.action.MessageAction"
+		scope="prototype">
+		<property name="messagedao">
+			<ref bean="mDao" />
+		</property>
+	</bean>
 
 
-<!-- 增加订单 -->
-<bean id="downDaop" class="com.hck.money.daoserver.UserDownAppServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
-<bean id="AppActionP" class="com.hck.money.phone.action.AppAction"  scope="prototype">
-<property name="aDao"><ref bean="appDao"/></property>
-<property name="dao"><ref bean="downDaop"/></property>
-</bean>
 
-<!-- apps -->
-<bean id="userDaop" class="com.hck.money.daoserver.UserAppServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
+	<bean id="MoneyActionP" class="com.hck.money.phone.action.UserMoneyAction"
+		scope="prototype">
+		<property name="userMoneyDao">
+			<ref bean="moneyDao" />
+		</property>
+		<property name="jDao">
+			<ref bean="jlDao" />
+		</property>
+	</bean>
 
-<bean id="UserAppActionP" class="com.hck.money.phone.action.UserAppAction"  scope="prototype">
-<property name="userAppDao"><ref bean="userDaop"/></property>
-<property name="aDao"><ref bean="appDao"/></property>
-<property name="dao"><ref bean="downDaop"/></property>
-</bean>
+	<!-- 获取版本信息 -->
+	<bean id="InfoActionP" class="com.hck.money.phone.action.InfoAction"
+		scope="prototype">
+		<property name="infoDao">
+			<ref bean="vDao" />
+		</property>
+	</bean>
+	<!-- 获取分享信息 -->
+	<bean id="ShareActionP" class="com.hck.money.phone.action.ShareAction"
+		scope="prototype">
+		<property name="shareDao">
+			<ref bean="shareDao" />
+		</property>
+	</bean>
 
-<!--推广 -->
-<bean id="tg" class="com.hck.money.daoserver.TgServer" scope="prototype">
-<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-</bean>	
+	<!-- 增加订单 -->
+	<bean id="orderActionP" class="com.hck.money.phone.action.OrderAction"
+		scope="prototype">
+		<property name="oDao">
+			<ref bean="orderDao" />
+		</property>
+		<property name="moneyDao">
+			<ref bean="moneyDao" />
+		</property>
+		<property name="hServer">
+			<ref bean="hongbao" />
+		</property>
+	</bean>
 
-<bean id="TgActionP" class="com.hck.money.phone.action.TgAction"  scope="prototype">
-<property name="tgDao"><ref bean="tg"/></property>
 
-</bean>
+	<!-- 增加订单 -->
+	<bean id="downDaop" class="com.hck.money.daoserver.UserDownAppServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AppActionP" class="com.hck.money.phone.action.AppAction"
+		scope="prototype">
+		<property name="aDao">
+			<ref bean="appDao" />
+		</property>
+		<property name="dao">
+			<ref bean="downDaop" />
+		</property>
+	</bean>
+
+	<!-- apps -->
+	<bean id="userDaop" class="com.hck.money.daoserver.UserAppServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="UserAppActionP" class="com.hck.money.phone.action.UserAppAction"
+		scope="prototype">
+		<property name="userAppDao">
+			<ref bean="userDaop" />
+		</property>
+		<property name="aDao">
+			<ref bean="appDao" />
+		</property>
+		<property name="dao">
+			<ref bean="downDaop" />
+		</property>
+	</bean>
+
+	<!--推广 -->
+	<bean id="tg" class="com.hck.money.daoserver.TgServer" scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="TgActionP" class="com.hck.money.phone.action.TgAction"
+		scope="prototype">
+		<property name="tgDao">
+			<ref bean="tg" />
+		</property>
+	</bean>
+
+
+	<!-- 用户推广链接 -->
+	<bean id="userTG" class="com.hck.money.daoserver.UserTgServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="GetUserTGInfoAction" class="com.hck.money.pc.action.UserTGAction"
+		scope="prototype">
+		<property name="uServer">
+			<ref bean="userTG" />
+		</property>
+	</bean>
+
+	<!-- 获取配置 -->
+	<bean id="config" class="com.hck.money.daoserver.ConfigServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="configActionP" class="com.hck.money.phone.action.ConfigAction"
+		scope="prototype">
+		<property name="configServer">
+			<ref bean="config" />
+		</property>
+		<property name="hBaoServer">
+			<ref bean="hongbao" />
+		</property>
+		<property name="messagedao">
+			<ref bean="mDao" />
+		</property>
+	</bean>
+	<!-- 红包 -->
+
+	<bean id="HongBaoActionP" class="com.hck.money.phone.action.HongBaoAction"
+		scope="prototype">
+		<property name="hServer">
+			<ref bean="hongbao" />
+		</property>
+	</bean>
+	<!-- 意见反馈 -->
+
+	<bean id="FKActionP" class="com.hck.money.phone.action.FanKuiAction"
+		scope="prototype">
+		<property name="fServer">
+			<ref bean="fankui" />
+		</property>
+	</bean>
+
+	<!-- 推广包 -->
+	<bean id="TGAppActionP" class="com.hck.money.phone.action.TGAppAction"
+		scope="prototype">
+		<property name="server">
+			<ref bean="tgapp" />
+		</property>
+	</bean>
+
 </beans>

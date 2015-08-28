@@ -17,10 +17,7 @@ import com.hck.money.vo.MessageBean;
 import net.sf.json.JSONObject;
 
 public class MessageAction extends BaseAction {
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
+
 	private long id;
 	private int mid;
 
@@ -67,24 +64,7 @@ public class MessageAction extends BaseAction {
 
 	}
 
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		response=null;
-		request=null;
-	}
+	
 
 	public void getUserMessageP() {
 		init();

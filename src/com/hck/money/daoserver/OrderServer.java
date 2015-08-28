@@ -4,9 +4,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.SliderUI;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 
 
 import com.hck.money.bean.Jilu;
@@ -113,7 +116,7 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 	public List<Orders> getEndOrders(int page) {
 		String sql = "from Orders o where o.state=1 order by o.id desc";
 		ActionContext.getContext().getSession().put("orderSize", getCount(sql));
-		return getList(sql, page, 40);
+		return getList(sql, page, 12);
 	}
 
 	public List<Orders> getNoChuLiOrders(int page) {
@@ -130,9 +133,9 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Orders> getChuLiOrdersP(long uid) {
+	public List<Orders> getChuLiOrdersP(long uid,int page) {
 		String sql = "from Orders o where o.user.id=" + uid + " and o.state=1";
-		return getHibernateTemplate().find(sql);
+		return getList(sql, page, 10);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -153,6 +156,20 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 		}
 		
 	}
+
+	public List<Orders> getUserOrder(long uid) {
+		String sql = "from Orders o where o.user.id="+uid;
+		return getHibernateTemplate().find(sql);
+	}
 	
 
+	public List<Orders> getUserOrderP(long uid,int page) {
+		String sql = "from Orders o where o.user.id="+uid;
+		return getList(sql, page, 12);
+	}
+
+	public List<Orders> getNewOrders() {
+		String sql = "from Orders o where o.state=1 order by o.id desc";
+		return getList(sql, 1, 50);
+	}
 }

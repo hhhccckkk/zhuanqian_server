@@ -69,6 +69,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
+       <tr>
+        <td height="36">&nbsp;</td>
+        <td >aid：</td>
+        <td ><input type="text" name="kind.aid"/></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="36">&nbsp;</td>
+        <td >渠道名字：</td>
+        <td ><input type="text" name="kind.name"/></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
       <tr>
         <td height="200">&nbsp;</td>
         <td>&nbsp;</td>

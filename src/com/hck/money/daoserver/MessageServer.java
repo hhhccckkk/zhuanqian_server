@@ -12,15 +12,16 @@ import com.hck.money.bean.User;
 import com.hck.money.dao.Messagedao;
 import com.opensymphony.xwork2.ActionContext;
 
-public class MessageServer extends HibernateDaoSupport  implements Messagedao {
+public class MessageServer extends HibernateDaoSupport implements Messagedao {
 
 	public void deleteMessage(int mId) {
-		getHibernateTemplate().delete(getHibernateTemplate().get(Message.class, mId));
+		getHibernateTemplate().delete(
+				getHibernateTemplate().get(Message.class, mId));
 
 	}
 
 	public List<Message> getMessages(int page) {
-		String sql="from Message m order by m.id desc";
+		String sql = "from Message m order by m.id desc";
 		ActionContext.getContext().getSession().put("mSize", getCount(sql));
 		return getList(sql, page, 12);
 	}
@@ -28,10 +29,12 @@ public class MessageServer extends HibernateDaoSupport  implements Messagedao {
 	public void updateState(int mId) {
 
 	}
-	private int getCount(String sql) {
+
+	public int getCount(String sql) {
 
 		return this.getHibernateTemplate().find(sql).size();
 	}
+
 	@SuppressWarnings("unchecked")
 	private List<Message> getList(String sql, int page, int num) {
 		List<Message> pList = new ArrayList<Message>();
@@ -47,34 +50,48 @@ public class MessageServer extends HibernateDaoSupport  implements Messagedao {
 	}
 
 	public void changeState(int id) {
-		Message message=(Message) getHibernateTemplate().get(Message.class, id);
-		if (message!=null) {
+		Message message = (Message) getHibernateTemplate().get(Message.class,
+				id);
+		if (message != null) {
 			message.setState(1);
 			getHibernateTemplate().update(message);
 		}
-		
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Message> getUserMessages(long uid) {
-		String sqlString="from Message m where m.uid="+uid+" order by m.id desc";
+		String sqlString = "from Message m where m.uid=" + uid
+				+ " order by m.id desc";
 		return getHibernateTemplate().find(sqlString);
 	}
 
 	public void addMessage(Message message) {
-        getHibernateTemplate().save(message);		
+		getHibernateTemplate().save(message);
 	}
 
 	@SuppressWarnings("unchecked")
 	public long getCount(Long uid) {
-		String hql = "select count(*) from Message m where m.uid="+uid+" and m.state=0"; 
-		List<Long> sizeList=getHibernateTemplate().find(hql);
-		if (sizeList!=null) {
+		String hql = "select count(*) from Message m where m.uid=" + uid
+				+ " and m.state=0";
+		List<Long> sizeList = getHibernateTemplate().find(hql);
+		if (sizeList != null) {
 			return sizeList.get(0);
 		}
 		return 0;
-		
+
+	}
+
+	public long getNewMsgId(long uid) {
+		try {
+			Message message = getUserMessages(uid).get(0);
+			if (message != null) {
+				return message.getId();
+			}
+		} catch (Exception e) {
+			return 0;
+		}
+		return 0;
 	}
 
 }

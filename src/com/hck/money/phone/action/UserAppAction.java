@@ -24,10 +24,6 @@ import com.hck.money.dao.UserDownAppDao;
 import com.mysql.jdbc.log.Log;
 
 public class UserAppAction extends BaseAction {
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
 	private UserAppDao userAppDao;
 	private UserDownAppDao dao;
 	private List<Userapp> aList;
@@ -76,52 +72,7 @@ public class UserAppAction extends BaseAction {
 		this.aDao = aDao;
 	}
 
-	public void init() {
-		json = new JSONObject();
-		if (response == null) {
-			response = ServletActionContext.getResponse();
-		}
-		if (request == null) {
-			request = ServletActionContext.getRequest();
-		}
-		response.setContentType("text/json;charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (oStream != null) {
-
-				}
-				oStream.close();
-			} catch (Exception e2) {
-			}
-
-		}
-		response = null;
-		request = null;
-	}
-
+	
 	public void qiandao() {
 		init();
 		try {
@@ -144,7 +95,6 @@ public class UserAppAction extends BaseAction {
 		if (aDao.isExit(uid, id)) {
 			json.put("isok", false);
 		} else {
-			System.out.println("bbbbb: ");
 			Apps apps = aDao.getOneApp(id);
 			Userapp userapp = new Userapp();
 			userapp.setImage1(apps.getImage1());

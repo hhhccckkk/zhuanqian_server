@@ -14,5 +14,6 @@ public interface Messagedao {
    public List<Message> getUserMessages(long uid);
    public void changeState(int id);
    public long getCount(Long uid);
+   public long getNewMsgId(long uid);
    
 }

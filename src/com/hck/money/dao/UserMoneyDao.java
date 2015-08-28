@@ -14,7 +14,7 @@ public interface UserMoneyDao {
 	
 	
 	
-	public boolean updateMoney(long uid,long value,int type);
+	public boolean updateMoney(long uid,long value,int type,boolean isTG);
 	public boolean addTJMoney(String uName,long size,String yqm);
 	
 	

@@ -15,9 +15,8 @@ public class Message implements java.io.Serializable {
 	private Timestamp time;
 	private Long uid;
 	private Integer state;
-
+    
 	// Constructors
-
 	/** default constructor */
 	public Message() {
 	}

@@ -73,6 +73,7 @@ $(function(){
             <li><a href="showOverOrder?page=1" target=right>未处理订单</a></li>
             <li><a href="getMyOrder?page=1" target=right>我的订单</a></li>
               <li><a href="getDX?page=1" target=right>消息</a></li>
+              <li><a href="getFanKui?" target=right>反馈信息</a></li>
             <div class="nav-right fleft"></div>
         </ul>
     </div>
@@ -125,7 +126,9 @@ $(function(){
             	<ul class="yingcang">
             	<li><a href="addUser.jsp" target="right">增加用户</a></li>
                 	<li><a href="searchUser.jsp" target="right">搜索用户</a></li>
-                	<li><a href="getUserSize" target="right">用户统计</a></li>
+                	<li><a href="getUserSize?type=0" target="right">用户统计</a></li>
+                	<li><a href="getUserSize?type=1" target="right">今天新增用户</a></li>
+                	<li><a href="getUserSize?type=2" target="right">昨天新增用户</a></li>
                 </ul>
             </li>
             <li class="subMenu"><a href="#">订单管理</a>
@@ -134,6 +137,12 @@ $(function(){
             <li><a href="searchOrder.jsp" target="right">搜索订单</a></li>
             </ul>
             </li>
+             <li class="subMenu"><a href="#">推广包管理</a>
+            <ul class="yingcang">
+            <li><a href="getTuiGuangBaos?page=1" target="right">推广包列表</a></li>
+            </ul>
+            </li>
+            <!--  
            <li class="subMenu"><a href="#">版本管理</a>
             	<ul class="yingcang">
                     <li><a href="addVison.jsp" target="right">增加版本</a></li>
@@ -157,6 +166,7 @@ $(function(){
              <li><a href="addMessage.jsp" target="right">增加短信息</a></li>
                 </ul>
             </li>
+            -->
         </ul>
     </div>
     <div class="sidebar fleft"><div class="btn"></div></div>

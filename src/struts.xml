@@ -18,175 +18,210 @@
 			<result name="success" type="redirect">xiugaiok.jsp</result>
 			<result name="input">updateAdmin.jsp</result>
 		</action>
-	
-	<!-- 赚钱类别 -->	
-	<action name="getKinds" class="KindAction" method="getMoneyKind" >
-	<result name="success" >showKinds.jsp</result>
-	</action>
-	<action name="deleteKind" class="KindAction" method="deleteKind" >
-	<result name="success" type="redirectAction">getKinds</result>
-	</action>
-	<action name="getOneKind" class="KindAction" method="getOneKind" >
-	<result name="success" >showOneKind.jsp</result>
-	</action>
-	<action name="updateKind" class="KindAction" method="updateKind" >
-	<result name="success" >showOneKind.jsp?id=${kind.id}</result>
-	</action>
-	<action name="addKind" class="KindAction" method="addKind" >
-	<result name="success" >addKind.jsp</result>
-	</action>
-	
-	
-	<!-- 用户-->	
-	<action name="getusers" class="UserAction" method="getAllUsers" >
-	<result name="success" >showUser.jsp</result>
-	</action>
-	<action name="deleteUser" class="UserAction" method="deleteUser" >
-	<result name="success" type="redirectAction">getusers?page=${page}</result>
-	</action>
-	<action name="getOneUser" class="UserAction" method="getOneUser" >
-	<result name="success" >showOneUser.jsp</result>
-	</action>
-	<action name="updateState" class="UserAction" method="updateState" >
-	<result name="success" type="redirectAction">getusers</result>
-	</action>
-	<action name="deleteUser" class="UserAction" method="deleteUser" >
-	<result name="success" type="redirectAction">getusers</result>
-	</action>
-	<action name="searchUser" class="UserAction" method="searchUser" >
-	<result name="success" >showOneUser.jsp</result>
-	</action>
-	<action name="getUserSize" class="UserAction" method="getUserSize" >
-	<result name="success" >showUserSize.jsp</result>
-	</action>
-	<action name="getXiaJia" class="UserAction" method="getXiaJia" >
-	<result name="success" >showUser.jsp</result>
-	</action>
-	<action name="addUserPC" class="UserAction" method="addUserPC" >
-	<result name="success" >addUser.jsp</result>
-	</action>
-	
-	<!-- 订单-->	
-	<action name="getEndOrder" class="OrderAction" method="getEndOrder" >
-	<result name="success" >showEndOrder.jsp</result>
-	</action>
-	<action name="dealOrder" class="OrderAction" method="dealOrder" >
-	<result name="success" type="redirectAction">showOverOrder</result>
-	</action>
-	<action name="showOverOrder" class="OrderAction" method="showOverOrder" >
-	<result name="success" >showOverOrder.jsp</result>
-	</action>
-	<action name="getMyOrder" class="OrderAction" method="getMyOrder" >
-	<result name="success" >showMyOrder.jsp</result>
-	</action>
-	<action name="deleteOrder" class="OrderAction" method="deleteOrder" >
-	<result name="success" type="redirectAction">getMyOrder</result>
-	</action>
-	
-	<action name="deleteOrder2" class="OrderAction" method="deleteOrder" >
-	<result name="success" type="redirectAction">getEndOrder</result>
-	</action>
-	
-	<action name="addOrder" class="OrderAction" method="addOrder" >
-	<result name="success" >addOrder.jsp</result>
-	</action>
-	<action name="searchOrder" class="OrderAction" method="searchOrder" >
-	<result name="success" >showOneOrder.jsp</result>
-	</action>
-	<!--信息-->	
-	<action name="getDX" class="MessageAction" method="getDX" >
-	<result name="success" >showMessage.jsp</result>
-	</action>
-	<action name="deleteMessage" class="MessageAction" method="deleteMessage" >
-	<result name="success" type="redirectAction">getDX</result>
-	</action>
-	<action name="addMessage" class="MessageAction" method="addMessage" >
-	<result name="success" type="redirectAction">getDX</result>
-	</action>
-	<!--版本-->	
-	<action name="addVison" class="InfoAction" method="addVison" >
-	<result name="success" >addVison.jsp</result>
-	</action>
-	<action name="getVison" class="InfoAction" method="getVison" >
-	<result name="success" >showVison.jsp</result>
-	</action>
-	<action name="updateVison" class="InfoAction" method="updateVison" >
-	<result name="success"  type="redirectAction">getVison</result>
-	</action>
-	
-	<!--新闻-->	
-	<action name="addNew" class="NewAction" method="addNew" >
-	<result name="success" >addNew.jsp</result>
-	</action>
-	<action name="getNews" class="NewAction" method="getNew" >
-	<result name="success" >showNew.jsp</result>
-	</action>
-	<action name="updateNew" class="NewAction" method="updateNew" >
-	<result name="success" type="redirectAction">getNews</result>
-	</action>
-	
-	<!--分享-->	
-	<action name="addShare" class="shareAction" method="addShare" >
-	<result name="success" >addShare.jsp</result>
-	</action>
-	<action name="getShare" class="shareAction" method="getShares" >
-	<result name="success" >showShare.jsp</result>
-	</action>
-	<action name="updateShare" class="shareAction" method="updateShare" >
-	<result name="success" type="redirectAction">getShare</result>
-	</action>
-	
-	<!--赚钱记录-->	
-	<action name="getUserJiLu" class="JLAction" method="getUserJiLu" >
-	<result name="success" >showUserJL.jsp</result>
-	</action>
-	<action name="deleteUserJL" class="JLAction" method="deleteUserJL" >
-	<result name="success" type="redirectAction">getUserJiLu?id=${id}</result>
-	</action>
-	
-	
-	<!--排行记录-->	
-	<action name="getRank1" class="RankAction" method="getRank1">
-	 <result name="success" >showRank1.jsp</result>
-	</action>
-	<action name="getRank2" class="RankAction" method="getRank2">
-	 <result name="success" >showRank2.jsp</result>
-	</action>
-	
-	<!--每日统计-->	
-	<action name="getMoneyAllP" class="GetMoneyAction" method="getMoneyAllP">
-	 <result name="success" >showJL1.jsp</result>
-	</action>
-	<action name="getMoneyAllP2" class="GetMoneyAction" method="getMoneyAllP2">
-	 <result name="success" >showJL2.jsp</result>
-	</action>
-	<action name="getMoneyAllP3" class="GetMoneyAction" method="getMoneyAllP3">
-	 <result name="success" >showJL3.jsp</result>
-	</action>
-	
-	<!--我的app管理-->	
-	<action name="addApp" class="GetAppAction" method="addApps">
-	 <result name="success" >addApp.jsp</result>
-	</action>
-	<action name="updateApp" class="GetAppAction" method="updateApp">
-	 <result name="success" ></result>
-	</action>
-	<action name="getAllApps" class="GetAppAction" method="getAppList">
-	 <result name="success" >showapp.jsp</result>
-	</action>
-	<action name="getOneApp" class="GetAppAction" method="getOneApp">
-	 <result name="success" >showOneApp.jsp</result>
-	</action>
-	<action name="deleteOneApp" class="GetAppAction" method="deleteApp">
-	 <result name="success" type="redirectAction">getAllApps</result>
-	</action>
-	
-	
-	<action name="getUserApp" class="GetUserAppAction" method="getUserApp">
-	 <result name="success" >showUserApp.jsp</result>
-	</action>
-	<action name="deleteUserApp" class="GetUserAppAction" method="deleteUserApp">
-	 <result name="success" type="redirectAction">getUserApp?id=${id}</result>
-	</action>
+
+		<!-- 赚钱类别 -->
+		<action name="getKinds" class="KindAction" method="getMoneyKind">
+			<result name="success">showKinds.jsp</result>
+		</action>
+		<action name="deleteKind" class="KindAction" method="deleteKind">
+			<result name="success" type="redirectAction">getKinds</result>
+		</action>
+		<action name="getOneKind" class="KindAction" method="getOneKind">
+			<result name="success">showOneKind.jsp</result>
+		</action>
+		<action name="updateKind" class="KindAction" method="updateKind">
+			<result name="success">showOneKind.jsp?id=${kind.id}</result>
+		</action>
+		<action name="addKind" class="KindAction" method="addKind">
+			<result name="success">addKind.jsp</result>
+		</action>
+
+
+		<!-- 用户 -->
+		<action name="getusers" class="UserAction" method="getAllUsers">
+			<result name="success">showUser.jsp</result>
+		</action>
+		<action name="deleteUser" class="UserAction" method="deleteUser">
+			<result name="success" type="redirectAction">getusers?page=${page}</result>
+		</action>
+		<action name="getOneUser" class="UserAction" method="getOneUser">
+			<result name="success">showOneUser.jsp</result>
+		</action>
+		<action name="updateState" class="UserAction" method="updateState">
+			<result name="success" type="redirectAction">getusers</result>
+		</action>
+		<action name="deleteUser" class="UserAction" method="deleteUser">
+			<result name="success" type="redirectAction">getusers</result>
+		</action>
+		<action name="searchUser" class="UserAction" method="searchUser">
+			<result name="success">showOneUser.jsp</result>
+		</action>
+		<action name="getUserSize" class="UserAction" method="getUserSize">
+			<result name="success">showUserSize.jsp</result>
+		</action>
+		<action name="getXiaJia" class="UserAction" method="getXiaJia">
+			<result name="success">showUser.jsp</result>
+		</action>
+		<action name="addUserPC" class="UserAction" method="addUserPC">
+			<result name="success">addUser.jsp</result>
+		</action>
+
+		<!-- 订单 -->
+		<action name="getEndOrder" class="OrderAction" method="getEndOrder">
+			<result name="success">showEndOrder.jsp</result>
+		</action>
+		<action name="dealOrder" class="OrderAction" method="dealOrder">
+			<result name="success" type="redirectAction">showOverOrder</result>
+		</action>
+		<action name="showOverOrder" class="OrderAction" method="showOverOrder">
+			<result name="success">showOverOrder.jsp</result>
+		</action>
+		<action name="getUserOrder" class="OrderAction" method="getUserOrder">
+			<result name="success">showEndOrder.jsp</result>
+		</action>
+		<action name="getMyOrder" class="OrderAction" method="getMyOrder">
+			<result name="success">showMyOrder.jsp</result>
+		</action>
+		<action name="deleteOrder" class="OrderAction" method="deleteOrder">
+			<result name="success" type="redirectAction">getMyOrder</result>
+		</action>
+
+		<action name="deleteOrder2" class="OrderAction" method="deleteOrder">
+			<result name="success" type="redirectAction">getEndOrder</result>
+		</action>
+
+		<action name="addOrder" class="OrderAction" method="addOrder">
+			<result name="success">addOrder.jsp</result>
+		</action>
+		<action name="searchOrder" class="OrderAction" method="searchOrder">
+			<result name="success">showOneOrder.jsp</result>
+		</action>
+		<action name="getUserOrder" class="OrderAction" method="getUserOrder">
+			<result name="success">showUserOrder.jsp</result>
+		</action>
+		<!--信息 -->
+		<action name="getDX" class="MessageAction" method="getDX">
+			<result name="success">showMessage.jsp</result>
+		</action>
+		<action name="deleteMessage" class="MessageAction" method="deleteMessage">
+			<result name="success" type="redirectAction">getDX</result>
+		</action>
+		<action name="addMessage" class="MessageAction" method="addMessage">
+			<result name="success" type="redirectAction">getDX</result>
+		</action>
+		<!--版本 -->
+		<action name="addVison" class="InfoAction" method="addVison">
+			<result name="success">addVison.jsp</result>
+		</action>
+		<action name="getVison" class="InfoAction" method="getVison">
+			<result name="success">showVison.jsp</result>
+		</action>
+		<action name="updateVison" class="InfoAction" method="updateVison">
+			<result name="success" type="redirectAction">getVison</result>
+		</action>
+
+		<!--新闻 -->
+		<action name="addNew" class="NewAction" method="addNew">
+			<result name="success">addNew.jsp</result>
+		</action>
+		<action name="getNews" class="NewAction" method="getNew">
+			<result name="success">showNew.jsp</result>
+		</action>
+		<action name="updateNew" class="NewAction" method="updateNew">
+			<result name="success" type="redirectAction">getNews</result>
+		</action>
+
+		<!--分享 -->
+		<action name="addShare" class="shareAction" method="addShare">
+			<result name="success">addShare.jsp</result>
+		</action>
+		<action name="getShare" class="shareAction" method="getShares">
+			<result name="success">showShare.jsp</result>
+		</action>
+		<action name="updateShare" class="shareAction" method="updateShare">
+			<result name="success" type="redirectAction">getShare</result>
+		</action>
+
+		<!--赚钱记录 -->
+		<action name="getUserJiLu" class="JLAction" method="getUserJiLu">
+			<result name="success">showUserJL.jsp</result>
+		</action>
+		<action name="deleteUserJL" class="JLAction" method="deleteUserJL">
+			<result name="success" type="redirectAction">getUserJiLu?id=${id}</result>
+		</action>
+
+
+		<!--排行记录 -->
+		<action name="getRank1" class="RankAction" method="getRank1">
+			<result name="success">showRank1.jsp</result>
+		</action>
+		<action name="getRank2" class="RankAction" method="getRank2">
+			<result name="success">showRank2.jsp</result>
+		</action>
+
+		<!--每日统计 -->
+		<action name="getMoneyAllP" class="GetMoneyAction" method="getMoneyAllP">
+			<result name="success">showJL1.jsp</result>
+		</action>
+		<action name="getMoneyAllP2" class="GetMoneyAction" method="getMoneyAllP2">
+			<result name="success">showJL2.jsp</result>
+		</action>
+		<action name="getMoneyAllP3" class="GetMoneyAction" method="getMoneyAllP3">
+			<result name="success">showJL3.jsp</result>
+		</action>
+
+		<!--我的app管理 -->
+		<action name="addApp" class="GetAppAction" method="addApps">
+			<result name="success">addApp.jsp</result>
+		</action>
+		<action name="updateApp" class="GetAppAction" method="updateApp">
+			<result name="success"></result>
+		</action>
+		<action name="getAllApps" class="GetAppAction" method="getAppList">
+			<result name="success">showapp.jsp</result>
+		</action>
+		<action name="getOneApp" class="GetAppAction" method="getOneApp">
+			<result name="success">showOneApp.jsp</result>
+		</action>
+		<action name="deleteOneApp" class="GetAppAction" method="deleteApp">
+			<result name="success" type="redirectAction">getAllApps</result>
+		</action>
+
+
+		<action name="getUserApp" class="GetUserAppAction" method="getUserApp">
+			<result name="success">showUserApp.jsp</result>
+		</action>
+		<action name="deleteUserApp" class="GetUserAppAction" method="deleteUserApp">
+			<result name="success" type="redirectAction">getUserApp?id=${id}</result>
+		</action>
+
+
+
+		<!-- 用户推广信息 -->
+		<action name="downApp" class="GetUserTGInfoAction"
+			method="getUserTgInfo">
+			<result name="success">downApp.jsp</result>
+		</action>
+		
+		
+		<!-- 反馈信息 -->
+		<action name="getFanKui" class="FankuiAction"
+			method="getFanKui">
+			<result name="success">showFanKui.jsp</result>
+		</action>
+		<action name="deleteFanKui" class="FankuiAction"
+			method="deleteFanKui">
+			<result name="success" type="redirectAction">getFanKui</result>
+		</action>
+		
+		<!-- 推广包信息 -->
+		<action name="getTuiGuangBaos" class="TGAppAction"
+			method="getTGBaos">
+			<result name="success">showTGB.jsp</result>
+		</action>
+		<action name="deleteTGB" class="TGAppAction"
+			method="deleteTGB">
+			<result name="success" type="redirectAction">getTuiGuangBaos?page=1</result>
+		</action>
 	</package>
 </struts>

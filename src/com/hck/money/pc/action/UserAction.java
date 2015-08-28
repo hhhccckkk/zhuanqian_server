@@ -20,16 +20,46 @@ public class UserAction extends ActionSupport {
 	private int page;
 	private int isok;
 	private long size;
+	private long jintian;
+	private long zuotian;
+
+	public long getJintian() {
+		return jintian;
+	}
+
+	public void setJintian(long jintian) {
+		this.jintian = jintian;
+	}
+
+	public long getZuotian() {
+		return zuotian;
+	}
+
+	public void setZuotian(long zuotian) {
+		this.zuotian = zuotian;
+	}
+
+	private int type;
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	private String jhm;
 	private Usermoney usermoney;
-private String key;
-	public String getKey() {
-	return key;
-}
+	private String key;
 
-public void setKey(String key) {
-	this.key = key;
-}
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 	public UserMoneyDao getUserMoneyDao() {
 		return userMoneyDao;
@@ -155,16 +185,21 @@ public void setKey(String key) {
 	}
 
 	public String searchUser() {
-		user = uDao.SearchUser(key);
-		if (user!=null) {
+		user = uDao.SearchUser(id);
+		if (user != null) {
 			usermoney = userMoneyDao.getUsermoney(user.getId());
 		}
 		return SUCCESS;
 	}
 
 	public String getUserSize() {
-		size = uDao.getUserSize();
-
+		if (type == 1) {
+			jintian = uDao.getUserSize(type);
+		} else if (type == 2) {
+			zuotian = uDao.getUserSize(type);
+		} else {
+			size = uDao.getUserSize(type);
+		}
 		return SUCCESS;
 	}
 

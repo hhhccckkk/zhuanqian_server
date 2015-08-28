@@ -15,10 +15,7 @@ import net.sf.json.JSONObject;
 
 
 public class InfoAction extends BaseAction{
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
+	
 	private InfoDao infoDao;
 	private int type;
 	public int getType() {
@@ -52,24 +49,6 @@ public class InfoAction extends BaseAction{
 		
 	}
 
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		response=null;
-		request=null;
-	}
 	
 	public void getInfoP()
 	{

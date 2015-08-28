@@ -6,7 +6,7 @@
 <struts>
 	<constant name="struts.devMode" value="false"></constant>
 	<package name="strutsphone" extends="json-default">
-	<!-- 注册用户 -->
+		<!-- 注册用户 -->
 		<action name="addUserP" class="UserActionP" method="addUserP">
 			<result type="json">null</result>
 		</action>
@@ -31,20 +31,20 @@
 			<result type="json">null</result>
 		</action>
 		<!-- 获取用户已经处理的 订单 -->
-		<action name="getUserYesOrderP" class="OrderActionP" method="getUserYesOrderP">
+		<action name="getUserAllOrders" class="OrderActionP" method="getUserAllOrders">
 			<result type="json">null</result>
 		</action>
 		<action name="updateUserP" class="UserActionP" method="updateUser">
 			<result type="json">null</result>
 		</action>
-			<action name="renwu" class="UserActionP" method="updateUserShareQQ">
+		<action name="renwu" class="UserActionP" method="updateUserShareQQ">
 			<result type="json">null</result>
 		</action>
-		
-		
-		
-		
-		<!-- 获取新闻公告 -->
+
+
+
+
+		<!-- 获取配置 -->
 		<action name="getConfigP" class="configActionP" method="getConfigP">
 			<result type="json">null</result>
 		</action>
@@ -56,10 +56,11 @@
 			<result type="json">null</result>
 		</action>
 		<!-- 改变短消息状态 -->
-		<action name="changeMessageStateP" class="MessageActionP" method="changeMessageStateP">
+		<action name="changeMessageStateP" class="MessageActionP"
+			method="changeMessageStateP">
 			<result type="json">null</result>
 		</action>
-		
+
 		<!-- 获取未读短信记录 -->
 		<action name="getMessageNoReadP" class="MessageActionP" method="getMessageNoReadP">
 			<result type="json">null</result>
@@ -72,7 +73,7 @@
 		<action name="getMoneyTJP" class="MoneyActionP" method="getMoneyTJP">
 			<result type="json">null</result>
 		</action>
-		
+
 		<!--增加蝌蚪币 -->
 		<action name="addMoneyP" class="MoneyActionP" method="addMoneyP">
 			<result type="json">null</result>
@@ -81,12 +82,12 @@
 		<action name="getInfoP" class="InfoActionP" method="getInfoP">
 			<result type="json">null</result>
 		</action>
-		
+
 		<!-- 获取分享信息 -->
 		<action name="getShareP" class="ShareActionP" method="getShareP">
 			<result type="json">null</result>
 		</action>
-		
+
 		<!-- 增加订单 -->
 		<action name="addOrderP" class="orderActionP" method="addOrderP">
 			<result type="json">null</result>
@@ -95,13 +96,13 @@
 		<action name="deleteOrderP" class="orderActionP" method="deleteOrderP">
 			<result type="json">null</result>
 		</action>
-		
+
 		<!-- apps -->
 		<action name="getAppsP" class="AppActionP" method="getAppsP">
 			<result type="json">null</result>
 		</action>
-			<!-- userapps -->
-			<action name="AddUserAppP" class="UserAppActionP" method="addUserApp">
+		<!-- userapps -->
+		<action name="AddUserAppP" class="UserAppActionP" method="addUserApp">
 			<result type="json">null</result>
 		</action>
 		<action name="saveUserApp" class="UserAppActionP" method="saveUserApp">
@@ -113,15 +114,40 @@
 		<action name="qiandao" class="UserAppActionP" method="qiandao">
 			<result type="json">null</result>
 		</action>
-		
+
 		<!-- 推广 -->
 		<action name="addTgP" class="TgActionP" method="addTg">
 			<result type="json">null</result>
-		</action>	
+		</action>
 		<action name="getTgP" class="TgActionP" method="getTg">
 			<result type="json">null</result>
 		</action>
 		<action name="deleteTgP" class="TgActionP" method="deleteTg">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 红包 -->
+		<action name="getHongBaoP" class="HongBaoActionP" method="getHongBao">
+			<result type="json">null</result>
+		</action>
+		<action name="updateHongBaoP" class="HongBaoActionP" method="updateHongBao">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 反馈信息 -->
+		<action name="addFanKuiP" class="FKActionP" method="addFanKui">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 打包 -->
+		<action name="dabao" class="TGAppActionP" method="daBao">
+			<result type="json">null</result>
+		</action>
+		<action name="getMyTgAppUrl" class="TGAppActionP" method="getMyTgAppUrl">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取红包数量，信息数量 -->
+		<action name="getSize" class="configActionP" method="getSize">
 			<result type="json">null</result>
 		</action>
 	</package>

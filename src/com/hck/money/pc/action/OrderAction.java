@@ -18,6 +18,15 @@ public class OrderAction extends BaseAction {
 	private Orders oneOrders;
 	private OrderDao oDao;
 	private String idString;
+    private long uid;
+    
+	public long getUid() {
+		return uid;
+	}
+
+	public void setUid(long uid) {
+		this.uid = uid;
+	}
 
 	public String getIdString() {
 		return idString;
@@ -123,6 +132,12 @@ public class OrderAction extends BaseAction {
 			orders2.add(orders3);
 		}
 		return orders2;
+	}
+	public String getUserOrder() {
+		ordList=null;
+		ordList = oDao.getUserOrder(uid);
+		ordList=changeBean(ordList);
+		return SUCCESS;
 	}
 
 }

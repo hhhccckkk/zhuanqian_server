@@ -37,6 +37,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td height="35">&nbsp;</td>
         <td >一共有用户：</td>
         <td ><h:property value="size"/></td>
+        
+        <td>&nbsp;</td>
+      </tr>
+       <tr>
+        <td height="35">&nbsp;</td>
+        <td >今天用户：</td>
+        <td ><h:property value="jintian"/></td>
+        <td>&nbsp;</td>
+      </tr>
+       <tr>
+        <td height="35">&nbsp;</td>
+        <td >昨天用户：</td>
+        <td ><h:property value="zuotian"/></td>
         <td>&nbsp;</td>
       </tr>
       <tr>

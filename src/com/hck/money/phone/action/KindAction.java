@@ -17,10 +17,7 @@ import com.hck.money.phone.action.BaseAction;
 
 @SuppressWarnings("serial")
 public class KindAction extends BaseAction {
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
+	
 	private List<Kind> kinds;
 	
 	private KindDao kDao;
@@ -56,24 +53,7 @@ public class KindAction extends BaseAction {
 
 	}
 
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		response=null;
-		request=null;
-	}
+	
 
 	public void getKindsP() {
 		init();

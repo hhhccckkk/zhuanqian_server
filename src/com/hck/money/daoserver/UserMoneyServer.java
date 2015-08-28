@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -97,7 +98,7 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 		return true;
 	}
 
-	public boolean updateMoney(long uid, long value,int type) {
+	public boolean updateMoney(long uid, long value,int type,boolean isTG) {
 		Usermoney usermoney=getUsermoney(uid);
 		if (usermoney==null) {
 			return false;
@@ -106,7 +107,9 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 			switch (type) {
 			case 1: //增加蝌蚪币
 				usermoney.setAlljifeng(usermoney.getAlljifeng()+value);
-				
+				if (isTG) {
+					usermoney.setTjmoney(usermoney.getAllmoney()+value);
+				}
 				break;
 			case 2: //减少蝌蚪币
 				usermoney.setAllmoney(usermoney.getAllmoney()+value/1000);
@@ -119,33 +122,7 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 			return true;
 		}
 	}
-	public boolean addTJMoney(String uName, long kedoubi,String yqm) {
-		if (yqm != null && !"".equals(yqm)) {
-			String sqlString = "from User u where u.tjm='" + yqm+ "'";
-			List<User> objects = getHibernateTemplate().find(sqlString);
-			if (objects != null) {
-				User user= objects.get(0);
-				updateMoney(user.getId(), kedoubi, 1);
-				
-				Message message=new Message();
-				message.setContent("您的推广用户"+uName+"兑换金币成功,您获取相应奖励金币"+kedoubi+"个");
-				message.setState(0);
-				message.setTime(new Timestamp(System.currentTimeMillis()));
-				message.setUid(user.getId());
-				float money = kedoubi/1000.0f;
-				Tg tg=new Tg();
-				tg.setContent("获取金币 "+kedoubi+"个,折合人民币"+money +"元");
-				tg.setUserName(uName);
-				tg.setUid(user.getId());
-				tg.setTime(new Timestamp(System.currentTimeMillis()));
-				saveTg(tg);
-			addMessage(message);
-				addJiLu(user.getId(), kedoubi);
-				
-			}
-		}
-		return false;
-	}
+	
 	private void saveTg(Tg tg)
 	{
 		getHibernateTemplate().save(tg);
@@ -161,6 +138,10 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 		jilu.setType("推广");
 		jilu.setUid(uid);
 		getHibernateTemplate().save(jilu);
+	}
+	public boolean addTJMoney(String uName, long size, String yqm) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 

@@ -21,10 +21,7 @@ import com.hck.money.vo.UserMoneyBean;
 import net.sf.json.JSONObject;
 
 public class UserMoneyAction extends BaseAction {
-	private JSONObject json;
-	private String jsonString;
-	private HttpServletRequest request = null;
-	private HttpServletResponse response = null;
+
 	private long uid;
 	private UserMoneyDao userMoneyDao;
 	private JiLuDao jDao;
@@ -53,39 +50,6 @@ public class UserMoneyAction extends BaseAction {
 
 	public void setUserMoneyDao(UserMoneyDao userMoneyDao) {
 		this.userMoneyDao = userMoneyDao;
-	}
-
-	public void init() {
-		json = new JSONObject();
-		response = ServletActionContext.getResponse();
-		request = ServletActionContext.getRequest();
-		response.setContentType("text/json;charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	private void write() {
-
-		jsonString = json.toString();
-		OutputStream oStream = null;
-		try {
-			oStream = response.getOutputStream();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			oStream.write(jsonString.getBytes("UTF-8"));
-			oStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		response = null;
-		request = null;
 	}
 
 	public void getMoneyRankP() {
@@ -125,10 +89,18 @@ public class UserMoneyAction extends BaseAction {
 		}
 		String kedoubi = request.getParameter("money");
 		String type = request.getParameter("type");
-		String kid = request.getParameter("kindid");
+		String kid = request.getParameter("kid");
 		int kindid = Integer.parseInt(kid);
-		int num=Integer.parseInt(request.getParameter("num"));
+		String isTgString = request.getParameter("isTg");
+		boolean isTg = false;
+		if (isTgString != null) {
+			isTg = true;
+		}
+		int num = Integer.parseInt(request.getParameter("num"));
+
 		if (kedoubi == null || "".equals(kedoubi) || type == null) {
+			json.put("isok", false);
+			write();
 			return;
 		}
 
@@ -136,16 +108,15 @@ public class UserMoneyAction extends BaseAction {
 			json.put("isok", false);
 			json.put("type", 1);
 			write();
-		}
-
-		else {
-			addMoney(uid, type, Long.parseLong(kedoubi),kindid);
+		} else {
+			addMoney(uid, type, Long.parseLong(kedoubi), kindid, isTg);
 		}
 
 	}
 
-	private void addMoney(long uid, String type, long jf,int kid) {
-		boolean b = userMoneyDao.updateMoney(uid, jf, 1);
+	// type 0 失败，1数量超过限制，2成功
+	private void addMoney(long uid, String type, long jf, int kid, boolean isTG) {
+		boolean b = userMoneyDao.updateMoney(uid, jf, 1, isTG);
 		try {
 			if (b) {
 				Jilu jilu = new Jilu();
@@ -155,16 +126,17 @@ public class UserMoneyAction extends BaseAction {
 				jilu.setUid(uid);
 				jilu.setKid(kid);
 				jDao.addJL(jilu);
+				json.put("isok", true);
+				json.put("type", 2);
+			} else {
+				json.put("isok", false);
+				json.put("type", 0);
 			}
 		} catch (Exception e) {
-			System.out.print("增加积分记录失败： "+e.toString());
-		}
-		if (b) {
-			json.put("isok", true);
-		} else {
 			json.put("isok", false);
 			json.put("type", 0);
 		}
+
 		write();
 	}
 

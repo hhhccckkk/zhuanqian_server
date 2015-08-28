@@ -7,6 +7,15 @@ public class OrderBean {
  private String userName;
  private String content;
  private String timestamp;
+ private boolean isChuLi;
+ 
+
+public boolean isChuLi() {
+	return isChuLi;
+}
+public void setChuLi(boolean isChuLi) {
+	this.isChuLi = isChuLi;
+}
 public long getId() {
 	return id;
 }

@@ -13,10 +13,13 @@ public boolean deleteOrder(long id);
 public boolean addOrder(Orders orders);
 public Orders searchOrder(long id);
 public List<Orders> getMyOrders(int page);
+public List<Orders> getUserOrder(long uid);
 
 
 //ÊÖ»ú
 public List<Orders> getNoChuLiOrdersP(long uid);
-public List<Orders> getChuLiOrdersP(long uid);
+public List<Orders> getChuLiOrdersP(long uid,int page);
 public boolean deleteOrderP(long id);
+public List<Orders> getUserOrderP(long uid,int page);
+public List<Orders> getNewOrders();
 }
