@@ -10,8 +10,15 @@ public class UserBean {
 	private long shangjia4;
 	private long shangjia5;
 	private String TGMoney;
+	private int choujiang;
 	
 	
+	public int getChoujiang() {
+		return choujiang;
+	}
+	public void setChoujiang(int choujiang) {
+		this.choujiang = choujiang;
+	}
 	public String getTGMoney() {
 		return TGMoney;
 	}

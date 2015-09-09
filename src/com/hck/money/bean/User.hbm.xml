@@ -41,7 +41,9 @@
         <property name="phone" type="java.lang.String">
             <column name="phone" length="100" />
         </property>
-         
+          <property name="choujiang" type="java.lang.Integer">
+            <column name="choujiang" length="255" />
+        </property>
          
          <property name="qq" type="java.lang.String">
             <column name="qq" length="100" />

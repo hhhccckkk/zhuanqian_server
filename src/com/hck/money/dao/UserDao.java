@@ -23,6 +23,7 @@ public boolean isExitJHM(String jhm);
 public User updateUser(String nc,long uid);
 public boolean addYQM(User user,String qym,int jinbi);
 public void updateUserTgSize(long uid);
+public boolean updateChouJiang(long uid,int size);
 
 
 

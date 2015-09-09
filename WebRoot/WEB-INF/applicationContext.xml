@@ -18,7 +18,7 @@
 		</property>
 		 <property name="hibernateProperties"> 
 		<props>
-		<!--	<prop key="hibernate.hbm2ddl.auto">create</prop> -->
+		<!--  	<prop key="hibernate.hbm2ddl.auto">create</prop> -->
 			<prop key="hibernate.dialect">
 				org.hibernate.dialect.MySQLDialect
 			</prop>
@@ -405,7 +405,7 @@
 
 
 	<!-- 用户推广链接 -->
-	<bean id="userTG" class="com.hck.money.daoserver.UserTgServer"
+	<bean id="tgappserver" class="com.hck.money.daoserver.TGAppServer"
 		scope="prototype">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -414,8 +414,11 @@
 
 	<bean id="GetUserTGInfoAction" class="com.hck.money.pc.action.UserTGAction"
 		scope="prototype">
-		<property name="uServer">
-			<ref bean="userTG" />
+		<property name="tAppServer">
+			<ref bean="tgappserver" />
+		</property>
+		<property name="uDao">
+			<ref bean="userDao" />
 		</property>
 	</bean>
 

@@ -15,7 +15,7 @@
 			<result name="error">login.jsp</result>
 		</action>
 		<action name="updateAdmin" class="AdminAction" method="updateAdmin">
-			<result name="success" type="redirect">xiugaiok.jsp</result>
+			<result name="success" type="redirect">admin/xiugaiok.jsp</result>
 			<result name="input">updateAdmin.jsp</result>
 		</action>
 
@@ -54,7 +54,7 @@
 			<result name="success" type="redirectAction">getusers</result>
 		</action>
 		<action name="searchUser" class="UserAction" method="searchUser">
-			<result name="success">showOneUser.jsp</result>
+			<result name="success">admin/showOneUser.jsp</result>
 		</action>
 		<action name="getUserSize" class="UserAction" method="getUserSize">
 			<result name="success">showUserSize.jsp</result>
@@ -200,7 +200,8 @@
 		<!-- 用户推广信息 -->
 		<action name="downApp" class="GetUserTGInfoAction"
 			method="getUserTgInfo">
-			<result name="success">downApp.jsp</result>
+			<result name="phone">downAppPhone.jsp</result>
+			<result name="success">index.jsp</result>
 		</action>
 		
 		
@@ -221,7 +222,7 @@
 		</action>
 		<action name="deleteTGB" class="TGAppAction"
 			method="deleteTGB">
-			<result name="success" type="redirectAction">getTuiGuangBaos?page=1</result>
+			<result name="success" type="redirectAction">admin/getTuiGuangBaos?page=1</result>
 		</action>
 	</package>
 </struts>

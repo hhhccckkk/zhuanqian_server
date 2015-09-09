@@ -133,10 +133,10 @@ public class UserAction extends BaseAction {
 				usermoney.setAllmoney(0l);
 				usermoney.setAlljifeng(point);
 				addMoney(user2, point);
-				if (user2!=null) {
+				if (user2 != null) {
 					addFirstRegestHongBao(user2.getId());
 				}
-				
+
 			}
 			if (user2 == null) {
 				json.put("isok", false);
@@ -153,10 +153,9 @@ public class UserAction extends BaseAction {
 
 	}
 
-	private void addFirstRegestHongBao(long uid){
+	private void addFirstRegestHongBao(long uid) {
 		Hongbao hongbao = new Hongbao();
-		hongbao.setContent("欢迎新用户，系统赠送您一个红包，推广用户可以获取无限红包哦"
-				+ "");
+		hongbao.setContent("欢迎新用户，系统赠送您一个红包，推广用户可以获取无限红包哦" + "");
 		hongbao.setIsOpen(0);
 		hongbao.setPoint(100);
 		hongbao.setIsXiTong(1);
@@ -248,9 +247,9 @@ public class UserAction extends BaseAction {
 		user2.setQq(user.getQq());
 		user2.setPhone(user.getPhone());
 		user2.setZhifubao(user.getZhifubao());
-		double tgMoney= usermoney.getTjmoney()/1000.00;
-		String TG= new String(tgMoney+"");
-		TG =TG.substring(0,TG.indexOf(".")+2);
+		double tgMoney = usermoney.getTjmoney() / 1000.00;
+		String TG = new String(tgMoney + "");
+		TG = TG.substring(0, TG.indexOf(".") + 2);
 		user2.setTGMoney(TG);
 		if (user.getShangjia1() != null) {
 			user2.setShangjia1(user.getShangjia1());
@@ -271,7 +270,8 @@ public class UserAction extends BaseAction {
 			user2.setAllMoney(usermoney.getAllmoney());
 			user2.setKedoubi(usermoney.getAlljifeng());
 		}
-
+		user2.setChoujiang(user.getChoujiang());
+      
 		return user2;
 
 	}
@@ -320,6 +320,19 @@ public class UserAction extends BaseAction {
 		}
 		write();
 		user = null;
+	}
+
+	public void updateChouJiang() {
+		init();
+		long uid = getLongData("uid");
+		int choujiangSize = getIntData("cjSize");
+		boolean isok = uDao.updateChouJiang(uid, choujiangSize);
+		if (isok) {
+			json.put("isok", true);
+		} else {
+			json.put("isok", false);
+		}
+		write();
 	}
 
 	private void addJilu(Long jifeng, String type) {

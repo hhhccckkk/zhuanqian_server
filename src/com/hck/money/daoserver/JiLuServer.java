@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javassist.bytecode.Mnemonic;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.dialect.MySQL5Dialect;
@@ -21,7 +23,8 @@ import com.opensymphony.xwork2.ActionContext;
 
 public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 	private static JiLuServer oServer;
-	List<Long> sizes=new ArrayList<Long>();
+	List<Long> sizes = new ArrayList<Long>();
+
 	public static JiLuServer getMoneyDaoServer() {
 		if (oServer == null) {
 			oServer = new JiLuServer();
@@ -36,11 +39,10 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 	}
 
 	public List<Jilu> getJilus(int page, long uid) {
-		
+
 		String sqlString = "from Jilu j where j.uid=" + uid
 				+ "order by j.id desc";
 
-		
 		ActionContext.getContext().getSession()
 				.put("jilu", getCount(sqlString));
 
@@ -99,8 +101,8 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 			sqlString = "from Jilu j where j.time >= '" + start
 					+ "' and j.time <= '" + end + "' order by j.id desc";
 		}
-		ActionContext.getContext().getSession().put("jilu2",
-				getCount(sqlString));
+		ActionContext.getContext().getSession()
+				.put("jilu2", getCount(sqlString));
 		return getList(sqlString, page, 12);
 	}
 
@@ -142,11 +144,12 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 		return 0;
 	}
 
-	public long getCount(Long id,int kindid) {
+	public long getCount(Long id, int kindid) {
 		Date endDate = new Date();
 		Calendar cl = Calendar.getInstance();
 		cl.setTime(endDate);
-		String hql = "select count(*) from Jilu j where j.uid="+id+" and j.kid="+kindid+" and date(j.time) = curdate()";
+		String hql = "select count(*) from Jilu j where j.uid=" + id
+				+ " and j.kid=" + kindid + " and date(j.time) = curdate()";
 		@SuppressWarnings("unchecked")
 		List<Long> sizeList = getHibernateTemplate().find(hql);
 		if (sizeList != null) {
@@ -194,13 +197,13 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 
 			sqlString2 = sqlString + " and j.type='手心'";
 			shouxin = getSize(sqlString2);
-			
+
 			sqlString2 = sqlString + " and j.type='百度'";
-			baidu = getSize(sqlString2);  
-			
+			baidu = getSize(sqlString2);
+
 			sqlString2 = sqlString + " and j.type='天马'";
 			tm = getSize(sqlString2);
-			
+
 			sqlString2 = sqlString + " and j.type='万普'";
 			wp = getSize(sqlString2);
 
@@ -236,10 +239,10 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 
 			sqlString2 = sqlString + " and j.type='点乐'";
 			dl = getSize(sqlString2);
-			
+
 			sqlString2 = sqlString + " and j.type='手心'";
 			shouxin = getSize(sqlString2);
-			
+
 			sqlString2 = sqlString + " and j.type='久久'";
 			jiujiu = getSize(sqlString2);
 
@@ -264,10 +267,9 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 			sqlString2 = sqlString + " and j.type='天马'";
 			tm = getSize(sqlString2);
 
-			
 			sqlString2 = sqlString + " and j.type='万普'";
 			wp = getSize(sqlString2);
-			
+
 			money = new TypeMoney();
 			money.setDl(dl);
 			money.setKg(kg);
@@ -304,10 +306,9 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 
 			sqlString2 = sqlString + " and j.type='赢告'";
 			yg = getSize(sqlString2);
-			
+
 			sqlString2 = sqlString + " and j.type='手心'";
 			shouxin = getSize(sqlString2);
-			
 
 			sqlString2 = sqlString + " and j.type='酷果'";
 			kg = getSize(sqlString2);
@@ -326,8 +327,6 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 
 			sqlString2 = sqlString + " and j.type='天马'";
 			tm = getSize(sqlString2);
-
-			
 
 			sqlString2 = sqlString + " and j.type='万普'";
 			wp = getSize(sqlString2);
@@ -366,15 +365,14 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 		long size1 = 0;
 		long size2 = 0;
 		long size3 = 0;
-		JiLuTongjiBean bean=null;
+		JiLuTongjiBean bean = null;
 		Date endDate = new Date();
 		Calendar cl = Calendar.getInstance();
 		cl.setTime(endDate);
 
 		String sqlString1 = "select sum(jifeng) from Jilu j WHERE date(j.time) = curdate() and j.uid="
 				+ uid;
-		
-		
+
 		cl.add(Calendar.DATE, -1);
 		Date startDate = cl.getTime();
 		SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
@@ -384,53 +382,69 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 
 		String sqlString2 = "select sum(jifeng) from Jilu j where j.time >= '"
 				+ start + "' and j.time <= '" + end + "' and j.uid=" + uid;
-		try{
-			
-			String sqlString3 = "select sum(jifeng) from Jilu j where j.uid=" + uid;
+		try {
+
+			String sqlString3 = "select sum(jifeng) from Jilu j where j.uid="
+					+ uid;
 			sizes = getHibernateTemplate().find(sqlString3);
 			if (sizes != null && !sizes.isEmpty()) {
 				size3 = sizes.get(0);
 			}
-			
-		sizes= getHibernateTemplate().find(sqlString1);
-		if (sizes != null &&!sizes.isEmpty()) {
-			size1 = sizes.get(0);
-		}
-		sizes = getHibernateTemplate().find(sqlString2);
-		
-		if (sizes != null && !sizes.isEmpty()) {
-			size2 = sizes.get(0);
-		}
 
+			sizes = getHibernateTemplate().find(sqlString1);
+			if (sizes != null && !sizes.isEmpty()) {
+				size1 = sizes.get(0);
+			}
+			sizes = getHibernateTemplate().find(sqlString2);
+
+			if (sizes != null && !sizes.isEmpty()) {
+				size2 = sizes.get(0);
+			}
+
+		} catch (Exception e) {
 		}
-		catch (Exception e) {
-		}
-		bean=new JiLuTongjiBean();
+		bean = new JiLuTongjiBean();
 		bean.setQianTian(size3);
 		bean.setToday(size1);
 		bean.setZuoTian(size2);
 		return bean;
 	}
 
+	private long getHongBaoMoney() {
+		String sqlString = "select sum(jifeng) from Jilu j WHERE date(j.time) = curdate() and j.kid="+100;
+		long money=getSize(sqlString);
+		return money;
+
+	}
+	
+	private long getCJ() {
+		String sqlString = "select sum(jifeng) from Jilu j WHERE date(j.time) = curdate() and j.kid="+101;
+		long money=getSize(sqlString);
+		return money;
+
+	}
+
 	public MoneyBean getAllMoneyType(int type, List<Kind> kinds) {
-		
+
 		String sqlString2 = null;
 		String sqlString = null;
-		MoneyBean bean=new MoneyBean();
+		MoneyBean bean = new MoneyBean();
 		Date endDate = new Date();
 		Calendar cl = Calendar.getInstance();
 		cl.setTime(endDate);
-		long money=0;
-		long allMoney=0;
-		String zhuanqianString="";
+		long money = 0;
+		long allMoney = 0;
+		String zhuanqianString = "";
 		if (type == 1) {
 			sqlString = "select sum(jifeng) from Jilu j WHERE date(j.time) = curdate()";
 			for (int i = 0; i < kinds.size(); i++) {
-				String typeString=kinds.get(i).getName();
-				sqlString2 = sqlString + " and j.type='"+typeString+"'";
-				money=getSize(sqlString2);
-				allMoney=allMoney+money;
-				zhuanqianString=zhuanqianString+typeString+":"+money+"   ";
+				String typeString = kinds.get(i).getName();
+				int kid=kinds.get(i).getAid();
+				sqlString2 = sqlString + " and j.kid="+kid;
+				money = getSize(sqlString2);
+				allMoney = allMoney + money;
+				zhuanqianString = zhuanqianString + typeString + ":" + money
+						+ "   ";
 			}
 
 		} else if (type == 2) {
@@ -445,13 +459,15 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 					+ start + "' and j.time <= '" + end + "'";
 
 			for (int i = 0; i < kinds.size(); i++) {
-				String typeString=kinds.get(i).getName();
-				sqlString2 = sqlString + " and j.type='"+typeString+"'";
-				money=getSize(sqlString2);
-				allMoney=allMoney+money;
-				zhuanqianString=zhuanqianString+typeString+":"+money+"   ";
+				String typeString = kinds.get(i).getName();
+				int kid=kinds.get(i).getAid();
+				sqlString2 = sqlString + " and j.kid="+kid;
+				money = getSize(sqlString2);
+				allMoney = allMoney + money;
+				zhuanqianString = zhuanqianString + typeString + ":" + money
+						+ "   ";
 			}
-			
+
 		} else {
 			cl.add(Calendar.DATE, -7);
 			Date startDate = cl.getTime();
@@ -463,20 +479,21 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 					+ start + "' and j.time <= '" + end + "' ";
 
 			for (int i = 0; i < kinds.size(); i++) {
-				String typeString=kinds.get(i).getName();
-				sqlString2 = sqlString + " and j.type='"+typeString+"'";
-				money=getSize(sqlString2);
-				allMoney=allMoney+money;
-				zhuanqianString=zhuanqianString+typeString+":"+money+"   ";
+				String typeString = kinds.get(i).getName();
+				int kid=kinds.get(i).getAid();
+				sqlString2 = sqlString + " and j.kid="+kid;
+				money = getSize(sqlString2);
+				allMoney = allMoney + money;
+				zhuanqianString = zhuanqianString + typeString + ":" + money
+						+ "   ";
 			}
-			
+
 		}
+		zhuanqianString =zhuanqianString+"红包: "+getHongBaoMoney()+"  抽奖: "+getCJ();
 		bean.setAllMoney(allMoney);
 		bean.setContent(zhuanqianString);
 
 		return bean;
 	}
-
-	
 
 }

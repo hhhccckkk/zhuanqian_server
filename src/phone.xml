@@ -14,6 +14,10 @@
 		<action name="updateUserNiChengP" class="UserActionP" method="updateUserNiChengP">
 			<result type="json">null</result>
 		</action>
+		<!-- 修改抽奖次数 -->
+		<action name="updateChouJiangP" class="UserActionP" method="updateChouJiang">
+			<result type="json">null</result>
+		</action>
 		<!--填入邀请码 -->
 		<action name="addYQMP" class="UserActionP" method="addYQMP">
 			<result type="json">null</result>

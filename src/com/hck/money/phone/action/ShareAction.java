@@ -37,7 +37,8 @@ public class ShareAction extends BaseAction{
 		if (!isPasswordOk(request.getParameter("password"))) {
 			return;
 		}
-		Share info=shareDao.getShare(1);
+		int id=getIntData("id");
+		Share info=shareDao.getShare(id);
 		if (info==null) {
 			json.put("isok", false);
 		}

@@ -185,6 +185,7 @@ public class UserAction extends ActionSupport {
 	}
 
 	public String searchUser() {
+	System.out.print("uid: "+id);
 		user = uDao.SearchUser(id);
 		if (user != null) {
 			usermoney = userMoneyDao.getUsermoney(user.getId());

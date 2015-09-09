@@ -25,11 +25,19 @@ public class User implements java.io.Serializable {
     private String mac;
 	private String phone;
 	private Long tj;
-	
 	private String xinghao;
 	private String zhifubao;
 	private String qq;
+    private int choujiang;
     
+
+	public int getChoujiang() {
+		return choujiang;
+	}
+
+	public void setChoujiang(int choujiang) {
+		this.choujiang = choujiang;
+	}
 
 	public Long getShangjia4() {
 		return shangjia4;

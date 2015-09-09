@@ -25,22 +25,21 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 
 	public User SearchUser(long id) {
 
-		String sqlString = "from User u where u.id='"+id;
-		List<User> users = getHibernateTemplate().find(sqlString);
-		if (users != null && !users.isEmpty()) {
-			return users.get(0);
-
-		}
-		return null;
+//		String sqlString = "from User u where u.id='" + id;
+//		List<User> users = getHibernateTemplate().find(sqlString);
+//		if (users != null && !users.isEmpty()) {
+//			return users.get(0);
+//
+//		}
+		return (User) getHibernateTemplate().get(User.class, id);
 	}
 
 	public User addUser(User user) {
 		try {
 			getHibernateTemplate().save(user);
 		} catch (Exception e) {
-			System.err.println("addUser error: "+e.toString());
+			System.err.println("addUser error: " + e.toString());
 		}
-		
 
 		return getUser(user.getMac());
 	}
@@ -101,7 +100,6 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		}
 
 	}
-
 
 	public List<User> getXiaJia(String jhm, int page) {
 		String sqlString = "select new User(id,isok,nicheng,tjm) from User u where u.yqh='"
@@ -282,24 +280,37 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 			sql = "from User u where u.time >= '" + start + "' and u.time <= '"
 					+ end + "'";
 			return getCount(sql);
-		}
-		else {
+		} else {
 			return getCount("select id from User");
 		}
-		
 
 	}
 
 	public void updateUserTgSize(long uid) {
 		try {
-			User user =getOneUser(uid);
-			long tgSize=user.getTj();
-			user.setTj(tgSize+1);
+			User user = getOneUser(uid);
+			long tgSize = user.getTj();
+			user.setTj(tgSize + 1);
 			updateUser(user);
 		} catch (Exception e) {
 		}
-		
-		
-		
+
+	}
+
+	public boolean updateChouJiang(long uid, int size) {
+		try {
+			User user = getOneUser(uid);
+			if (size > 0) {
+				user.setChoujiang(user.getChoujiang() + 1);
+			} else {
+				int choujiangSize = user.getChoujiang() - 1 > 0 ? user
+						.getChoujiang() - 1 : 0;
+				user.setChoujiang(choujiangSize);
+			}
+			getHibernateTemplate().update(user);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

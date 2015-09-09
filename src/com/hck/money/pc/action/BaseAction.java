@@ -18,5 +18,7 @@ public class BaseAction extends ActionSupport{
 	public void setPage(int page) {
 		this.page = page;
 	}
+	
+	
 
 }
