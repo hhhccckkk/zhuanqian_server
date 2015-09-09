@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="false"></constant>
+	<package name="strutsphone" extends="json-default">
+		<!-- 注册用户 -->
+		<action name="addUserP" class="UserActionP" method="addUserP">
+			<result type="json">null</result>
+		</action>
+		<!-- 修改用户昵称 -->
+		<action name="updateUserNiChengP" class="UserActionP" method="updateUserNiChengP">
+			<result type="json">null</result>
+		</action>
+		<!-- 修改抽奖次数 -->
+		<action name="updateChouJiangP" class="UserActionP" method="updateChouJiang">
+			<result type="json">null</result>
+		</action>
+		<!--填入邀请码 -->
+		<action name="addYQMP" class="UserActionP" method="addYQMP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取赚钱列表 -->
+		<action name="getKindsP" class="KindActionP" method="getKindsP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取最新订单 -->
+		<action name="getOrdersP" class="OrderActionP" method="getOrdersP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取用户未处理 订单 -->
+		<action name="getUserNoOrderP" class="OrderActionP" method="getUserNoOrderP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取用户已经处理的 订单 -->
+		<action name="getUserAllOrders" class="OrderActionP" method="getUserAllOrders">
+			<result type="json">null</result>
+		</action>
+		<action name="updateUserP" class="UserActionP" method="updateUser">
+			<result type="json">null</result>
+		</action>
+		<action name="renwu" class="UserActionP" method="updateUserShareQQ">
+			<result type="json">null</result>
+		</action>
+
+
+
+
+		<!-- 获取配置 -->
+		<action name="getConfigP" class="configActionP" method="getConfigP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取用户短消息 -->
+		<action name="getUserMessageP" class="MessageActionP" method="getUserMessageP">
+			<result type="json">null</result>
+		</action>
+		<action name="deleteMessageP" class="MessageActionP" method="deleteMessageP">
+			<result type="json">null</result>
+		</action>
+		<!-- 改变短消息状态 -->
+		<action name="changeMessageStateP" class="MessageActionP"
+			method="changeMessageStateP">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 获取未读短信记录 -->
+		<action name="getMessageNoReadP" class="MessageActionP" method="getMessageNoReadP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取赚钱排行 -->
+		<action name="getMoneyRankP" class="MoneyActionP" method="getMoneyRankP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取推广赚钱 -->
+		<action name="getMoneyTJP" class="MoneyActionP" method="getMoneyTJP">
+			<result type="json">null</result>
+		</action>
+
+		<!--增加蝌蚪币 -->
+		<action name="addMoneyP" class="MoneyActionP" method="addMoneyP">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取升级信息 -->
+		<action name="getInfoP" class="InfoActionP" method="getInfoP">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 获取分享信息 -->
+		<action name="getShareP" class="ShareActionP" method="getShareP">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 增加订单 -->
+		<action name="addOrderP" class="orderActionP" method="addOrderP">
+			<result type="json">null</result>
+		</action>
+		<!-- 删除订单 -->
+		<action name="deleteOrderP" class="orderActionP" method="deleteOrderP">
+			<result type="json">null</result>
+		</action>
+
+		<!-- apps -->
+		<action name="getAppsP" class="AppActionP" method="getAppsP">
+			<result type="json">null</result>
+		</action>
+		<!-- userapps -->
+		<action name="AddUserAppP" class="UserAppActionP" method="addUserApp">
+			<result type="json">null</result>
+		</action>
+		<action name="saveUserApp" class="UserAppActionP" method="saveUserApp">
+			<result type="json">null</result>
+		</action>
+		<action name="getUserAppsP" class="UserAppActionP" method="getUserAppsP">
+			<result type="json">null</result>
+		</action>
+		<action name="qiandao" class="UserAppActionP" method="qiandao">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 推广 -->
+		<action name="addTgP" class="TgActionP" method="addTg">
+			<result type="json">null</result>
+		</action>
+		<action name="getTgP" class="TgActionP" method="getTg">
+			<result type="json">null</result>
+		</action>
+		<action name="deleteTgP" class="TgActionP" method="deleteTg">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 红包 -->
+		<action name="getHongBaoP" class="HongBaoActionP" method="getHongBao">
+			<result type="json">null</result>
+		</action>
+		<action name="updateHongBaoP" class="HongBaoActionP" method="updateHongBao">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 反馈信息 -->
+		<action name="addFanKuiP" class="FKActionP" method="addFanKui">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 打包 -->
+		<action name="dabao" class="TGAppActionP" method="daBao">
+			<result type="json">null</result>
+		</action>
+		<action name="getMyTgAppUrl" class="TGAppActionP" method="getMyTgAppUrl">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取红包数量，信息数量 -->
+		<action name="getSize" class="configActionP" method="getSize">
+			<result type="json">null</result>
+		</action>
+	</package>
+</struts>

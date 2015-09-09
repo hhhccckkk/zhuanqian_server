@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="splash_text_color">#fff56d1b</color>
+    <color name="gray">#ff7a7a7a</color>
+    <color name="huise">#ffe5e5e5</color>
+    <color name="main_bg">#ffebebeb</color>
+    <color name="text_color">#ff333333</color>
+    <color name="red">#fff21616</color>
+    <color name="text_9999">#ff999999</color>
+</resources>

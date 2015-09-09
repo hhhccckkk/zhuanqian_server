@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:versionCode="1" android:versionName="1.0" package="com.hck.zhuanqian"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <application android:theme="@*android:style/Theme.NoTitleBar" android:label="@string/app_name" android:icon="@drawable/icon2" android:name="com.hck.zhuanqian.ui.MyApplication">
+        <activity android:label="@string/app_name" android:name="com.hck.zhuanqian.ui.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.hck.zhuanqian.ui.MainActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.ZhuanQianJiLuActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.TuiGuangActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.DuiHuanActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.DuiHuanQQActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.DuiHuanZFBActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.ChouJiangActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.HelpActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.KindActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.HongBaoActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.MoreActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.UpdateUserInfoActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.MessageActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.FanKuiActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.TGActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.DLActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.DianCaiActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.DuoMengActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.DaTouNiaoActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.YouMiActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.MiDiActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.GuoMengActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.QiDianActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.ZhongYiActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.BeiDuoActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.JiongYouActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.YeGuoActivity" />
+        <activity android:name="com.hck.zhuanqian.ui.KeKeActivity" />
+        <activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.dlnetwork.DevNativeActivity" android:configChanges="keyboardHidden|orientation" />
+        <service android:name="com.dlnetwork.DevNativeService" />
+        <meta-data android:name="com.dlnetwork.cid" android:value="default" />
+        <service android:name="com.dc.wall.DC" />
+        <activity android:name="com.dc.wall.DcActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity android:theme="@*android:style/Theme.Translucent" android:name="cn.domob.android.ads.DmActivity" />
+        <service android:name="com.datouniao.AdPublisher.service.AdsService" android:exported="false" />
+        <receiver android:name="com.datouniao.AdPublisher.service.AppReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="com.datouniao.AdPublisher.service.check" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.datouniao.AdPublisher.AdsOffersWebView" android:configChanges="keyboardHidden|orientation" />
+        <meta-data android:name="DTN_PLACE_ID" android:value="DTN" />
+        <activity android:theme="@*android:style/Theme.Light.NoTitleBar" android:name="net.youmi.android.AdBrowser" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <service android:name="net.youmi.android.AdService" android:exported="false" />
+        <service android:name="net.youmi.android.ExpService" android:exported="false" />
+        <receiver android:name="net.youmi.android.AdReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <activity android:name="net.midi.wall.sdk.MyWallActivity" android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="cn.guomob.android.intwal.GuomobAlertActivity" />
+        <activity android:name="cn.guomob.android.intwal.GuomobIntWaActivity" />
+        <service android:name="cn.guomob.android.intwal.Service01" android:exported="false">
+            <intent-filter>
+                <action android:name="com.guomob.server01" />
+            </intent-filter>
+        </service>
+        <receiver android:name="cn.guomob.android.intwal.GuomobBrocastReciver" android:exported="false">
+            <intent-filter>
+                <action android:name="com.hck.zhuanqian.guomob.action" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.example.gbintwalsdk.ScoreReciver" android:exported="false">
+            <intent-filter>
+                <action android:name="com.hck.zhuanqian.score.action" />
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.qidian.intwal.QDAlertActivity" />
+        <activity android:name="com.qidian.intwal.QDIntWaActivity" />
+        <service android:name="com.qidian.intwal.Service01">
+            <intent-filter>
+                <action android:name="com.exe.server01" />
+            </intent-filter>
+        </service>
+        <receiver android:name="com.qidian.intwal.QDBrocastReciver" android:exported="false">
+            <intent-filter>
+                <action android:name="com.hck.zhuanqian" />
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.zy.phone.sdk.SDKActivity" android:screenOrientation="portrait" />
+        <receiver android:name="com.zy.phone.service.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.zy.phone.service.ZYService" />
+        <activity android:name="com.bb.dd.Browser" android:configChanges="keyboardHidden|orientation" />
+        <activity android:theme="@*android:style/Theme.Translucent" android:name="com.bb.dd.MainActivity" android:configChanges="keyboardHidden|orientation" />
+        <service android:name="com.bb.dd.BDService" />
+        <activity android:name="com.jy.func.JYOfferActivity" android:launchMode="singleTask" android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="com.jy.func.JYOfferDetail" android:launchMode="singleTask" android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="cn.yeeguo.YeeguoOffersActivity" android:configChanges="keyboardHidden|orientation" />
+        <meta-data android:name="lostip_id" android:value="e833b225a01321c076e0169b48f18bd5" />
+        <activity android:theme="@*android:style/Theme.NoTitleBar" android:name="com.lostip.sdk.offerwalllibrary.OfferWallActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <receiver android:name="com.lostip.sdk.offerwalllibrary.receiver.LostipOfferWallReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="com.lostip.sdk.action.STATE_CHANGE" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.mob.tools.MobUIShell" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical" android:background="#fff0f0f0" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="16.0dip" android:textColor="#ffff0000" android:gravity="center_vertical" android:id="@id/myPoint" android:background="@color/white" android:paddingLeft="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" />
+        <TextView android:textSize="16.0dip" android:textColor="#ffff0000" android:gravity="center_vertical" android:id="@id/choujiangSize" android:background="@color/white" android:paddingLeft="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffff0000" android:background="@color/white" android:paddingLeft="10.0dip" android:paddingBottom="3.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="每次需要消耗一次抽奖次数,抽奖次数可以在兑换Q币或者支付宝后，分享给好友即可获取" />
+    </LinearLayout>
+    <FrameLayout android:layout_gravity="center" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip">
+        <ImageView android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/bigwheelgg" />
+        <ImageView android:id="@id/main_wheel" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/zp" />
+        <ImageView android:layout_gravity="center" android:id="@id/point" android:layout_width="100.0dip" android:layout_height="100.0dip" android:src="@drawable/zp_dianji" />
+        <ImageView android:id="@id/light" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/light" />
+    </FrameLayout>
+    <Button android:textSize="16.0sp" android:textColor="@color/white" android:gravity="center" android:layout_gravity="bottom" android:background="@drawable/duihuan_btn_submit_selector" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="5.0dip" android:text="赚金币兑换Q币获取抽奖次数" android:onClick="getMoney" />
+</FrameLayout>

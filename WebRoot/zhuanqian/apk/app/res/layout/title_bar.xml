@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="#ffe55107" android:layout_width="fill_parent" android:layout_height="48.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="left" android:id="@id/titleBackBtn" android:background="@drawable/btn_title_selector" android:paddingLeft="17.0dip" android:paddingRight="10.0dip" android:layout_width="50.0dip" android:layout_height="fill_parent" android:src="@drawable/back" />
+    <TextView android:textSize="20.0sp" android:textColor="@color/white" android:ellipsize="end" android:gravity="center" android:layout_gravity="center" android:id="@id/titleCenterTV" android:layout_width="wrap_content" android:layout_height="fill_parent" android:maxWidth="200.0dip" android:singleLine="true" />
+</FrameLayout>

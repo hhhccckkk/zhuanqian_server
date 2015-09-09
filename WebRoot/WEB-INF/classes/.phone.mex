@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="strutsphone" location="10,9" size="950,631">
+    <action name="addUserP" location="15,23" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="updateUserNiChengP" location="260,23" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="addYQMP" location="505,23" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getKindsP" location="750,23" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getOrdersP" location="15,163" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getUserNoOrderP" location="260,163" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getUserYesOrderP" location="505,163" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getNewsP" location="750,163" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getUserMessageP" location="15,303" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="deleteMessageP" location="260,303" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="changeMessageStateP" location="505,303" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getMessageNoReadP" location="750,303" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getMoneyRankP" location="15,443" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getMoneyTJP" location="260,443" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="addMoneyP" location="505,443" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getInfoP" location="750,443" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getShareP" location="15,583" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="addOrderP" location="260,583" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="deleteOrderP" location="505,583" size="150,41">
+      <result name="success" />
+    </action>
+  </package>
+</Struts2Diagram>
+
