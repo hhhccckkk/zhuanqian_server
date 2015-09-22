@@ -38,7 +38,6 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		try {
 			getHibernateTemplate().save(user);
 		} catch (Exception e) {
-			System.err.println("addUser error: " + e.toString());
 		}
 
 		return getUser(user.getMac());
@@ -302,6 +301,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 			User user = getOneUser(uid);
 			if (size > 0) {
 				user.setChoujiang(user.getChoujiang() + 1);
+				user.setShareTime(new Timestamp(System.currentTimeMillis()));
 			} else {
 				int choujiangSize = user.getChoujiang() - 1 > 0 ? user
 						.getChoujiang() - 1 : 0;

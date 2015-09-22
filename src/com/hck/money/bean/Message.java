@@ -15,7 +15,16 @@ public class Message implements java.io.Serializable {
 	private Timestamp time;
 	private Long uid;
 	private Integer state;
+    private int type;
     
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	// Constructors
 	/** default constructor */
 	public Message() {

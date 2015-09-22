@@ -9,20 +9,27 @@ public class UserBean {
 	private long shangjia3;
 	private long shangjia4;
 	private long shangjia5;
-	private String TGMoney;
+	private long TGMoney;
 	private int choujiang;
+	private boolean isShare;
 	
-	
+	public boolean isShare() {
+		return isShare;
+	}
+	public void setShare(boolean isShare) {
+		this.isShare = isShare;
+	}
 	public int getChoujiang() {
 		return choujiang;
 	}
 	public void setChoujiang(int choujiang) {
 		this.choujiang = choujiang;
 	}
-	public String getTGMoney() {
+	
+	public long getTGMoney() {
 		return TGMoney;
 	}
-	public void setTGMoney(String tGMoney) {
+	public void setTGMoney(long tGMoney) {
 		TGMoney = tGMoney;
 	}
 	public long getShangjia4() {

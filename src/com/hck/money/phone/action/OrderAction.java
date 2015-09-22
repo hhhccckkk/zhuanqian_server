@@ -208,7 +208,7 @@ public class OrderAction extends BaseAction {
 	private void addHongBao(String uName, Long shangjia, int point, int postion) {
 		Hongbao hongbao = null;
 		hongbao = new Hongbao();
-		hongbao.setContent("您的" + postion + "级推广用户" + uName + "兑换账单成功,您获取一个红包");
+		hongbao.setContent("您的" + postion + "级推广用户" + uName + "兑换账单成功,您获取一个推广奖励红包");
 		hongbao.setUid(shangjia);
 		hongbao.setIsOpen(0);
 		hongbao.setPoint(point);

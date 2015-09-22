@@ -111,7 +111,7 @@ public class OrderAction extends BaseAction {
 		oneOrders.setState(1);
 		oneOrders.setTime(new Timestamp(System.currentTimeMillis()));
 		User user = new User();
-		user.setId((long) (new Random().nextInt(49)));
+		user.setId((long) (new Random().nextInt(40)));
 		oneOrders.setUser(user);
 		oDao.addOrder(oneOrders);
 		return SUCCESS;

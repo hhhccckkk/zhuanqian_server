@@ -34,6 +34,9 @@
         <property name="time" type="java.sql.Timestamp">
             <column name="time" length="19" />
         </property>
+        <property name="shareTime" type="java.sql.Timestamp">
+            <column name="sharetime" length="19" />
+        </property>
         <property name="mac" type="java.lang.String">
             <column name="mac" length="200" />
         </property>

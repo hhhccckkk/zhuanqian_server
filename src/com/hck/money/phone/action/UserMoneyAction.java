@@ -105,7 +105,7 @@ public class UserMoneyAction extends BaseAction {
 		}
 
 		if (jDao.getCount(uid, kindid) >= num) {
-			json.put("isok", false);
+			json.put("isok", true);
 			json.put("type", 1);
 			write();
 		} else {

@@ -67,7 +67,7 @@ public class UserTGAction extends BaseAction {
 		if (tgApp == null) {
 			tgApp = new TGApp();
 			if (!daBao()) {
-				tgApp.setDownUrl("apk/1.apk");
+				tgApp.setDownUrl("apk/ttzq.apk");
 			} else {
 				tgApp = app;
 			}

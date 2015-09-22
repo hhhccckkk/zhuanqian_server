@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.hck.money.bean.Hongbao;
 import com.hck.money.bean.Orders;
+import com.opensymphony.xwork2.ActionContext;
 
 public class HongBaoServer extends HibernateDaoSupport {
 	private static final int IS_OPEN=1;
@@ -62,6 +63,12 @@ public class HongBaoServer extends HibernateDaoSupport {
 				+ " order by h.id desc";
 		return getList(sql, page, 10);
 	}
+	public List<Hongbao> getHongbaoPC(int page) {
+		String sql = "from Hongbao h order by h.id asc";
+		ActionContext.getContext().getSession().put("hbSize", getHongBaoSize());
+		return getList(sql, page, 10);
+	}
+	
 
 	public int getCount(long uid) {
 		String sql = "from Hongbao h where h.uid=" + uid
@@ -75,5 +82,16 @@ public class HongBaoServer extends HibernateDaoSupport {
 		return this.getHibernateTemplate().find(sql).size();
 	}
 
-
+  public List<Hongbao> getUserHongBao(long uid){
+	  String sql = "from Hongbao h where h.uid=" + uid;
+	 return getHibernateTemplate().find(sql);
+  }
+  public int getHongBaoSize(){
+	  String sql = "from Hongbao";
+	  return getHibernateTemplate().find(sql).size();
+  }
+  public void deleteHongBao(long id){
+	  getHibernateTemplate().delete(getHibernateTemplate().get(Hongbao.class, id));
+  }
+ 
 }

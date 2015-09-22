@@ -67,8 +67,17 @@ public class TGAppServer extends HibernateDaoSupport {
 		return tgApps;
 	}
 	
-	public List<TGApp> getApps(int page){
-		String sql = "from TGApp t order by t.id desc";
+	public List<TGApp> getApps(int page,int type){
+		String sql =null;
+		if(type==1){
+			sql= "from TGApp t order by t.size desc";
+		}
+		else if(type==2){
+			sql= "from TGApp t order by t.size asc";
+		}
+		else{
+			sql= "from TGApp t where t.size<"+10;
+		}
 		ActionContext.getContext().getSession().put("tgbSize", getCount(sql));
 		return getList(sql, page, 12);
 	}
@@ -84,6 +93,9 @@ public class TGAppServer extends HibernateDaoSupport {
 		FileUtil.deleteFile(file);
 		getHibernateTemplate().delete(app);
 		
+	}
+	public int getBaoSize(){
+		return getCount("from TGApp");
 	}
 
 }

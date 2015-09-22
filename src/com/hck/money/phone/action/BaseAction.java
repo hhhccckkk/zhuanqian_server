@@ -57,6 +57,7 @@ public class BaseAction {
 		}
 		response = null;
 		request = null;
+		oStream=null;
 	}
 
 	public String getStringData(String key) {

@@ -29,7 +29,16 @@ public class User implements java.io.Serializable {
 	private String zhifubao;
 	private String qq;
     private int choujiang;
+    private Timestamp shareTime;
     
+
+	public Timestamp getShareTime() {
+		return shareTime;
+	}
+
+	public void setShareTime(Timestamp shareTime) {
+		this.shareTime = shareTime;
+	}
 
 	public int getChoujiang() {
 		return choujiang;

@@ -62,7 +62,7 @@ public class MessageServer extends HibernateDaoSupport implements Messagedao {
 	@SuppressWarnings("unchecked")
 	public List<Message> getUserMessages(long uid) {
 		String sqlString = "from Message m where m.uid=" + uid
-				+ " order by m.id desc";
+				+ " or m.type=1 order by m.id desc";
 		return getHibernateTemplate().find(sqlString);
 	}
 

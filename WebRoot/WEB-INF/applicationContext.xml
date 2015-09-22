@@ -208,6 +208,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="HongBaoAction" class="com.hck.money.pc.action.HongBaoAction"
+		scope="prototype">
+		<property name="hBaoServer">
+			<ref bean="hongbao" />
+		</property>
+	</bean>
 
 	<!-- 赚钱统计 -->
 

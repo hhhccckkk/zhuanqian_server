@@ -108,7 +108,7 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 			case 1: //Ôö¼Óòòò½±Ò
 				usermoney.setAlljifeng(usermoney.getAlljifeng()+value);
 				if (isTG) {
-					usermoney.setTjmoney(usermoney.getAllmoney()+value);
+					usermoney.setTjmoney(usermoney.getTjmoney()+value);
 				}
 				break;
 			case 2: //¼õÉÙòòò½±Ò

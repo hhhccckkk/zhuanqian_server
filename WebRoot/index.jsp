@@ -24,7 +24,7 @@
 			<div class="group clearfix">
 				<div class="qr">
 					<img src="icon2.png" width="150" height="150" />
-					<p>安装就送红包<h:property value="tgApp.downUrl"/></p>
+					<p>安装就送红包</p>
 				</div>
 				<div class="buttons">
 					<div class="android">

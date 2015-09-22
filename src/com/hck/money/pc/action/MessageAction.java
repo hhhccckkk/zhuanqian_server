@@ -12,8 +12,9 @@ import com.opensymphony.xwork2.ActionContext;
 public class MessageAction extends BaseAction {
 	private List<Message> meList;
 	private Messagedao messagedao;
-    private int mid;
-    public int getMid() {
+	private int mid;
+
+	public int getMid() {
 		return mid;
 	}
 
@@ -28,8 +29,10 @@ public class MessageAction extends BaseAction {
 	public void setMessage(Message message) {
 		this.message = message;
 	}
+
 	private String idString;
-    private Message message;
+	private Message message;
+
 	public String getIdString() {
 		return idString;
 	}
@@ -37,8 +40,6 @@ public class MessageAction extends BaseAction {
 	public void setIdString(String idString) {
 		this.idString = idString;
 	}
-
-	
 
 	public List<Message> getMeList() {
 		return meList;
@@ -55,38 +56,42 @@ public class MessageAction extends BaseAction {
 	public void setMessagedao(Messagedao messagedao) {
 		this.messagedao = messagedao;
 	}
-   
-	public String getDX()
-	{
-		meList=messagedao.getMessages(page);
+
+	public String getDX() {
+		meList = messagedao.getMessages(page);
 		if (meList != null && !meList.isEmpty()) {
 			ActionContext.getContext().getSession().put("mPage", page);
 		}
 		return SUCCESS;
 	}
-	public String deleteMessage()
-	{
-		if (null!=idString) {
-			String[] id=idString.split(",");
+
+	public String deleteMessage() {
+		if (null != idString) {
+			String[] id = idString.split(",");
 			for (int j = 0; j < id.length; j++) {
 				messagedao.deleteMessage(Integer.parseInt(id[j]));
 			}
 			return SUCCESS;
-		}
-		else if (mid!=0) {
+		} else if (mid != 0) {
 			messagedao.deleteMessage(mid);
 			return SUCCESS;
 		}
 		addActionError("Î´Öª´íÎó");
 		return SUCCESS;
 	}
-	public String addMessage()
-	{
-		if (message!=null) {
+
+	public String addMessage() {
+		if (message != null) {
 			message.setTime(new Timestamp(System.currentTimeMillis()));
 			message.setState(0);
 		}
-		System.out.print(message.getUid() +"u");
+		if (message.getUid() == null) {
+			message.setType(1);
+			message.setUid(1l);
+		} else {
+			message.setType(0);
+		}
+
 		messagedao.addMessage(message);
 		return SUCCESS;
 	}

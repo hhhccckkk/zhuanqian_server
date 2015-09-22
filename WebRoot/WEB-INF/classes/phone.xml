@@ -18,6 +18,10 @@
 		<action name="updateChouJiangP" class="UserActionP" method="updateChouJiang">
 			<result type="json">null</result>
 		</action>
+		<!-- 分享获取抽奖次数 -->
+		<action name="shareGetCj" class="UserActionP" method="shareGetCj">
+			<result type="json">null</result>
+		</action>
 		<!--填入邀请码 -->
 		<action name="addYQMP" class="UserActionP" method="addYQMP">
 			<result type="json">null</result>

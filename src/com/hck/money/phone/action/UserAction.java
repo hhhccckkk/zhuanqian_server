@@ -1,7 +1,9 @@
 package com.hck.money.phone.action;
 
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.hck.money.bean.Hongbao;
 import com.hck.money.bean.Jilu;
@@ -153,6 +155,58 @@ public class UserAction extends BaseAction {
 
 	}
 
+	public void shareGetCj() {
+		init();
+		System.out.print("uid: " + uid);
+		User user = uDao.getOneUser(uid);
+		if (user.getShareTime() == null) {
+			addChouJiang();
+			return;
+		}
+		int tag = compare_date(user.getShareTime().toString(), new Timestamp(
+				System.currentTimeMillis()).toString());
+
+		if (tag == -1) {
+			addChouJiang();
+		} else {
+			json.put("isok", false);
+			write();
+
+		}
+
+	}
+
+	private void addChouJiang() {
+		boolean isok = uDao.updateChouJiang(uid, 1);
+		if (isok) {
+			if (isok) {
+				json.put("isok", true);
+			} else {
+				json.put("isok", false);
+			}
+		}
+		write();
+	}
+
+	public int compare_date(String DATE1, String DATE2) {
+
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date dt1 = df.parse(DATE1);
+			Date dt2 = df.parse(DATE2);
+			if (dt1.getTime() > dt2.getTime()) {
+				return 1;
+			} else if (dt1.getTime() < dt2.getTime()) {
+				return -1;
+			} else {
+				return 0;
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return 0;
+	}
+
 	private void addFirstRegestHongBao(long uid) {
 		Hongbao hongbao = new Hongbao();
 		hongbao.setContent("欢迎新用户，系统赠送您一个红包，推广用户可以获取无限红包哦" + "");
@@ -161,7 +215,7 @@ public class UserAction extends BaseAction {
 		hongbao.setIsXiTong(1);
 		hongbao.setTime(new Timestamp(System.currentTimeMillis()).toString());
 		hongbao.setUid(uid);
-		hongbao.setuName("系统");
+		hongbao.setuName("天天手机赚钱官方");
 		hServer.addHongBao(hongbao);
 	}
 
@@ -247,10 +301,10 @@ public class UserAction extends BaseAction {
 		user2.setQq(user.getQq());
 		user2.setPhone(user.getPhone());
 		user2.setZhifubao(user.getZhifubao());
-		double tgMoney = usermoney.getTjmoney() / 1000.00;
-		String TG = new String(tgMoney + "");
-		TG = TG.substring(0, TG.indexOf(".") + 2);
-		user2.setTGMoney(TG);
+//		double tgMoney = usermoney.getTjmoney() / 1000.00;
+//		String TG = new String(tgMoney + "");
+//		TG = TG.substring(0, TG.indexOf(".") + 2);
+		user2.setTGMoney(usermoney.getTjmoney());
 		if (user.getShangjia1() != null) {
 			user2.setShangjia1(user.getShangjia1());
 		}
@@ -271,7 +325,7 @@ public class UserAction extends BaseAction {
 			user2.setKedoubi(usermoney.getAlljifeng());
 		}
 		user2.setChoujiang(user.getChoujiang());
-      
+
 		return user2;
 
 	}

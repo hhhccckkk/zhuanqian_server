@@ -63,7 +63,7 @@
 			<result name="success">showUser.jsp</result>
 		</action>
 		<action name="addUserPC" class="UserAction" method="addUserPC">
-			<result name="success">addUser.jsp</result>
+			<result name="success">admin/addUser.jsp</result>
 		</action>
 
 		<!-- 订单 -->
@@ -71,7 +71,7 @@
 			<result name="success">showEndOrder.jsp</result>
 		</action>
 		<action name="dealOrder" class="OrderAction" method="dealOrder">
-			<result name="success" type="redirectAction">showOverOrder</result>
+			<result name="success" type="redirectAction">admin/showOverOrder</result>
 		</action>
 		<action name="showOverOrder" class="OrderAction" method="showOverOrder">
 			<result name="success">showOverOrder.jsp</result>
@@ -91,7 +91,7 @@
 		</action>
 
 		<action name="addOrder" class="OrderAction" method="addOrder">
-			<result name="success">addOrder.jsp</result>
+			<result name="success">admin/addOrder.jsp</result>
 		</action>
 		<action name="searchOrder" class="OrderAction" method="searchOrder">
 			<result name="success">showOneOrder.jsp</result>
@@ -104,10 +104,10 @@
 			<result name="success">showMessage.jsp</result>
 		</action>
 		<action name="deleteMessage" class="MessageAction" method="deleteMessage">
-			<result name="success" type="redirectAction">getDX</result>
+			<result name="success" type="redirectAction">admin/getDX</result>
 		</action>
 		<action name="addMessage" class="MessageAction" method="addMessage">
-			<result name="success" type="redirectAction">getDX</result>
+			<result name="success" type="redirectAction">admin/getDX</result>
 		</action>
 		<!--版本 -->
 		<action name="addVison" class="InfoAction" method="addVison">
@@ -147,7 +147,7 @@
 			<result name="success">showUserJL.jsp</result>
 		</action>
 		<action name="deleteUserJL" class="JLAction" method="deleteUserJL">
-			<result name="success" type="redirectAction">getUserJiLu?id=${id}</result>
+			<result name="success" type="redirectAction">admin/getUserJiLu?id=${id}</result>
 		</action>
 
 
@@ -212,7 +212,7 @@
 		</action>
 		<action name="deleteFanKui" class="FankuiAction"
 			method="deleteFanKui">
-			<result name="success" type="redirectAction">getFanKui</result>
+			<result name="success" type="redirectAction">admin/getFanKui</result>
 		</action>
 		
 		<!-- 推广包信息 -->
@@ -223,6 +223,24 @@
 		<action name="deleteTGB" class="TGAppAction"
 			method="deleteTGB">
 			<result name="success" type="redirectAction">admin/getTuiGuangBaos?page=1</result>
+		</action>
+		<action name="getTGBSize" class="TGAppAction"
+			method="getTuiGuangBaoSize">
+			<result name="success">showTGBSize.jsp</result>
+		</action>
+		
+		<!-- 红包 -->
+		<action name="addHongBao" class="HongBaoAction"
+			method="addHongBao">
+			<result name="success">admin/addHongBao.jsp</result>
+		</action>
+		<action name="getHongBao" class="HongBaoAction"
+			method="getHongBao">
+			<result name="success">showHongBao.jsp</result>
+		</action>
+		<action name="deleteHongBao" class="HongBaoAction"
+			method="deleteHongBao">
+			<result name="success" type="redirectAction">admin/getHongBao?page=1</result>
 		</action>
 	</package>
 </struts>
