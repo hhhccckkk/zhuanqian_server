@@ -7,11 +7,11 @@
 <hibernate-mapping>
 	<class name="com.hck.money.bean.UserTg" table="usertg" catalog="zhuanqian">
 		<id name="id" type="java.lang.Long">
-			<column name="id" />
+			<column name="id" length="255"/>
 			<generator class="identity" />
 		</id>
 		<property name="uId" type="java.lang.Long">
-			<column name="uid" />
+			<column name="uid" length="255"/>
 		</property>
 		<property name="tgUrl" type="java.lang.String">
 			<column name="tg_url" />

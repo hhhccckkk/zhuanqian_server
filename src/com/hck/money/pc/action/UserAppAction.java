@@ -41,7 +41,6 @@ public class UserAppAction extends ActionSupport{
 	public String getUserApp()
 	{
 		userapps=uDao.getUserapps(id, 1);
-		System.out.print(userapps.size());
 		return SUCCESS;
 	}
 	public String deleteUserApp()

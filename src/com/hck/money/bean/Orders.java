@@ -17,8 +17,16 @@ public class Orders implements java.io.Serializable {
 	private Timestamp time;
 	private Integer ismy;
     private long kedoubi;
-    private String yqm;
-	// Constructors
+    private String info;
+    
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
 
 	public long getKedoubi() {
 		return kedoubi;
@@ -28,13 +36,6 @@ public class Orders implements java.io.Serializable {
 		this.kedoubi = kedoubi;
 	}
 
-	public String getYqm() {
-		return yqm;
-	}
-
-	public void setYqm(String yqm) {
-		this.yqm = yqm;
-	}
 
 	/** default constructor */
 	public Orders() {
@@ -49,7 +50,7 @@ public class Orders implements java.io.Serializable {
 		this.time = time;
 		this.ismy = ismy;
 		this.kedoubi=kdb;
-		this.yqm=yqm;
+		
 	}
 
 	// Property accessors

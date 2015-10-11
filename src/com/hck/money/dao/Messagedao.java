@@ -8,7 +8,7 @@ public interface Messagedao {
 	public List<Message> getMessages(int id);
 	public void updateState(int mId);
 	public void deleteMessage(int mId);
-	public void addMessage(Message message);
+	public boolean addMessage(Message message);
 	
 	//ÊÖ»ú
    public List<Message> getUserMessages(long uid);

@@ -13,6 +13,7 @@ import com.hck.money.dao.Messagedao;
 import com.hck.money.dao.NewDao;
 import com.hck.money.daoserver.ConfigServer;
 import com.hck.money.daoserver.HongBaoServer;
+import com.hck.money.daoserver.TgServer;
 
 import net.sf.json.JSONObject;
 
@@ -22,7 +23,14 @@ public class ConfigAction extends BaseAction {
     private int configId;
 	private HongBaoServer hBaoServer;
 	private Messagedao messagedao;
+	private TgServer tgServer;
 	
+	public TgServer getTgServer() {
+		return tgServer;
+	}
+	public void setTgServer(TgServer tgServer) {
+		this.tgServer = tgServer;
+	}
 	public HongBaoServer gethBaoServer() {
 		return hBaoServer;
 	}
@@ -79,8 +87,10 @@ public class ConfigAction extends BaseAction {
 		long uid =getLongData("uid");
 		long megId =messagedao.getNewMsgId(uid);
 		int hongbaoSize = hBaoServer.getCountNoDaKai(uid);
+		long tgSize = tgServer.getTgSize(uid);
 		json.put("msgId", megId);
 		json.put("hongbaoSize", hongbaoSize);
+		json.put("tgSize", tgSize);
 		write();	
 		response=null;
 		request=null;

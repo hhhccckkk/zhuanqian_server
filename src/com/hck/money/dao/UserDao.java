@@ -15,17 +15,20 @@ public boolean updateUser(User user);
 public void deleteUser(long id);
 public List<User> getXiaJia(String jhm,int page);
 public long getUserSize(int type);
+public List<User> getTGUserPC(long uid,int page);
 
 
 //ÊÖ»ú
-public User isExit(String mac);
+public User isExit(String mac,String uid);
 public boolean isExitJHM(String jhm);
 public User updateUser(String nc,long uid);
 public boolean addYQM(User user,String qym,int jinbi);
 public void updateUserTgSize(long uid);
 public boolean updateChouJiang(long uid,int size);
+public User getUser(long uid);
+public List<User> getTGUser(long uid,int page);
 
-
+public List<User> getTGAllUser(long uid);
 
 
 

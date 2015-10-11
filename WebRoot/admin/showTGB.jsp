@@ -123,23 +123,23 @@ body {
 							</label></td>
 							<td colspan="7" class="checkBox">共找到 <%=maxnum%>
 								条记录，每页15条记录,共<%=pagenum%>页 &lt; <a
-								href="getTGBaos?page=<%=flag - 1%>" class="STYLE6">上页</a> <a
-								href="getTGBaos?page=<%=1 >= pagenum ? pagenum : 1%>" class="STYLE6">1</a>&nbsp;
-								<a href="getTGBaos?page=<%=2 >= pagenum ? pagenum : 2%>"
+								href="getTuiGuangBaos?page=<%=flag - 1%>" class="STYLE6">上页</a> <a
+								href="getTuiGuangBaos?page=<%=1 >= pagenum ? pagenum : 1%>" class="STYLE6">1</a>&nbsp;
+								<a href="getTuiGuangBaos?page=<%=2 >= pagenum ? pagenum : 2%>"
 								class="STYLE6">2</a>&nbsp; <a
-								href="getTGBaos?page=<%=3 >= pagenum ? pagenum : 3%>" class="STYLE6">3</a>&nbsp;
-								<a href="getTGBaos?page=<%=4 >= pagenum ? pagenum : 4%>"
+								href="getTuiGuangBaos?page=<%=3 >= pagenum ? pagenum : 3%>" class="STYLE6">3</a>&nbsp;
+								<a href="getTuiGuangBaos?page=<%=4 >= pagenum ? pagenum : 4%>"
 								class="STYLE6">4</a>&nbsp; <a
-								href="getTGBaos?page=<%=5 >= pagenum ? pagenum : 5%>" class="STYLE6">5</a>&nbsp;
-								<a href="getTGBaos?page=<%=6 >= pagenum ? pagenum : 6%>"
+								href="getTuiGuangBaos?page=<%=5 >= pagenum ? pagenum : 5%>" class="STYLE6">5</a>&nbsp;
+								<a href="getTuiGuangBaos?page=<%=6 >= pagenum ? pagenum : 6%>"
 								class="STYLE6">6</a>&nbsp; <a
-								href="getTGBaos?page=<%=7 >= pagenum ? pagenum : 7%>" class="STYLE6">7</a>&nbsp;
-								<a href="getTGBaos?page=<%=8 >= pagenum ? pagenum : 8%>"
+								href="getTuiGuangBaos?page=<%=7 >= pagenum ? pagenum : 7%>" class="STYLE6">7</a>&nbsp;
+								<a href="getTuiGuangBaos?page=<%=8 >= pagenum ? pagenum : 8%>"
 								class="STYLE6">8</a>&nbsp; <a
-								href="getTGBaos?page=<%=9 >= pagenum ? pagenum : 9%>" class="STYLE6">9</a>&nbsp;
-								<a href="getTGBaos?page=<%=10 >= pagenum ? pagenum : 10%>"
+								href="getTuiGuangBaos?page=<%=9 >= pagenum ? pagenum : 9%>" class="STYLE6">9</a>&nbsp;
+								<a href="getTuiGuangBaos?page=<%=10 >= pagenum ? pagenum : 10%>"
 								class="STYLE6">10</a>&nbsp; <a
-								href="getTGBaos?page=<%=(flag + 1) >= pagenum ? pagenum : (flag + 1)%>"
+								href="getTuiGuangBaos?page=<%=(flag + 1) >= pagenum ? pagenum : (flag + 1)%>"
 								class="STYLE6">下页&gt;</a>&nbsp;
 							</td>
 						</tr>

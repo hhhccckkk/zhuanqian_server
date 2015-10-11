@@ -16,7 +16,16 @@ public class Message implements java.io.Serializable {
 	private Long uid;
 	private Integer state;
     private int type;
+    private String laizi;
     
+	public String getLaizi() {
+		return laizi;
+	}
+
+	public void setLaizi(String laizi) {
+		this.laizi = laizi;
+	}
+
 	public int getType() {
 		return type;
 	}

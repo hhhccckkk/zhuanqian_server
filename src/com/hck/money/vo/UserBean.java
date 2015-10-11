@@ -12,7 +12,50 @@ public class UserBean {
 	private long TGMoney;
 	private int choujiang;
 	private boolean isShare;
+	private Long shangjia6;
+	private Long shangjia7;
+	private Long shangjia8;
+	private String userID;
+	private String touxiang;
 	
+	private String pushId;
+	
+	public String getPushId() {
+		return pushId;
+	}
+	public void setPushId(String pushId) {
+		this.pushId = pushId;
+	}
+	public Long getShangjia6() {
+		return shangjia6;
+	}
+	public void setShangjia6(Long shangjia6) {
+		this.shangjia6 = shangjia6;
+	}
+	public Long getShangjia7() {
+		return shangjia7;
+	}
+	public void setShangjia7(Long shangjia7) {
+		this.shangjia7 = shangjia7;
+	}
+	public Long getShangjia8() {
+		return shangjia8;
+	}
+	public void setShangjia8(Long shangjia8) {
+		this.shangjia8 = shangjia8;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getTouxiang() {
+		return touxiang;
+	}
+	public void setTouxiang(String touxiang) {
+		this.touxiang = touxiang;
+	}
 	public boolean isShare() {
 		return isShare;
 	}

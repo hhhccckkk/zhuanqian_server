@@ -93,25 +93,28 @@ body {
         <thead>
         <th width="25"><input class="select-all" name="" type="checkbox" value=""  /></th>
           <th width="">id</th>
-         
-          <th width="">用户id</th>
-           <th width="">用户赚钱</th>
-            
-            <th width="">兑换</th>
+          <th width="">用户</th>
+           <th width="">赚钱记录</th>
+            <th width="">推广记录</th>
+            <th width="">兑换记录</th>
+             <th width="">兑换内容</th>
             <th width="">处理时间</th>
+            <th width="">操作</th>
             </thead>
         <tbody>
         <h:iterator value="ordList" var="o">
           <tr>
-            <td class="checkBox"><input name="plid" type="checkbox" value="<h:property value="#o.id"/>" /></td>
+          <td></td>
+          <td class="checkBox"></td>
             <td><h:property value="#o.id"/></td>
             <td><a href="getOneUser?id=<h:property value="#o.user.id"/>"><h:property value="#o.user.nicheng"/></a></td>
              <td><a href="getUserJiLu?page=1&id=<h:property value="#o.user.id"/>">赚钱记录</a></td>
-             
-            <td><font color="#ff0000" size="5"><h:property value="#o.content"/></font></td>
+              <td><a href="getTgUsers?page=1&id=<h:property value="#o.user.id"/>">推广用户</a> </td>
+              <td><a href="getUserOrder?uid=<h:property value="#o.user.id"/>">兑换记录</a> </td>
+            <td><font color="#ff0000" size="5"><h:property value="#o.info"/></font></td>
+            
              <td><h:property value="#o.time"/></td>
-             <td><a href="getUserOrder?uid=<h:property value="#o.user.id"/>">兑换记录</a> </td>
-           <td>  <a href="dealOrder?id=<h:property value="#o.id"/>">未处理<img src="images/icon/del.png" width="16" height="16" /></a> </td>
+           <td>  <a href="dealOrder?id=<h:property value="#o.id"/>&uid=<h:property value="#o.user.id"/>">未处理<img src="images/icon/del.png" width="16" height="16" /></a> </td>
           </tr>
           </h:iterator>
           <tr class=" ">

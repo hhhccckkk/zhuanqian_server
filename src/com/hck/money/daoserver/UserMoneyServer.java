@@ -35,7 +35,7 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 
 	public List<Usermoney> getPH() {
 		String sql="from Usermoney u order by u.allmoney desc";
-		return getList(sql, 1, 48);
+		return getList(sql, 1, 20);
 	}
 	public List<Usermoney> getTG() {
 		String sql="from Usermoney u order by u.tjmoney desc";
@@ -92,7 +92,8 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 
 	public boolean isExit(long uid) {
 		String sql="from Usermoney u where u.user.id="+uid;
-		if (getHibernateTemplate().find(sql)==null) {
+		List<Usermoney> userMoneys=getHibernateTemplate().find(sql);
+		if (userMoneys==null || userMoneys.isEmpty()) {
 			return false;
 		}
 		return true;

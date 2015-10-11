@@ -87,7 +87,7 @@ body {
 
 		<!--表格控件 -->
 		<div id="widget table-widget">
-			<div class="pageTitle">用户信息</div>
+			<div class="pageTitle">红包信息</div>
 			<div class="pageColumn">
 				<div class="pageButton"></div>
 				<table>
@@ -95,6 +95,7 @@ body {
 						<th width="25"><input class="select-all" name=""
 							type="checkbox" value="" /></th>
 						<th width="">id</th>
+						<th width="">用户id</th>
 						<th width="">内容</th>
 						<th width="">金币</th>
 						<th width="">来自</th>
@@ -107,9 +108,9 @@ body {
 								<td class="checkBox"><input name="plid" type="checkbox"
 									</td>
 								<td><h:property value="#u.id"/></td>
+								<td><a href="getOneUser?id=<h:property value="#u.uid"/>"><h:property value="#u.uid"/></a></td>
 								<td><h:property value="#u.content"/></td>
 								<td><h:property value="#u.point"/></td>
-								<td><h:property value="#u.uName" /></td>
 								<td><h:property value="#u.time" /></td>
 								<td><a href="deleteHongBao?id=<h:property value="#u.id"/>">
 										删除<img src="images/icon/del.png" width="16" height="16" />

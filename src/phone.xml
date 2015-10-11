@@ -10,8 +10,24 @@
 		<action name="addUserP" class="UserActionP" method="addUserP">
 			<result type="json">null</result>
 		</action>
+		<!-- 获取单个用户 -->
+		<action name="getUserP" class="UserActionP" method="getUser">
+			<result type="json">null</result>
+		</action>
 		<!-- 修改用户昵称 -->
 		<action name="updateUserNiChengP" class="UserActionP" method="updateUserNiChengP">
+			<result type="json">null</result>
+		</action>
+		<!-- 增加pushid -->
+		<action name="updateUserPushIdP" class="UserActionP" method="updateUserPushId">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取推广用户 大小 -->
+		<action name="getTgUserSizeP" class="UserActionP" method="getTGUserSize">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取推广用户 信息 -->
+		<action name="getTGUsers" class="UserActionP" method="getTGUsers">
 			<result type="json">null</result>
 		</action>
 		<!-- 修改抽奖次数 -->
@@ -73,6 +89,9 @@
 		<action name="getMessageNoReadP" class="MessageActionP" method="getMessageNoReadP">
 			<result type="json">null</result>
 		</action>
+		<action name="addMsgP" class="MessageActionP" method="addMesg">
+			<result type="json">null</result>
+		</action>
 		<!-- 获取赚钱排行 -->
 		<action name="getMoneyRankP" class="MoneyActionP" method="getMoneyRankP">
 			<result type="json">null</result>
@@ -104,7 +123,14 @@
 		<action name="deleteOrderP" class="orderActionP" method="deleteOrderP">
 			<result type="json">null</result>
 		</action>
-
+		<!-- 处理订单 -->
+		<action name="chuLiOrder" class="orderActionP" method="chuLiOrder">
+			<result type="json">null</result>
+		</action>
+		<!-- 接受通知 -->
+		<action name="jieShouOrder" class="orderActionP" method="jieShouTongZhi">
+			<result type="json">null</result>
+		</action>
 		<!-- apps -->
 		<action name="getAppsP" class="AppActionP" method="getAppsP">
 			<result type="json">null</result>
@@ -156,6 +182,14 @@
 		</action>
 		<!-- 获取红包数量，信息数量 -->
 		<action name="getSize" class="configActionP" method="getSize">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 抽奖 -->
+		<action name="addCJP" class="ChouJiangAction" method="addCJ">
+			<result type="json">null</result>
+		</action>
+		<action name="getCJP" class="ChouJiangAction" method="getCJinfo">
 			<result type="json">null</result>
 		</action>
 	</package>

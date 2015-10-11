@@ -64,15 +64,14 @@ public class HongBaoServer extends HibernateDaoSupport {
 		return getList(sql, page, 10);
 	}
 	public List<Hongbao> getHongbaoPC(int page) {
-		String sql = "from Hongbao h order by h.id asc";
+		String sql = "from Hongbao h order by h.id desc";
 		ActionContext.getContext().getSession().put("hbSize", getHongBaoSize());
 		return getList(sql, page, 10);
 	}
 	
 
 	public int getCount(long uid) {
-		String sql = "from Hongbao h where h.uid=" + uid
-				+ " order by h.id desc";
+		String sql = "from Hongbao h where h.uid=" + uid;
 		return this.getHibernateTemplate().find(sql).size();
 	}
 	

@@ -5,21 +5,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.tomcat.util.buf.UDecoder;
 import org.omg.CORBA.SystemException;
 
 import com.hck.money.bean.Orders;
 import com.hck.money.bean.User;
 import com.hck.money.dao.OrderDao;
+import com.hck.money.dao.UserDao;
+import com.hck.money.push.BaiduPushManger;
+import com.hck.money.vo.Contans;
+import com.hck.money.vo.PushMessage;
 import com.opensymphony.xwork2.ActionContext;
 
 @SuppressWarnings("serial")
 public class OrderAction extends BaseAction {
+	
 	private List<Orders> ordList;
 	private Orders oneOrders;
 	private OrderDao oDao;
 	private String idString;
     private long uid;
-    
+    private UserDao userDao;
+  
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
 	public long getUid() {
 		return uid;
 	}
@@ -78,9 +93,16 @@ public class OrderAction extends BaseAction {
 	}
 
 	public String dealOrder() {
+		User user =userDao.getUser(uid);
 		boolean b = oDao.dealOrder(id);
-		if (b) {
+		
+		if (!b) {
 			addActionError("¥¶¿Ì ß∞‹");
+		}
+		else {
+			if(user!=null && user.getPushid()!=null){
+				BaiduPushManger.sendMsgToOneUser(user.getPushid(), Contans.PUSH_TYPE_NOTIFY, PushMessage.ORDER_MSG_TITLE, PushMessage.ORDER_MSG_CONTENT);
+			}
 		}
 		return SUCCESS;
 	}

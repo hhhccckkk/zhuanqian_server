@@ -6,15 +6,16 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	int i=1;
 %>
 <%@ taglib prefix="h" uri="/struts-tags"%>
 <html class="bg-light-gray">
 <head>
 <meta charset="utf-8">
-<title>天天手机赚钱_天天手机赚钱官网_一款手机赚钱软件_手机赚钱_最好的手机赚钱软件</title>
-<meta name="keywords" content="天天手机赚钱,天天手机赚钱官网" />
+<title>蝌蚪手机赚钱_蝌蚪手机赚钱官网_一款手机赚钱软件_手机赚钱_最好的手机赚钱软件</title>
+<meta name="keywords" content="蝌蚪手机赚钱,蝌蚪手机赚钱官网" />
 <meta name="description"
-	content="天天手机赚钱是时下最好用的一款手机赚钱软件，天天手机赚钱官网分享最新最热门的网上赚钱项目，百万网友通过玩游戏做任务，玩法简单，轻轻松松赚钱！" />
+	content="蝌蚪手机赚钱是时下最好用的一款手机赚钱软件，蝌蚪手机赚钱官网分享最新最热门的网上赚钱项目，百万网友通过玩游戏做任务，玩法简单，轻轻松松赚钱！" />
 <link rel="stylesheet" href="style.css" charset="utf-8">
 </head>
 <body>
@@ -24,12 +25,12 @@
 			<div class="group clearfix">
 				<div class="qr">
 					<img src="icon2.png" width="150" height="150" />
-					<p>安装就送红包</p>
+					<p>蝌蚪手机赚钱</p>
 				</div>
 				<div class="buttons">
 					<div class="android">
 					<h:if test="tgApp== null">
-					<a href="apk/ttzq.apk"/>>android版本下载</a> 
+					<a href="apk/app.apk"/>>android版本下载</a> 
 					</h:if>
 					<h:else><a href="<h:property value="tgApp.downUrl"/>">android版本下载</a></h:else>
 					</div>
@@ -46,9 +47,9 @@
 		<div class="inner clearfix">
 			<div class="col left">
 				<div class="summary">
-					<div class="title">关于天天手机赚钱</div>
-					<p>天天手机赚钱是一款手机赚钱app，一分钟可以赚一元，一元就能提现，每天几分钟，话费Q币不用愁</p>
-					<p>您安装我们app后，即送您0.1元—1元的红包，通过赚钱专区，下载我们推荐的其他软件，即可以获取金币，金币直接对话Q币支付宝现金，一元起可兑换，基本几分钟可以赚一元</p>
+					<div class="title">关于蝌蚪手机赚钱</div>
+					<p>蝌蚪手机赚钱是一款手机赚钱app，一分钟可以赚一元，一元就能提现，每天几分钟，话费Q币不用愁</p>
+					<p>您通过赚钱专区，下载我们推荐的其他软件，即可以获取金币，金币直接对话Q币支付宝现金，一元起可兑换，基本几分钟可以赚一元</p>
 					<p>为什么我可以通过本应用获取收入?</p>
 					<p>本软件和多个广告商建立合作，一方面为广告主更好的推广自己的应用，提高自己软件的曝光率，为自己的应用做宣传和推广，为更多的人知晓，以便应用被更多的人使用
 						另一方面：用户（即下载使用本应用的朋友们）可以通过每个赚钱区，浏览到广告主的app，通过下载上面的app，然后进行试玩，按照广告主的要求完成任务后，可以获取
@@ -59,17 +60,17 @@
 			</div>
 			<div class="col right">
 				<div class="summary">
-					<div class="title">5级好友下线推广奖励，躺着就赚钱</div>
-					<p>什么是5级好友推广奖励？</p>
+					<div class="title">8级推广体系,随便推广收几个徒弟，躺着就赚钱</div>
+					<p>什么是8级推广系统？</p>
 					<p>
-						举个例子：你推广了一个用户A（1级推广用户），A推广了一个用户B（2级推广用户），B推广了C（3级推广用户），C推广了D（4级推广用户），D推广了E（5级推广用户），那么ADCDE这些用户都是您的推广用户。
+						举个例子：你推广了一个用户A（1级推广用户），A推广了一个用户B（2级推广用户），B推广了C（3级推广用户），C推广了D（4级推广用户），D推广了E（5级推广用户），E推广了F（6级推广用户）,F推广了G（7级推广用户）,G推广了H（8级推广用户）那么ADCDEFGH这些用户都是您的推广用户。
 						你只需要随便推广几个一级推广用户，就可以轻松获取几十万的推广用户。</p>
 					<p>超牛逼的推广奖励体系</p>
-					您每推广一个一级用户，可以获取红包0.1元。所有5级推广用户，每次兑换成功后，您将获取他们兑换收入的10%推广奖励。你只需要随便推广几个用户，依靠强大的5级推广系统，轻松获取几十万的推广用户，
+					您每推广一个一级用户，可以获取0.3-0.8元。所有8级推广用户，每次兑换成功后，您将获取他们兑换收入的10%推广奖励。你只需要随便推广几个用户，依靠强大的8级推广系统，轻松获取几十万的推广用户，
 					每个人赚10元钱，你轻松获取10万X10X10%=10万元
 					</p>
 					<p>怎样推广获取一级推广用户？</p>
-					<p>请点击下载按钮，下载app安装手机，打开app后，自动为您生成推广链接，用户通过链接下载app安装，即成为您的1级推广用户，每一个用户安装打开，我们送您0.1一元</p>
+					<p>请点击下载按钮，下载app安装手机，打开app后，自动为您生成推广链接，用户通过链接下载app安装，即成为您的1级推广用户，每一个用户安装打开，我们送您0.3-0.8元</p>
 				</div>
 			</div>
 		</div>
@@ -90,27 +91,27 @@
 			</div>
 			<div class="col offset-13">
 				<h2 class="title">超低兑换起点</h2>
-				<div class="text">满一元即可以兑换Q币或者支付宝，最迟一天后到账</div>
+				<div class="text">满一元即可以提现Q币或者支付宝,分分钟到帐</div>
 				<i class="icon-money"></i>
 			</div>
 			<div class="col">
-				<h2 class="title">下载安装就送红包</h2>
-				<div class="text">下载安装打开立即赠送价值0.1元——1元随机红包</div>
+				<h2 class="title">任务多多,每天更新</h2>
+				<div class="text">已和10多个广告平台合作,保证任务多多</div>
 				<i class="icon-task"></i>
 			</div>
 			<div class="col">
 				<h2 class="title">中国最新最实在手机赚钱软件</h2>
-				<div class="text">天天手机赚钱自发布上线以来 用户立马突破50万，用户还在持续暴增</div>
+				<div class="text">蝌蚪手机赚钱自发布上线以来 用户立马突破50万，用户还在持续暴增</div>
 				<i class="icon-date1"></i>
 			</div>
 			<div class="col offset-13">
-				<h2 class="title">吊炸天的5级好友推广奖励</h2>
+				<h2 class="title">吊炸天的8级推广体系</h2>
 				<div class="text">随便推广几个一级用户，轻松获取几十万的推广用户</div>
 				<i class="icon-money1"></i>
 			</div>
 			<div class="col">
 				<h2 class="title">超牛逼推广奖励</h2>
-				<div class="text">每安装就送红包0.1元，每次获取推广用户收入10%提成</div>
+				<div class="text">每安装就送红包0.3-0.8元，每次获取推广用户做任务收入10%提成</div>
 				<i class="icon-task1"></i>
 			</div>
 
@@ -132,97 +133,24 @@
 					<h3 class="title"></h3>
 				</div>
 				<div class="list clearfix">
+				<h:iterator value="paiHangBeans" var="u">
 					<div class="item clearfix">
-						<i class="number">1</i>
+						<i class="number"><%=i++ %></i>
 						<div class="user">
-							<img src="touxiang/user9.jpg" width="40" height="40" /> <span
-								class="name">老科</span>
+							<img src="<h:property value="#u.tx"/>" width="40" height="40" /> <span
+								class="name"><h:property value="#u.userName"/></span>
+						</div>
+						<div class="user">
+							<span class="typo-red">徒弟:<h:property value="#u.tgSize"/>人</span>
+						</div>
+						<div class="user">
+							<span class="typo-red">推广赚钱:<h:property value="#u.tgMoney"/>元</span>
 						</div>
 						<div class="pull-right">
-							<span class="typo-red">一共赚钱30344.60元</span>
+							<span class="typo-red">一共赚钱:<h:property value="#u.allMoney"/>元</span>
 						</div>
 					</div>
-					<div class="item clearfix">
-						<i class="number">2</i>
-						<div class="user">
-							<img src="touxiang/user8.jpg" width="40" height="40" /> <span
-								class="name">漫步云端</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 23631.30元</span>
-						</div>
-					</div>
-					<div class="item clearfix">
-						<i class="number">3</i>
-						<div class="user">
-							<img src="touxiang/user11.jpg" width="40" height="40" /> <span
-								class="name">西门吹风</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 18658.00元</span>
-						</div>
-					</div>
-					<div class="item clearfix">
-						<i class="number">4</i>
-						<div class="user">
-							<img src="touxiang/user6.jpg" width="40" height="40" /> <span
-								class="name">纯牛奶1号</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 17072.60元</span>
-						</div>
-					</div>
-					<div class="item clearfix">
-						<i class="number">5</i>
-						<div class="user">
-							<img src="touxiang/user5.jpg" width="40" height="40" /> <span
-								class="name">睡不醒的梦</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 14936.40元</span>
-						</div>
-					</div>
-					<div class="item clearfix">
-						<i class="number">6</i>
-						<div class="user">
-							<img src="touxiang/user10.jpg" width="40" height="40" /> <span
-								class="name">孤独患者</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 10062.00元</span>
-						</div>
-					</div>
-					<div class="item clearfix">
-						<i class="number">7</i>
-						<div class="user">
-							<img src="touxiang/user3.jpg" width="40" height="40" /> <span
-								class="name">雨若无痕</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 8572.40元</span>
-						</div>
-					</div>
-					<div class="item clearfix">
-						<i class="number">8</i>
-						<div class="user">
-							<img src="touxiang/user2.jpg" width="40" height="40" /> <span
-								class="name">素雅</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 7771.20元</span>
-						</div>
-					</div>
-					<div class="item clearfix">
-						<i class="number">9</i>
-						<div class="user">
-							<img src="touxiang/user1.jpg" width="40" height="40" /> <span
-								class="name">女神</span>
-						</div>
-						<div class="pull-right">
-							<span class="typo-red">一共赚钱: 7491.90元</span>
-						</div>
-					</div>
-
+					</h:iterator>
 				</div>
 			</div>
 		</div>
@@ -231,7 +159,7 @@
 
 	<div id="footer" class="full-container clearfix margin-top-20">
 		<div class="inner">Copyright &copy;2015-2015
-			天天手机赚钱版权所有(蜀ICP备15003192号 ) 联系企鹅:782244031</div>
+			蝌蚪手机赚钱版权所有(蜀ICP备15003192号 ) 联系企鹅:1056471646</div>
 	</div>
 
 </body>

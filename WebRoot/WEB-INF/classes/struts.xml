@@ -65,6 +65,9 @@
 		<action name="addUserPC" class="UserAction" method="addUserPC">
 			<result name="success">admin/addUser.jsp</result>
 		</action>
+		<action name="getTgUsers" class="UserAction" method="getTgUsers">
+			<result name="success">showTgUser.jsp</result>
+		</action>
 
 		<!-- 订单 -->
 		<action name="getEndOrder" class="OrderAction" method="getEndOrder">
@@ -241,6 +244,17 @@
 		<action name="deleteHongBao" class="HongBaoAction"
 			method="deleteHongBao">
 			<result name="success" type="redirectAction">admin/getHongBao?page=1</result>
+		</action>
+		
+		
+		<!-- 抽奖 -->
+		<action name="getCJ" class="CJAction"
+			method="getCJ">
+			<result name="success">showCJ.jsp</result>
+		</action>
+		<action name="getUserCJ" class="CJAction"
+			method="getUserCJ">
+			<result name="success">showUserCJ.jsp</result>
 		</action>
 	</package>
 </struts>

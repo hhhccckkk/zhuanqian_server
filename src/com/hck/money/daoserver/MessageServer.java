@@ -66,8 +66,14 @@ public class MessageServer extends HibernateDaoSupport implements Messagedao {
 		return getHibernateTemplate().find(sqlString);
 	}
 
-	public void addMessage(Message message) {
-		getHibernateTemplate().save(message);
+	public boolean addMessage(Message message) {
+		try {
+			getHibernateTemplate().save(message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 
 	@SuppressWarnings("unchecked")

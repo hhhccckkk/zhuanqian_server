@@ -115,6 +115,16 @@
 							<li><a href="getMoneyAllP3?type=3&page=1" target="right">前天赚钱记录</a></li>
 						</ul></li>
 
+					<li class="subMenu"><a href="#">抽奖记录</a>
+						<ul class="yingcang">
+							<li><a href="getCJ?type=1&page=1" target="right">今天抽奖记录</a></li>
+
+
+							<li><a href="getCJ?type=2&page=1" target="right">昨天赚钱记录</a></li>
+
+
+							<li><a href="getCJ?type=3&page=1" target="right">前天赚钱记录</a></li>
+						</ul></li>
 
 
 					<li class="subMenu"><a href="#">赚钱排行</a>
@@ -138,7 +148,7 @@
 						</ul></li>
 					<li class="subMenu"><a href="#">推广包管理</a>
 						<ul class="yingcang">
-						<li><a href="getTGBSize" target="right">推广包数量</a></li>
+							<li><a href="getTGBSize" target="right">推广包数量</a></li>
 							<li><a href="getTuiGuangBaos?page=1&type=1" target="right">多到少</a></li>
 							<li><a href="getTuiGuangBaos?page=1&type=2" target="right">少到多</a></li>
 							<li><a href="getTuiGuangBaos?page=1&type=3" target="right">一周小于10</a></li>
@@ -156,12 +166,11 @@
                     <li><a href="getNews" target="right">查看新闻</a></li>
                 </ul>
             </li>-->
-            <li class="subMenu"><a href="#">红包管理</a>
-            <ul class="yingcang">
-             <li><a href="getHongBao?page=1" target="right">全部红包数</a></li>
-             <li><a href="addHongBao.jsp" target="right">增加红包</a></li>
-                </ul>
-            </li>  
+					<li class="subMenu"><a href="#">红包管理</a>
+						<ul class="yingcang">
+							<li><a href="getHongBao?page=1" target="right">全部红包数</a></li>
+							<li><a href="addHongBao.jsp" target="right">增加红包</a></li>
+						</ul></li>
 					<li class="subMenu"><a href="#">短信息管理</a>
 						<ul class="yingcang">
 							<li><a href="addMessage.jsp" target="right">增加短信息</a></li>

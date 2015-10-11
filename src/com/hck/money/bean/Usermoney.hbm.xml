@@ -7,23 +7,23 @@
 <hibernate-mapping>
     <class name="com.hck.money.bean.Usermoney" table="usermoney" catalog="zhuanqian">
         <id name="id" type="java.lang.Long">
-            <column name="id" />
+            <column name="id" length="255"/>
             <generator class="identity" />
         </id>
         <many-to-one name="user" class="com.hck.money.bean.User" fetch="select" lazy="false">
             <column name="uid" not-null="true" />
         </many-to-one>
         <property name="allmoney" type="java.lang.Long">
-            <column name="allmoney" />
+            <column name="allmoney" length="255"/>
         </property>
         <property name="toayjifeng" type="java.lang.Long">
-            <column name="toayjifeng" />
+            <column name="toayjifeng" length="255"/>
         </property>
         <property name="tjmoney" type="java.lang.Long">
-            <column name="tjmoney" />
+            <column name="tjmoney" length="255"/>
         </property>
         <property name="alljifeng" type="java.lang.Long">
-            <column name="alljifeng" />
+            <column name="alljifeng" length="255"/>
         </property>
     </class>
 </hibernate-mapping>

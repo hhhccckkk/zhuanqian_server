@@ -89,7 +89,7 @@ public class JiLuServer extends HibernateDaoSupport implements JiLuDao {
 			String end = dd.format(endDate);
 
 			sqlString = "from Jilu j where j.time >= '" + start
-					+ "' and j.time <= '" + end + "'";
+					+ "' and j.time <= '" + end + "' order by j.id desc";
 		} else {
 			cl.add(Calendar.DATE, -7);
 			Date startDate = cl.getTime();

@@ -17,6 +17,7 @@ import com.hck.money.bean.Tg;
 import com.hck.money.bean.User;
 import com.hck.money.bean.Usermoney;
 import com.hck.money.dao.UserDao;
+import com.hck.money.vo.Contans;
 import com.opensymphony.xwork2.ActionContext;
 
 public class UserDaoServer extends HibernateDaoSupport implements UserDao {
@@ -24,13 +25,6 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 	private static final int ZUOTIAN_SIZE = 2;
 
 	public User SearchUser(long id) {
-
-//		String sqlString = "from User u where u.id='" + id;
-//		List<User> users = getHibernateTemplate().find(sqlString);
-//		if (users != null && !users.isEmpty()) {
-//			return users.get(0);
-//
-//		}
 		return (User) getHibernateTemplate().get(User.class, id);
 	}
 
@@ -108,19 +102,46 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		return getList(sqlString, page, 12);
 	}
 
-	public User isExit(String mac) {
-
-		User user = null;
-		user = getUser(mac);
-		if (user == null) {
+	@SuppressWarnings("unused")
+	public User isExit(String mac, String uid) {
+		User userMAC = null;
+		User qqUser = null;
+		userMAC = getUser(mac);
+		qqUser = getUserFromQQID(uid);
+		if (userMAC == null && qqUser == null) {
 			return null;
+		} else if (userMAC == null && qqUser != null) {
+			qqUser.setId(Contans.QQ_EXIT);
+			return qqUser;
+		} else if (userMAC != null && qqUser == null) {
+			userMAC.setId(Contans.QQ_ERROR);
+			return userMAC;
 		}
-		return user;
+		else if (userMAC!=null && qqUser!=null) {
+			if(!userMAC.getUserID().equals(qqUser.getUserID())){
+				userMAC.setId(Contans.QQ_ERROR);
+				return userMAC;
+			}
+		}
+		return userMAC;
+
 	}
 
 	@SuppressWarnings("unchecked")
 	private User getUser(String mac) {
 		String sqlString = "from User u where u.mac='" + mac + "'";
+		List<User> users = new ArrayList<User>();
+		users = getHibernateTemplate().find(sqlString);
+		if (users.isEmpty()) {
+			return null;
+		} else {
+			return users.get(0);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private User getUserFromQQID(String qqId) {
+		String sqlString = "from User u where u.userID='" + qqId + "'";
 		List<User> users = new ArrayList<User>();
 		users = getHibernateTemplate().find(sqlString);
 		if (users.isEmpty()) {
@@ -300,7 +321,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		try {
 			User user = getOneUser(uid);
 			if (size > 0) {
-				user.setChoujiang(user.getChoujiang() + 1);
+				user.setChoujiang(user.getChoujiang() + size);
 				user.setShareTime(new Timestamp(System.currentTimeMillis()));
 			} else {
 				int choujiangSize = user.getChoujiang() - 1 > 0 ? user
@@ -313,4 +334,40 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 			return false;
 		}
 	}
+
+	public User getUser(long uid) {
+		return (User) getHibernateTemplate().get(User.class, uid);
+	}
+
+	public List<User> getTGAllUser(long uid) {
+		String sqlString = "from User u where u.shangjia1=" + uid
+				+ " or u.shangjia2=" + uid + " or u.shangjia3=" + uid
+				+ " or u.shangjia4=" + uid + " or u.shangjia5=" + uid
+				+ " or u.shangjia6=" + uid + " or u.shangjia7=" + uid
+				+ " or u.shangjia8=" + uid +"order by u.id desc";
+       
+		return  getHibernateTemplate().find(sqlString);
+	}
+	public List<User> getTGUser(long uid, int page) {
+		String sqlString = "from User u where u.shangjia1=" + uid
+				+ " or u.shangjia2=" + uid + " or u.shangjia3=" + uid
+				+ " or u.shangjia4=" + uid + " or u.shangjia5=" + uid
+				+ " or u.shangjia6=" + uid + " or u.shangjia7=" + uid
+				+ " or u.shangjia8=" + uid +"order by u.id desc";
+       
+		return  getList(sqlString, page, 20);
+	}
+
+	public List<User> getTGUserPC(long uid, int page) {
+		String sqlString = "from User u where u.shangjia1=" + uid
+				+ " or u.shangjia2=" + uid + " or u.shangjia3=" + uid
+				+ " or u.shangjia4=" + uid + " or u.shangjia5=" + uid
+				+ " or u.shangjia6=" + uid + " or u.shangjia7=" + uid
+				+ " or u.shangjia8=" + uid +"order by u.id desc";
+       
+		ActionContext.getContext().getSession()
+		.put("tgUser", getCount(sqlString));
+		return getTGUser(uid, page);
+	}
+
 }

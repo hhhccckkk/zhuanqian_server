@@ -8,6 +8,14 @@ private String content;
 private String time;
 private int state;
 private long uid;
+private String laizi;
+
+public String getLaizi() {
+	return laizi;
+}
+public void setLaizi(String laizi) {
+	this.laizi = laizi;
+}
 public int getId() {
 	return id;
 }

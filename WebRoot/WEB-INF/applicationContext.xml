@@ -18,7 +18,7 @@
 		</property>
 		 <property name="hibernateProperties"> 
 		<props>
-		<!--  	<prop key="hibernate.hbm2ddl.auto">create</prop> -->
+	 <!--   <prop key="hibernate.hbm2ddl.auto">create</prop> --> 
 			<prop key="hibernate.dialect">
 				org.hibernate.dialect.MySQLDialect
 			</prop>
@@ -39,12 +39,11 @@
 				<value>com/hck/money/bean/Jilu.hbm.xml</value>
 				<value>com/hck/money/bean/Userapp.hbm.xml</value>
 				<value>com/hck/money/bean/Userdownapp.hbm.xml</value>
-				<value>com/hck/money/bean/Apps.hbm.xml</value>
 				<value>com/hck/money/bean/Tg.hbm.xml</value>
-				<value>com/hck/money/bean/UserTg.hbm.xml</value>
 				<value>com/hck/money/bean/hongbao.hbm.xml</value>
 				<value>com/hck/money/bean/FanKui.hbm.xml</value>
 				<value>com/hck/money/bean/TGApp.hbm.xml</value>
+				<value>com/hck/money/bean/ChouJiangBean.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -123,6 +122,9 @@
 		<property name="oDao">
 			<ref bean="orderDao" />
 		</property>
+		<property name="userDao">
+			<ref bean="userDao" />
+		</property>
 	</bean>
 
 	<!-- 信息 -->
@@ -136,6 +138,9 @@
 		scope="prototype">
 		<property name="messagedao">
 			<ref bean="mDao" />
+		</property>
+		<property name="uDao">
+			<ref bean="userDao" />
 		</property>
 	</bean>
 
@@ -273,9 +278,33 @@
 			<ref bean="tgapp" />
 		</property>
 	</bean>
+	
+	<!-- 抽奖 -->
+	<bean id="chouJiangServer" class="com.hck.money.daoserver.ChouJiangServer" scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CJAction" class="com.hck.money.pc.action.ChoujiangActivity"
+		scope="prototype">
+		<property name="chouJiangServer">
+			<ref bean="chouJiangServer" />
+		</property>
+		
+	</bean>
+	
+	
+	
+	
+	
 
 	<!-- 手机用户 -->
-
+<!--推广 -->
+	<bean id="tg" class="com.hck.money.daoserver.TgServer" scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	<bean id="UserActionP" class="com.hck.money.phone.action.UserAction"
 		scope="prototype">
 		<property name="uDao">
@@ -313,6 +342,9 @@
 		<property name="messagedao">
 			<ref bean="mDao" />
 		</property>
+		<property name="uDao">
+			<ref bean="userDao" />
+		</property>
 	</bean>
 
 
@@ -325,6 +357,10 @@
 		<property name="jDao">
 			<ref bean="jlDao" />
 		</property>
+		<property name="tgServer">
+			<ref bean="tg" />
+		</property>
+		
 	</bean>
 
 	<!-- 获取版本信息 -->
@@ -395,12 +431,7 @@
 		</property>
 	</bean>
 
-	<!--推广 -->
-	<bean id="tg" class="com.hck.money.daoserver.TgServer" scope="prototype">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
+	
 
 	<bean id="TgActionP" class="com.hck.money.phone.action.TgAction"
 		scope="prototype">
@@ -426,6 +457,9 @@
 		<property name="uDao">
 			<ref bean="userDao" />
 		</property>
+		<property name="moneyServer">
+			<ref bean="moneyDao" />
+		</property>
 	</bean>
 
 	<!-- 获取配置 -->
@@ -445,6 +479,9 @@
 		</property>
 		<property name="messagedao">
 			<ref bean="mDao" />
+		</property>
+		<property name="tgServer">
+			<ref bean="tg" />
 		</property>
 	</bean>
 	<!-- 红包 -->
@@ -470,6 +507,15 @@
 		<property name="server">
 			<ref bean="tgapp" />
 		</property>
+	</bean>
+	
+	<!-- 抽奖 -->
+	<bean id="ChouJiangAction" class="com.hck.money.phone.action.ChouJiangAction"
+		scope="prototype">
+		<property name="chouJiangServer">
+			<ref bean="chouJiangServer" />
+		</property>
+		
 	</bean>
 
 </beans>

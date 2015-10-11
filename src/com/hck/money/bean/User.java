@@ -16,21 +16,83 @@ public class User implements java.io.Serializable {
 	private Integer isok;
 	private String nicheng;
 	private Timestamp time;
-	private int xinshou;
-    private Long shangjia1;
-    private Long shangjia2;
-    private Long shangjia3;
-    private Long shangjia4;
-    private Long shangjia5;
-    private String mac;
+	private Long shangjia1;
+	private Long shangjia2;
+	private Long shangjia3;
+	private Long shangjia4;
+	private Long shangjia5;
+	private Long shangjia6;
+	private Long shangjia7;
+	private Long shangjia8;
+	private String userID;
+	private String touxiang;
+	private String mac;
 	private String phone;
 	private Long tj;
 	private String xinghao;
 	private String zhifubao;
 	private String qq;
-    private int choujiang;
-    private Timestamp shareTime;
-    
+	private int choujiang;
+	private String sdk;
+	private String pushid;
+	
+	public String getPushid() {
+		return pushid;
+	}
+
+	public void setPushid(String pushid) {
+		this.pushid = pushid;
+	}
+
+	public String getSdk() {
+		return sdk;
+	}
+
+	public void setSdk(String sdk) {
+		this.sdk = sdk;
+	}
+
+	public Long getShangjia6() {
+		return shangjia6;
+	}
+
+	public void setShangjia6(Long shangjia6) {
+		this.shangjia6 = shangjia6;
+	}
+
+	public Long getShangjia7() {
+		return shangjia7;
+	}
+
+	public void setShangjia7(Long shangjia7) {
+		this.shangjia7 = shangjia7;
+	}
+
+	public Long getShangjia8() {
+		return shangjia8;
+	}
+
+	public void setShangjia8(Long shangjia8) {
+		this.shangjia8 = shangjia8;
+	}
+
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
+	public String getTouxiang() {
+		return touxiang;
+	}
+
+	public void setTouxiang(String touxiang) {
+		this.touxiang = touxiang;
+	}
+
+	private Timestamp shareTime;
 
 	public Timestamp getShareTime() {
 		return shareTime;
@@ -88,15 +150,6 @@ public class User implements java.io.Serializable {
 		this.shangjia3 = shangjia3;
 	}
 
-	public int getXinshou() {
-		return xinshou;
-	}
-
-	public void setXinshou(int xinshou) {
-		this.xinshou = xinshou;
-	}
-
-	
 	public String getXinghao() {
 		return xinghao;
 	}
@@ -104,7 +157,6 @@ public class User implements java.io.Serializable {
 	public void setXinghao(String xinghao) {
 		this.xinghao = xinghao;
 	}
-
 
 	public String getZhifubao() {
 		return zhifubao;

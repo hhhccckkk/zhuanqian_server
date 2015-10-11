@@ -107,7 +107,7 @@ body {
             <td><h:property value="#o.user.id"/></td>
             <td><a href="getOneUser?id=<h:property value="#o.user.id"/>"><h:property value="#o.user.nicheng"/></a></td>
             <td><h:property value="#o.state"/></td>
-            <td><font color="#ff0000" size="4"><h:property value="#o.content"/></font></td>
+            <td><font color="#ff0000" size="4"><h:property value="#o.info"/></font></td>
              <td><h:property value="#o.time"/></td>
            <td>  <a href="deleteOrder2?id=<h:property value="#o.id"/>">删除<img src="images/icon/del.png" width="16" height="16" /></a>  </td>
           </tr>

@@ -16,7 +16,7 @@ public class BaseAction {
 	public String jsonString;
 	public HttpServletRequest request = null;
 	public HttpServletResponse response = null;
-	
+
 	public boolean isPasswordOk(String password) {
 		if (password == null || "".equals(password)
 				|| !"HCK123hck".equals(password)) {
@@ -27,12 +27,11 @@ public class BaseAction {
 
 	public void init() {
 		json = new JSONObject();
-		if (response == null) {
-			response = ServletActionContext.getResponse();
-		}
-		if (request == null) {
-			request = ServletActionContext.getRequest();
-		}
+
+		response = ServletActionContext.getResponse();
+
+		request = ServletActionContext.getRequest();
+
 		response = ServletActionContext.getResponse();
 		request = ServletActionContext.getRequest();
 		response.setContentType("text/json;charset=utf-8");
@@ -57,7 +56,7 @@ public class BaseAction {
 		}
 		response = null;
 		request = null;
-		oStream=null;
+		oStream = null;
 	}
 
 	public String getStringData(String key) {
@@ -70,7 +69,7 @@ public class BaseAction {
 	}
 
 	public long getLongData(String key) {
-		if (getStringData(key)==null) {
+		if (getStringData(key) == null) {
 			return 0l;
 		}
 		long data = Long.parseLong(getStringData(key));

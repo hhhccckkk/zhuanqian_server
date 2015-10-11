@@ -2,6 +2,8 @@ package com.hck.money.pc.action;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +17,34 @@ import com.hck.dabao.DaoBaoOnErrorListener;
 import com.hck.money.bean.TGApp;
 import com.hck.money.bean.User;
 import com.hck.money.bean.UserTg;
+import com.hck.money.bean.Usermoney;
 import com.hck.money.dao.UserAppDao;
 import com.hck.money.dao.UserDao;
 import com.hck.money.daoserver.TGAppServer;
+import com.hck.money.daoserver.UserMoneyServer;
 import com.hck.money.daoserver.UserTgServer;
+import com.hck.money.vo.PaiHangBean;
 
 public class UserTGAction extends BaseAction {
+	private UserMoneyServer moneyServer;
+	private List<PaiHangBean> paiHangBeans;
+
+	public List<PaiHangBean> getPaiHangBeans() {
+		return paiHangBeans;
+	}
+
+	public void setPaiHangBeans(List<PaiHangBean> paiHangBeans) {
+		this.paiHangBeans = paiHangBeans;
+	}
+
+	public UserMoneyServer getMoneyServer() {
+		return moneyServer;
+	}
+
+	public void setMoneyServer(UserMoneyServer moneyServer) {
+		this.moneyServer = moneyServer;
+	}
+
 	private long uid;
 	private TGApp tgApp;
 	private TGAppServer tAppServer;
@@ -62,20 +86,58 @@ public class UserTGAction extends BaseAction {
 	}
 
 	public String getUserTgInfo() {
-		tgApp = tAppServer.getUserTGUrl(uid);
-
-		if (tgApp == null) {
-			tgApp = new TGApp();
-			if (!daBao()) {
-				tgApp.setDownUrl("apk/ttzq.apk");
-			} else {
-				tgApp = app;
+		tgApp = new TGApp();
+		if (uid <= 0) {
+			tgApp.setDownUrl("apk/app.apk");
+		} else {
+			long id = uid - 1000;
+			User user = uDao.getUser(id);
+			if (user == null || user.getIsok() == 0) {
+				tgApp.setDownUrl("apk/app.apk");
 			}
+			tgApp = tAppServer.getUserTGUrl(id);
+			if (tgApp == null) {
+				if (!daBao()) {
+					tgApp = new TGApp();
+					tgApp.setDownUrl("apk/app.apk");
+				} else {
+					if (app != null) {
+						tgApp = app;
+					}
+				}
+			}
+		}
+		List<Usermoney> userMoney = moneyServer.getPH();
+		if (userMoney != null && !userMoney.isEmpty()) {
+			paiHangBeans = changeBean(userMoney);
 		}
 		if (isPhone()) {
 			return "phone";
 		}
 		return SUCCESS;
+	}
+
+	private List<PaiHangBean> changeBean(List<Usermoney> usermoneys) {
+		List<PaiHangBean> paiHangs = new ArrayList<PaiHangBean>();
+		PaiHangBean paiHangBean = null;
+		for (int i = 0; i < usermoneys.size(); i++) {
+			paiHangBean = new PaiHangBean();
+			Usermoney usermoney = usermoneys.get(i);
+			long allMoney = usermoney.getAllmoney();
+
+			paiHangBean.setAllMoney(allMoney + "");
+			long tgMoney = usermoney.getTjmoney();
+			String tgMoneyString = (((double) tgMoney) / 1000) + "";
+			paiHangBean.setTgMoney(tgMoneyString);
+			paiHangBean.setTgSize(usermoney.getUser().getTj() + "");
+			paiHangBean.setTx(usermoney.getUser().getTouxiang());
+			paiHangBean.setUid(usermoney.getUser().getId());
+			paiHangBean.setUserName(usermoney.getUser().getNicheng());
+			paiHangs.add(paiHangBean);
+		}
+
+		return paiHangs;
+
 	}
 
 	private boolean isPhone() {
@@ -93,7 +155,8 @@ public class UserTGAction extends BaseAction {
 
 	public HttpServletRequest request = null;
 	public HttpServletResponse response = null;
-	String appName=null;
+	String appName = null;
+
 	public void init() {
 		if (response == null) {
 			response = ServletActionContext.getResponse();
@@ -109,49 +172,64 @@ public class UserTGAction extends BaseAction {
 	}
 
 	public boolean daBao() {
-		User user = uDao.getOneUser(uid);
+		long id = uid - 1000;
+		User user = uDao.getOneUser(id);
 		long uid1 = 0l;
 		long uid2 = 0l;
 		long uid3 = 0l;
 		long uid4 = 0l;
+		long uid5 = 0l;
+		long uid6 = 0l;
+		long uid7 = 0l;
 		if (user != null) {
+
 			if (user.getShangjia1() != null) {
 				uid1 = user.getShangjia1();
 			}
+
 			if (user.getShangjia2() != null) {
 				uid2 = user.getShangjia2();
 			}
+
 			if (user.getShangjia3() != null) {
 				uid3 = user.getShangjia3();
 			}
+
 			if (user.getShangjia4() != null) {
 				uid4 = user.getShangjia4();
 			}
+			if (user.getShangjia5() != null) {
+				uid5 = user.getShangjia5();
+			}
+			if (user.getShangjia6() != null) {
+				uid6 = user.getShangjia6();
+			}
+			if (user.getShangjia7() != null) {
+				uid7 = user.getShangjia7();
+			}
 
-		}
-		else{
+		} else {
 			return false;
 		}
 
 		try {
-			appName= user.getMac();
-			if(appName==null){
+			appName = user.getMac();
+			if (appName == null) {
 				return false;
 			}
-			if(appName.length()>5){
-				appName =appName.substring(0, 5);
+			if (appName.length() > 5) {
+				appName = appName.substring(0, 5);
 			}
-			appName=appName+uid;
-			DaBao.getAppUrl(appName,uid, uid1, uid2, uid3, uid4,
-					new DaoBaoOnErrorListener() {
+			appName = appName + id;
+			DaBao daBao =new DaBao();
+			daBao.getAppUrl(appName, id, uid1, uid2, uid3, uid4, uid5, uid6,
+					uid7, new DaoBaoOnErrorListener() {
 
 						public void onErrorListener(String errorString) {
-							System.err.println("打包错误: " + errorString);
 
 						}
 
 						public void onSuccess() {
-							System.err.println("打包成功: " );
 							boolean success = addDownUrl(appName);
 							if (success) {
 								isok = true;
@@ -165,15 +243,17 @@ public class UserTGAction extends BaseAction {
 			e.printStackTrace();
 			isok = false;
 		}
+
 		return isok;
 	}
 
 	private boolean addDownUrl(String appName) {
+		long id2 = uid - 1000;
 		app = new TGApp();
 		app.setDownUrl("apk/" + appName + ".apk");
 		app.setSize(0);
 		app.setTime(new Timestamp(System.currentTimeMillis()).toString());
-		app.setUid(uid);
+		app.setUid(id2);
 		boolean isok = tAppServer.addTgApp(app);
 		return isok;
 

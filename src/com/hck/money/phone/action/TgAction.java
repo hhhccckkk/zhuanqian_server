@@ -94,8 +94,7 @@ public class TgAction extends BaseAction {
 	public void getTg() {
 		init();
 		List<Tg> tgs = tgDao.getList(uid,page);
-		if (tgs != null) {
-			System.err.println("getTg size: "+tgs.size());
+		if (tgs != null && !tgs.isEmpty()) {
 			json.put("isok", true);
 			json.put("tgs", change(tgs));
 		} else {

@@ -229,5 +229,13 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 
 	}
+	
+	public String getTgUsers(){
+		users= uDao.getTGUserPC(id, page);
+		ActionContext.getContext().getSession().put("tgUserPage", page);
+		ActionContext.getContext().getSession()
+		.put("tguid", id);
+		return SUCCESS;
+	}
 
 }

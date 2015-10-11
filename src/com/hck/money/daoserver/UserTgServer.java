@@ -17,7 +17,6 @@ public class UserTgServer extends HibernateDaoSupport {
 	private List<UserTg> usList;
 
 	public UserTg getUserTg(long uid) {
-		System.out.print("id ddddddd: "+uid);
 		String sql = "from UserTg tg where tg.uId=" + uid;
 		@SuppressWarnings("unchecked")
 		List<UserTg> tgs = getHibernateTemplate().find(sql);
@@ -25,7 +24,6 @@ public class UserTgServer extends HibernateDaoSupport {
 			return tgs.get(0);
 		}
 		else{
-			System.out.print("nullll");
 		}
 		return null;
 	}

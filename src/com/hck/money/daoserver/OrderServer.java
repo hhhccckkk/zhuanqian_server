@@ -50,6 +50,7 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 	public void addMessage2(Orders orders,long id) {
 		Message message=new Message();
 		message.setContent("您的订单号："+orders.getId()+" "+orders.getContent()+"已经处理完成");
+		message.setLaizi("系统");
 		message.setState(0);
 		message.setTime(new Timestamp(System.currentTimeMillis()));
 		message.setUid(id);
@@ -120,7 +121,7 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 	}
 
 	public List<Orders> getNoChuLiOrders(int page) {
-		String sql = "from Orders o where o.state=0 order by o.id desc";
+		String sql = "from Orders o where o.state=0 order by o.id asc";
 		ActionContext.getContext().getSession().put("orderSize", getCount(sql));
 		return getList(sql, page, 12);
 	}
@@ -140,7 +141,7 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Orders> getNoChuLiOrdersP(long uid) {
-		String sql = "from Orders o where o.user.id=" + uid + " and o.state=0";
+		String sql = "from Orders o where o.user.id=" + uid + " and o.state=0 order by o.id asc";
 		return getHibernateTemplate().find(sql);
 	}
 
@@ -164,12 +165,12 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 	
 
 	public List<Orders> getUserOrderP(long uid,int page) {
-		String sql = "from Orders o where o.user.id="+uid;
+		String sql = "from Orders o where o.user.id="+uid +"order by o.id desc";
 		return getList(sql, page, 12);
 	}
 
 	public List<Orders> getNewOrders() {
 		String sql = "from Orders o where o.state=1 order by o.id desc";
-		return getList(sql, 1, 50);
+		return getList(sql, 1, 30);
 	}
 }

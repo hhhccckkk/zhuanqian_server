@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:orientation="vertical" android:background="@color/main_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.handmark.pulltorefresh.library.PullToRefreshListView android:id="@id/zhuanqianList" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="10.0dip" android:listSelector="@null" android:divider="@null" ptr:ptrHeaderTextColor="@color/black" xmlns:ptr="http://schemas.android.com/apk/res-auto" />
-    <ProgressBar android:layout_gravity="center" android:id="@id/loading" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-</FrameLayout>

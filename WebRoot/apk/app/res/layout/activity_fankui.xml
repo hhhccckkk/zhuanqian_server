@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="16.0sp" android:textColor="#ff333333" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:text="请填入你的意见反馈信息" />
-    <EditText android:textSize="14.0sp" android:textColor="@color/black" android:gravity="top|left|center" android:id="@id/yijian_content" android:background="@drawable/mm_ed_bg" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="250.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:hint="请输入您的意见" />
-    <Button android:textSize="20.0sp" android:textColor="@color/white" android:background="@drawable/duihuan_btn_submit_selector" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_margin="20.0dip" android:text="提交" android:onClick="submit" />
-</LinearLayout>

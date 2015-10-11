@@ -23,6 +23,16 @@ public class TgServer extends HibernateDaoSupport implements TgDao {
 
 	}
 
+	public long getTgSize(long uid) {
+		String sqlString = " from Tg tg where tg.uid=" + uid;
+		List<Tg> tgs = getHibernateTemplate().find(sqlString);
+		if (tgs == null) {
+			return 0;
+		} else {
+			return tgs.size();
+		}
+	}
+
 	public boolean deleteTg(long id) {
 		try {
 			getHibernateTemplate().delete(
@@ -55,7 +65,7 @@ public class TgServer extends HibernateDaoSupport implements TgDao {
 	public List<Tg> getList(long uid, int page) {
 		String sqlString = " from Tg tg where tg.uid=" + uid
 				+ "order by tg.time desc ";
-		return getList(sqlString, page,10);
+		return getList(sqlString, page, 10);
 	}
 
 }

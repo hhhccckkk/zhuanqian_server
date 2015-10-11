@@ -8,8 +8,15 @@ public class OrderBean {
  private String content;
  private String timestamp;
  private boolean isChuLi;
+ private String tx;
  
 
+public String getTx() {
+	return tx;
+}
+public void setTx(String tx) {
+	this.tx = tx;
+}
 public boolean isChuLi() {
 	return isChuLi;
 }

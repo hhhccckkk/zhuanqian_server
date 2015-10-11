@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <tr>
         <td height="41">&nbsp;</td>
         <td colspan="3" valign="top">兑换：</td>
-        <td colspan="5" valign="top"><h:property value="oneOrders.content"/></td>
+        <td colspan="5" valign="top"><h:property value="oneOrders.info"/></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </tr>
       <tr>
         <td height="81"></td>
-        <td>&nbsp;</td>
+        <td>&nbsp;<input name="uid" value="<h:property value="#u.id"/>" type="hidden"/></td>
         <td>&nbsp;</td>
         <td></td>
         <td></td>

@@ -106,7 +106,7 @@ body {
           <tr>
             <td class="checkBox"><input name="plid" type="checkbox" value="<h:property value="#j.id"/>" /></td>
             <td><h:property value="#j.type"/></td>
-            <td><h:property value="#j.user.nicheng"/></td>
+            <td><h:property value="#j.uid"/></td>
             <td><h:property value="#j.jifeng"/></td>
             <td><h:property value="#j.time"/></td>
            <td> <a href="deleteUserJL?id=<h:property value="#j.id"/>"> 删除<img src="images/icon/del.png" width="16" height="16" /></a></td>

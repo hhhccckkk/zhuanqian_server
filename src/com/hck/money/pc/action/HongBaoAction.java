@@ -71,7 +71,7 @@ public class HongBaoAction extends BaseAction {
 	public String addHongBao() {
 		hongbao.setIsOpen(0);
 		hongbao.setIsXiTong(1);
-		hongbao.setuName("天天手机赚钱官方");
+		hongbao.setuName("蝌蚪手机赚钱官方");
 		hongbao.setTime(new Timestamp(System.currentTimeMillis()).toString());
 		hBaoServer.addHongBao(hongbao);
 

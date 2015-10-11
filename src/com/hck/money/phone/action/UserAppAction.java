@@ -77,11 +77,9 @@ public class UserAppAction extends BaseAction {
 		init();
 		try {
 			long appId = Long.parseLong(request.getParameter("appId"));
-			System.out.print("id: " + appId);
 			userAppDao.qiandao(appId);
 			json.put("isok", true);
 		} catch (Exception e) {
-			System.out.print(e.toString());
 			json.put("isok", false);
 		}
 		write();
