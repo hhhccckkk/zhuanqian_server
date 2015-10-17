@@ -22,6 +22,9 @@
         <property name="uid" type="java.lang.Long">
             <column name="uid" length="255"/>
         </property>
+        <property name="sendUserId" type="java.lang.Long">
+            <column name="send_user_id" length="255"/>
+        </property>
         <property name="state" type="java.lang.Integer">
             <column name="state" />
         </property>

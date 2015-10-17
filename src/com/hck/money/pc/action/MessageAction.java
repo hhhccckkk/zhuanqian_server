@@ -17,6 +17,15 @@ public class MessageAction extends BaseAction {
 	private Messagedao messagedao;
 	private UserDao uDao;
 	private int mid;
+    private int type;
+    
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
 
 	public UserDao getuDao() {
 		return uDao;
@@ -70,9 +79,16 @@ public class MessageAction extends BaseAction {
 	}
 
 	public String getDX() {
-		meList = messagedao.getMessages(page);
+		if(page<=0){
+			page=1;
+		}
+		if(type<=0){
+			type=1;
+		}
+		meList = messagedao.getMessages(page,type);
 		if (meList != null && !meList.isEmpty()) {
 			ActionContext.getContext().getSession().put("mPage", page);
+			ActionContext.getContext().getSession().put("msgType", type);
 		}
 		return SUCCESS;
 	}
@@ -98,18 +114,20 @@ public class MessageAction extends BaseAction {
 			message.setState(0);
 		}
 		if (message.getUid() == null) {
-			message.setType(1);
-			message.setUid(1l);
+			message.setType(Contans.MSG_TYPE_ADMIN);
+			message.setUid(0l);
+			message.setLaizi("admin");
 			BaiduPushManger.sendMsgToAllUser("您有一条最新的未读消息", message.getContent(), Contans.PUSH_TYPE_MSG);
 			
 		} else {
-			message.setType(0);
+			message.setType(Contans.MSG_TYPE_XITONG);
+			message.setLaizi("系统");
 			User user =uDao.getOneUser(message.getUid());
 			if(user!=null && user.getPushid()!=null){
 				BaiduPushManger.sendMsgToOneUser(user.getPushid(),Contans.PUSH_TYPE_MSG,"您有一条最新的未读消息", message.getContent());
 			}
 		}
-		message.setLaizi("系统");
+		
 		messagedao.addMessage(message);
 		return SUCCESS;
 	}

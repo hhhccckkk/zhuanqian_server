@@ -22,11 +22,11 @@ import com.hck.money.vo.MessageBean;
 import net.sf.json.JSONObject;
 
 public class MessageAction extends BaseAction {
-
+	
 	private long id;
 	private int mid;
 	private UserDao uDao;
-	
+
 	public UserDao getuDao() {
 		return uDao;
 	}
@@ -104,13 +104,15 @@ public class MessageAction extends BaseAction {
 		List<MessageBean> messageBeans = new ArrayList<MessageBean>();
 		for (int i = 0; i < bList.size(); i++) {
 			bean = new MessageBean();
-			bean.setId(bList.get(i).getId());
-			bean.setContent(bList.get(i).getContent());
-			bean.setState(bList.get(i).getState());
-			bean.setTime(bList.get(i).getTime().toString());
-			bean.setUid(bList.get(i).getUid());
-			bean.setLaizi(bList.get(i).getLaizi());
-			
+			Message message=bList.get(i);
+			bean.setId(message.getId());
+			bean.setContent(message.getContent());
+			bean.setState(message.getState());
+			bean.setTime(message.getTime().toString());
+			bean.setUid(message.getUid());
+			bean.setLaizi(message.getLaizi());
+			bean.setType(message.getType());
+			bean.setSendUserId(message.getSendUserId());
 			messageBeans.add(bean);
 		}
 		return messageBeans;
@@ -121,7 +123,8 @@ public class MessageAction extends BaseAction {
 		if (!isPasswordOk(request.getParameter("password"))) {
 			return;
 		}
-		messagedao.deleteMessage(mid);
+		 int msg_id =getIntData("msg_id");
+		messagedao.deleteMessage(msg_id);
 		json.put("isok", true);
 		write();
 	}
@@ -142,19 +145,22 @@ public class MessageAction extends BaseAction {
 		String userName = getStringData("userName");
 		String content = getStringData("content");
 		long uid = getLongData("uid");
-		User user =uDao.getOneUser(uid);
+		long sendUserId =getLongData("sendUserId");
+		User user = uDao.getOneUser(uid);
 		Message message = new Message();
 		message.setContent(content);
 		message.setLaizi(userName);
 		message.setState(0);
-		message.setType(0);
+		message.setType(Contans.MSG_TYPE_USER);
+		message.setSendUserId(sendUserId);
 		message.setUid(uid);
 		message.setTime(new Timestamp(System.currentTimeMillis()));
 		boolean b = messagedao.addMessage(message);
 		if (b) {
 			json.put("isok", true);
-			if(user!=null&&user.getPushid()!=null){
-				BaiduPushManger.sendMsgToOneUser(user.getPushid(), Contans.PUSH_TYPE_MSG, "有用户发消息给您", "有用户向您发送了一条消息");
+			if (user != null && user.getPushid() != null) {
+				BaiduPushManger.sendMsgToOneUser(user.getPushid(),
+						Contans.PUSH_TYPE_MSG, "有用户发消息给您", "有用户向您发送了一条消息");
 			}
 		} else {
 			json.put("isok", false);

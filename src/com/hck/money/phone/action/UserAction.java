@@ -34,7 +34,8 @@ public class UserAction extends BaseAction {
 	private JiLuDao jDao;
 	private HongBaoServer hServer;
 	private TGAppServer tServer;
-    private int hongBao;
+	private int hongBao;
+
 	public TGAppServer gettServer() {
 		return tServer;
 	}
@@ -162,17 +163,18 @@ public class UserAction extends BaseAction {
 				}
 				user.setIsok(1);
 				user.setTj(0l);
-				user2 = uDao.addUser(user);
-				if (user2 == null) {
+				long uid = uDao.addUser(user);
+				if (uid <= 0) {
 					json.put("type", 0);
 				} else {
-					if (!userMoneyDao.isExit(user2.getId())) {
+					user.setId(uid);
+					if (!userMoneyDao.isExit(uid)) {
 						addMoney(user2, point);
 					}
-					Usermoney	usermoney1 = userMoneyDao.getUsermoney(user2.getId());
-					addHongBaoXIT(user2.getId(), "蝌蚪手机赚钱官方");
+					Usermoney usermoney1 = userMoneyDao.getUsermoney(uid);
+				    addHongBaoXIT(uid, "蝌蚪手机赚钱官方");
 					json.put("type", 1);
-					json.put("user", changeBean(user2, usermoney1));
+					json.put("user", changeBean(user, usermoney1));
 				}
 			} else {
 				if (user2.getId() == Contans.QQ_ERROR) {
@@ -189,8 +191,9 @@ public class UserAction extends BaseAction {
 						}
 					} catch (Exception e) {
 					}
-					
-					Usermoney	usermoney2 = userMoneyDao.getUsermoney(user2.getId());
+
+					Usermoney usermoney2 = userMoneyDao.getUsermoney(user2
+							.getId());
 					json.put("type", 1);
 					json.put("user", changeBean(user2, usermoney2));
 				}
@@ -271,14 +274,12 @@ public class UserAction extends BaseAction {
 		return 0;
 	}
 
-	
-
 	private void addHongBao(long uid, String uname) {
-		hongBao=0;
-		hongBao=getTgJinBi();
+		hongBao = 0;
+		hongBao = getTgJinBi();
 		Hongbao hongbao = new Hongbao();
 		hongbao.setContent("用户:" + uname
-				+ "安装您的推广包，您获得一个0.3-0.8元随即红包,拆开可以获取对应奖励的金币");
+				+ "安装您的推广包，您获得一个0.1-0.5元随机红包,拆开可以获取对应奖励的金币");
 		hongbao.setIsOpen(0);
 		hongbao.setPoint(hongBao);
 		hongbao.setIsXiTong(0);
@@ -287,12 +288,14 @@ public class UserAction extends BaseAction {
 		hongbao.setuName(uname);
 		hServer.addHongBao(hongbao);
 	}
+
 	private void addHongBaoXIT(long uid, String uname) {
 		Hongbao hongbao = new Hongbao();
-		hongbao.setContent("欢迎新用户,系统奖励您一个0.3-0.8元的红包,在赚钱区随便做几个任务,就可以提现了,推广用户可以无限获取红包");
+		hongbao.setContent("欢迎新用户,系统奖励您一个0.1-0.5元的红包,在赚钱区随便做几个任务,就可以提现了,推广用户可以无限获取红包");
 		hongbao.setIsOpen(0);
-		if(hongBao<=0){
-			hongBao=getTgJinBi();;
+		if (hongBao <= 0) {
+			hongBao = getTgJinBi();
+			;
 		}
 		hongbao.setPoint(hongBao);
 		hongbao.setIsXiTong(1);
@@ -472,20 +475,19 @@ public class UserAction extends BaseAction {
 
 	private int getJiangPingSizeByciShu(int postion) {
 		if (1 < postion && postion < 4) {
-			return 700;
-		} else if (4 < postion && postion < 9) {
-			return 600;
-		} else if (9 < postion && postion <25) {
 			return 400;
-		} else if (25 < postion && postion <90) {
+		} else if (4 < postion && postion < 9) {
+			return 100;
+		} else if (9 < postion && postion < 20) {
+			return 200;
+		} else if (20 < postion && postion < 90) {
+			return 100;
+		} else if (95 < postion && postion < 100) {
 			return 300;
-		} else if (90 < postion && postion < 100) {
+		} else if (postion == 5) {
 			return 500;
-		} else if(postion==5){
-			return 800;
-		}
-		else {
-			return 300;
+		} else {
+			return 100;
 		}
 	}
 
@@ -519,12 +521,12 @@ public class UserAction extends BaseAction {
 		write();
 		users = null;
 	}
-	
+
 	public void getTGUsers() {
 		init();
 		long uid = getLongData("uid");
 		int page = getIntData("page");
-        System.err.println("id: "+uid+"page: "+page);
+		System.err.println("id: " + uid + "page: " + page);
 		List<User> users = uDao.getTGUser(uid, page);
 		if (users != null && !users.isEmpty()) {
 			json.put("isok", true);
@@ -565,11 +567,9 @@ public class UserAction extends BaseAction {
 			tgUserBean.setUserName(user.getNicheng());
 			if (user.getShangjia1() == uid) {
 				tgUserBean.setJishu(1);
-			}
-			else if (user.getShangjia2() == uid) {
+			} else if (user.getShangjia2() == uid) {
 				tgUserBean.setJishu(2);
-			}
-			else if (user.getShangjia3() == uid) {
+			} else if (user.getShangjia3() == uid) {
 				tgUserBean.setJishu(3);
 			}
 
@@ -592,7 +592,6 @@ public class UserAction extends BaseAction {
 			else if (user.getShangjia8() == uid) {
 				tgUserBean.setJishu(8);
 			}
-
 
 			tgBeans.add(tgUserBean);
 		}

@@ -14,6 +14,7 @@ request.setCharacterEncoding("UTF-8");
     int flag=FenYe.getFlag("mPage");
     int maxnum=FenYe.getMaxnum("mSize");
      int pagenum=FenYe.getnum("mSize",12);
+     Integer type=(Integer)session.getAttribute("msgType");
  
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -93,7 +94,9 @@ body {
         <thead>
         <th width="25"><input class="select-all" name="" type="checkbox" value=""  /></th>
           <th width="">id</th>
-          <th width="">用户</th>
+          <th width="">用户id</th>
+          <th width="">用户名字</th>
+           <th width="">来自用户id</th>
           <th width="">类容</th>
             <th width="">时间</th>
             <th width="">操作</th>
@@ -104,6 +107,8 @@ body {
             <td class="checkBox"><input name="plid" type="checkbox" value="<h:property value="#m.id"/>" /></td>
             <td><h:property value="#m.id"/></td>
             <td><h:property value="#m.uid"/></td>
+            <td><h:property value="#m.laizi"/></td>
+             <td><h:property value="#m.sendUserId"/></td>
             <td><h:property value="#m.content"/></td>
              <td><h:property value="#m.time"/></td>
            <td>  <a href="deleteMessage?mid=<h:property value="#m.id"/>">删除<img src="images/icon/del.png" width="16" height="16" /></a> </td>
@@ -115,18 +120,18 @@ body {
 		  </label></td>
             <td colspan="7" class="checkBox">
               共找到 <%=maxnum %> 条记录，每页12条记录,共<%=pagenum %>页 &lt;
-          <a href="getDX?page=<%=flag-1%>" class="STYLE6">上页</a>　
-          <a href="getDX?page=<%=1>=pagenum?pagenum:1 %>" class="STYLE6">1</a>&nbsp;
-         <a href="getDX?page=<%=2>=pagenum?pagenum:2 %>" class="STYLE6">2</a>&nbsp;
-         <a href="getDX?page=<%=3>=pagenum?pagenum:3 %>" class="STYLE6">3</a>&nbsp;
-         <a href="getDX?page=<%=4>=pagenum?pagenum:4 %>" class="STYLE6">4</a>&nbsp;
-         <a href="getDX?page=<%=5>=pagenum?pagenum:5 %>" class="STYLE6">5</a>&nbsp;
-         <a href="getDX?page=<%=6>=pagenum?pagenum:6 %>" class="STYLE6">6</a>&nbsp;
-         <a href="getDX?page=<%=7>=pagenum?pagenum:7 %>" class="STYLE6">7</a>&nbsp;
-         <a href="getDX?page=<%=8>=pagenum?pagenum:8 %>" class="STYLE6">8</a>&nbsp;
-         <a href="getDX?page=<%=9>=pagenum?pagenum:9 %>" class="STYLE6">9</a>&nbsp;
-         <a href="getDX?page=<%=10>=pagenum?pagenum:10 %>" class="STYLE6">10</a>&nbsp;
-        <a href="getDX?page=<%=(flag+1)>=pagenum?pagenum:(flag+1)%>" class="STYLE6">下页&gt;</a>&nbsp;
+          <a href="getDX?page=<%=flag-1%>&type=<%=type %>" class="STYLE6">上页</a>　
+          <a href="getDX?page=<%=1>=pagenum?pagenum:1 %>&type=<%=type %>" class="STYLE6">1</a>&nbsp;
+         <a href="getDX?page=<%=2>=pagenum?pagenum:2 %>&type=<%=type %>" class="STYLE6">2</a>&nbsp;
+         <a href="getDX?page=<%=3>=pagenum?pagenum:3 %>&type=<%=type %>" class="STYLE6">3</a>&nbsp;
+         <a href="getDX?page=<%=4>=pagenum?pagenum:4 %>&type=<%=type %>" class="STYLE6">4</a>&nbsp;
+         <a href="getDX?page=<%=5>=pagenum?pagenum:5 %>&type=<%=type %>" class="STYLE6">5</a>&nbsp;
+         <a href="getDX?page=<%=6>=pagenum?pagenum:6 %>&type=<%=type %>" class="STYLE6">6</a>&nbsp;
+         <a href="getDX?page=<%=7>=pagenum?pagenum:7 %>&type=<%=type %>" class="STYLE6">7</a>&nbsp;
+         <a href="getDX?page=<%=8>=pagenum?pagenum:8 %>&type=<%=type %>" class="STYLE6">8</a>&nbsp;
+         <a href="getDX?page=<%=9>=pagenum?pagenum:9 %>&type=<%=type %>" class="STYLE6">9</a>&nbsp;
+         <a href="getDX?page=<%=10>=pagenum?pagenum:10 %>&type=<%=type %>" class="STYLE6">10</a>&nbsp;
+        <a href="getDX?page=<%=(flag+1)>=pagenum?pagenum:(flag+1)%>"&type=<%=type %> class="STYLE6">下页&gt;</a>&nbsp;
             　</td>
           </tr>
         </tbody>

@@ -93,6 +93,7 @@ body {
         <thead>
         <th width="25"><input class="select-all" name="" type="checkbox" value=""  /></th>
           <th width="">id</th>
+           <th width="">用户id</th>
           <th width="">用户</th>
            <th width="">赚钱记录</th>
             <th width="">推广记录</th>
@@ -107,9 +108,11 @@ body {
           <td></td>
           <td class="checkBox"></td>
             <td><h:property value="#o.id"/></td>
+            <td><h:property value="#o.user.id"/></td>
             <td><a href="getOneUser?id=<h:property value="#o.user.id"/>"><h:property value="#o.user.nicheng"/></a></td>
              <td><a href="getUserJiLu?page=1&id=<h:property value="#o.user.id"/>">赚钱记录</a></td>
               <td><a href="getTgUsers?page=1&id=<h:property value="#o.user.id"/>">推广用户</a> </td>
+              <td><a href="getTGInfo?uid=<h:property value="user.id"/>&page=1">推广赚钱</a> </td>
               <td><a href="getUserOrder?uid=<h:property value="#o.user.id"/>">兑换记录</a> </td>
             <td><font color="#ff0000" size="5"><h:property value="#o.info"/></font></td>
             

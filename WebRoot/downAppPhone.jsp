@@ -34,7 +34,7 @@ int i=1;
 		</div>
 		<div class="text">
 			邀您一起玩蝌蚪手机赚钱<br /> 一分钟赚一元  一元起提现
-			<br>安装就送红包随机0.3到0.8元人民币
+			<br>安装就送红包随机0.1到0.5元人民币
 		</div>
 		<div class="btn">
 			<a href="<h:property value="tgApp.downUrl"/>" id="xiazai">下载安装</a>
@@ -52,8 +52,8 @@ int i=1;
 			<div class="entry clearfix">
 				<i class="icon-date"></i>
 				<div class="body">
-					<div class="title">1元起可以兑换Q币支付宝等</div>
-					<em>满一元即可以兑换，超低兑换起点</em>
+					<div class="title">精彩活动等你来玩</div>
+					<em>各种大奖等你来抽,刮刮卡,摇奖机,你想玩的都有</em>
 				</div>
 			</div>
 			<div class="entry clearfix">

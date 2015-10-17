@@ -89,7 +89,7 @@
             <one-to-many class="com.hck.money.bean.Orders" />
         </set>
         
-        <set name="usermoneies" inverse="false" cascade="all" lazy="false">
+        <set name="usermoneies" inverse="true" cascade="all" lazy="false">
             <key>
                 <column name="uid"  />
             </key>

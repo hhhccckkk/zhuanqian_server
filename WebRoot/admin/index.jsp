@@ -73,7 +73,6 @@
 					<li><a href="getEndOrder?page=1" target=right>已处理订单</a></li>
 					<li><a href="showOverOrder?page=1" target=right>未处理订单</a></li>
 					<li><a href="getMyOrder?page=1" target=right>我的订单</a></li>
-					<li><a href="getDX?page=1" target=right>消息</a></li>
 					<li><a href="getFanKui?" target=right>反馈信息</a></li>
 					<div class="nav-right fleft"></div>
 				</ul>
@@ -173,8 +172,20 @@
 						</ul></li>
 					<li class="subMenu"><a href="#">短信息管理</a>
 						<ul class="yingcang">
+						
+							<li><a href="getDX?page=1&type=1" target="right">系统信息</a></li>
+						
+						
+							<li><a href="getDX?page=1&type=2" target="right">用户聊天信息</a></li>
+						
+						
+						
+							<li><a href="getDX?page=1&type=3" target="right">订单信息</a></li>
+						
+						
 							<li><a href="addMessage.jsp" target="right">增加短信息</a></li>
-						</ul></li>
+						</ul>
+						</li>
 
 				</ul>
 			</div>

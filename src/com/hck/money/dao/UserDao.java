@@ -5,7 +5,7 @@ import java.util.List;
 import com.hck.money.bean.User;
 
 public interface UserDao {
-public User addUser(User user);
+public long addUser(User user);
 public User login(String name,String password);
 public User getOneUser(long id);
 public User SearchUser(long uid);
@@ -30,6 +30,6 @@ public List<User> getTGUser(long uid,int page);
 
 public List<User> getTGAllUser(long uid);
 
-
+public List<User> getPaiHang();
 
 }

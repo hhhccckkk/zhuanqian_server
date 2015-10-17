@@ -28,13 +28,16 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		return (User) getHibernateTemplate().get(User.class, id);
 	}
 
-	public User addUser(User user) {
+	public long addUser(User user) {
+		long uid = 0;
 		try {
-			getHibernateTemplate().save(user);
+			uid = (Long) getHibernateTemplate().save(user);
+			getHibernateTemplate().flush();
 		} catch (Exception e) {
+			return 0;
 		}
 
-		return getUser(user.getMac());
+		return uid;
 	}
 
 	public void deleteUser(long id) {
@@ -61,6 +64,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		User user = (User) getHibernateTemplate().get(User.class, id);
 		user.setIsok(state);
 		getHibernateTemplate().update(user);
+		getHibernateTemplate().flush();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -86,6 +90,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 
 		try {
 			getHibernateTemplate().update(user);
+			getHibernateTemplate().flush();
 			return true;
 		} catch (Exception e) {
 			System.out.print("修改用户失败: " + e.toString());
@@ -116,9 +121,8 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		} else if (userMAC != null && qqUser == null) {
 			userMAC.setId(Contans.QQ_ERROR);
 			return userMAC;
-		}
-		else if (userMAC!=null && qqUser!=null) {
-			if(!userMAC.getUserID().equals(qqUser.getUserID())){
+		} else if (userMAC != null && qqUser != null) {
+			if (!userMAC.getUserID().equals(qqUser.getUserID())) {
 				userMAC.setId(Contans.QQ_ERROR);
 				return userMAC;
 			}
@@ -167,6 +171,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		if (user != null) {
 			user.setNicheng(nc);
 			getHibernateTemplate().update(user);
+			getHibernateTemplate().flush();
 		}
 
 		return user;
@@ -178,7 +183,6 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 			if (b) {
 				addTJ(qym);
 				updateUserYQM(user.getId(), qym);
-				// addTJMoney(jinbi, qym,user);
 				return true;
 			}
 		} catch (Exception e) {
@@ -216,6 +220,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		jilu.setType("推广");
 		jilu.setUid(uid);
 		getHibernateTemplate().save(jilu);
+		getHibernateTemplate().flush();
 	}
 
 	private void saveTg(Tg tg) {
@@ -240,6 +245,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 				break;
 			}
 			getHibernateTemplate().update(usermoney);
+			getHibernateTemplate().flush();
 			return true;
 		}
 	}
@@ -269,6 +275,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 			User user = (User) objects.get(0);
 			user.setTj(user.getTj() + 1);
 			getHibernateTemplate().update(user);
+			getHibernateTemplate().flush();
 
 		}
 	}
@@ -280,6 +287,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 		message.setTime(new Timestamp(System.currentTimeMillis()));
 		message.setUid(uid);
 		getHibernateTemplate().save(message);
+		getHibernateTemplate().flush();
 	}
 
 	public long getUserSize(int type) {
@@ -312,6 +320,7 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 			long tgSize = user.getTj();
 			user.setTj(tgSize + 1);
 			updateUser(user);
+			getHibernateTemplate().flush();
 		} catch (Exception e) {
 		}
 
@@ -344,18 +353,19 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 				+ " or u.shangjia2=" + uid + " or u.shangjia3=" + uid
 				+ " or u.shangjia4=" + uid + " or u.shangjia5=" + uid
 				+ " or u.shangjia6=" + uid + " or u.shangjia7=" + uid
-				+ " or u.shangjia8=" + uid +"order by u.id desc";
-       
-		return  getHibernateTemplate().find(sqlString);
+				+ " or u.shangjia8=" + uid + "order by u.id desc";
+
+		return getHibernateTemplate().find(sqlString);
 	}
+
 	public List<User> getTGUser(long uid, int page) {
 		String sqlString = "from User u where u.shangjia1=" + uid
 				+ " or u.shangjia2=" + uid + " or u.shangjia3=" + uid
 				+ " or u.shangjia4=" + uid + " or u.shangjia5=" + uid
 				+ " or u.shangjia6=" + uid + " or u.shangjia7=" + uid
-				+ " or u.shangjia8=" + uid +"order by u.id desc";
-       
-		return  getList(sqlString, page, 20);
+				+ " or u.shangjia8=" + uid + "order by u.id desc";
+
+		return getList(sqlString, page, 20);
 	}
 
 	public List<User> getTGUserPC(long uid, int page) {
@@ -363,11 +373,17 @@ public class UserDaoServer extends HibernateDaoSupport implements UserDao {
 				+ " or u.shangjia2=" + uid + " or u.shangjia3=" + uid
 				+ " or u.shangjia4=" + uid + " or u.shangjia5=" + uid
 				+ " or u.shangjia6=" + uid + " or u.shangjia7=" + uid
-				+ " or u.shangjia8=" + uid +"order by u.id desc";
-       
+				+ " or u.shangjia8=" + uid + "order by u.id desc";
+
 		ActionContext.getContext().getSession()
-		.put("tgUser", getCount(sqlString));
+				.put("tgUser", getCount(sqlString));
 		return getTGUser(uid, page);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getPaiHang() {
+		String sqlString = "from User u where u.isok=1 order by tj desc";
+		return getList(sqlString, 1, 50);
 	}
 
 }

@@ -168,7 +168,12 @@ public class UserAction extends ActionSupport {
 			return SUCCESS;
 		}
 		addActionError("Î´Öª´íÎó");
-		return ERROR;
+		return SUCCESS;
+	}
+	
+	public String deleteTgUser(){
+		uDao.deleteUser(id);
+		return SUCCESS;
 	}
 
 	public String getOneUser() {

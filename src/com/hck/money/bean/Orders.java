@@ -18,7 +18,25 @@ public class Orders implements java.io.Serializable {
 	private Integer ismy;
     private long kedoubi;
     private String info;
+    private int type;
     
+    public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	private String orderNum;
+    
+	public String getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
+	}
 
 	public String getInfo() {
 		return info;

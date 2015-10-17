@@ -14,6 +14,14 @@ public boolean addOrder(Orders orders);
 public Orders searchOrder(long id);
 public List<Orders> getMyOrders(int page);
 public List<Orders> getUserOrder(long uid);
+/**
+ * ¶Ò°É
+ * @param order
+ * @return
+ */
+public String addOrderDuiBa(Orders order);
+public Orders chuLiOrder(String orderNum,int state);
+public boolean orderIsChuLi(String orderNum);
 
 
 //ÊÖ»ú
@@ -22,4 +30,5 @@ public List<Orders> getChuLiOrdersP(long uid,int page);
 public boolean deleteOrderP(long id);
 public List<Orders> getUserOrderP(long uid,int page);
 public List<Orders> getNewOrders();
+
 }

@@ -31,15 +31,22 @@
 			<table width="898" border="0" cellpadding="0" cellspacing="0">
 				<!--DWLayoutTable-->
 				<tr>
+				
 					<td height="38" colspan="2" valign="top">用户详细信息</td>
 					<td width="81" valign="top"><a
 						href="admin/getUserOrder?uid=<h:property value="user.id"/>">兑换记录</a></td>
 					<td width="95" valign="top"><a
 						href="admin/getUserJiLu?page=1&id=<h:property value="user.id"/>">赚钱记录</a></td>
 					<td width="233"><a
+						href="admin/getTGInfo?uid=<h:property value="user.id"/>&page=1">推广赚钱</a></td>
+					<td width="131">&nbsp;</td>
+					<td width="233"><a
 						href="admin/getTgUsers?page=1&id=<h:property value="user.id"/>">推广用户</a></td>
 					<td width="233"><a
 						href="admin/getUserCJ?uid=<h:property value="user.id"/>">抽奖信息</a></td>
+						<td><a href="deleteUser?id=<h:property value="user.id"/>">
+										删除<img src="images/icon/del.png" width="16" height="16" />
+								</a></td>
 					<td width="131">&nbsp;</td>
 					<td width="242">&nbsp;</td>
 				</tr>
@@ -53,9 +60,19 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
+					  <td><img src="<h:property value="#u.touxiang"/>" width="40" height="40"></td>
+				</tr>
+				<tr>
 					<td height="31">&nbsp;</td>
 					<td colspan="4">总赚钱：</td>
 					<td><h:property value="usermoney.allmoney" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">推广赚钱：</td>
+					<td><h:property value="usermoney.tjmoney" /></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 				</tr>
@@ -78,8 +95,8 @@
 				<tr>
 					<td height="38">&nbsp;</td>
 					<td colspan="4">是否正常：</td>
-					<td><input name="isok"
-						value="<h:property value="user.isok"/>" type="text" /></td>
+					<td><input name="isok" value="<h:property value="user.isok"/>"
+						type="text" /></td>
 					<td><input type="submit" name="Submit" value="修改"
 						style="background:
 			  #0099FF; color:#FFFFFF; border-color:#0099FF"></td>
@@ -119,6 +136,62 @@
 					<td height="31">&nbsp;</td>
 					<td colspan="4">时间：</td>
 					<td><h:property value="user.time" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家1：</td>
+					<td><h:property value="user.shangjia1" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家2：</td>
+					<td><h:property value="user.shangjia2" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家3：</td>
+					<td><h:property value="user.shuangjia3" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家4：</td>
+					<td><h:property value="user.shangjia4" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家5：</td>
+					<td><h:property value="user.shangjia5" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家6：</td>
+					<td><h:property value="user.shangjia6" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家7：</td>
+					<td><h:property value="user.shangjia7" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">上家8：</td>
+					<td><h:property value="user.shangjia8" /></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 				</tr>

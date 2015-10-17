@@ -10,6 +10,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.hck.money.bean.Orders;
 import com.hck.money.bean.Tg;
 import com.hck.money.dao.TgDao;
+import com.opensymphony.xwork2.ActionContext;
 
 public class TgServer extends HibernateDaoSupport implements TgDao {
 
@@ -66,6 +67,14 @@ public class TgServer extends HibernateDaoSupport implements TgDao {
 		String sqlString = " from Tg tg where tg.uid=" + uid
 				+ "order by tg.time desc ";
 		return getList(sqlString, page, 10);
+	}
+	
+	
+	public List<Tg> getListPC(long uid, int page) {
+		String sqlString = " from Tg tg where tg.uid=" + uid
+				+ "and type=1 order by tg.time desc ";
+		ActionContext.getContext().getSession().put("tgpSize", getTgSize(uid));
+		return getList(sqlString, page, 15);
 	}
 
 }

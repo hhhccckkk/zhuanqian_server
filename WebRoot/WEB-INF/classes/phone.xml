@@ -123,6 +123,13 @@
 		<action name="deleteOrderP" class="orderActionP" method="deleteOrderP">
 			<result type="json">null</result>
 		</action>
+		
+		
+		
+		<!-- 兑吧 获取免登陆url-->
+		<action name="getLoginUrl" class="orderActionP" method="getLoginUrl">
+			<result type="json">null</result>
+		</action>
 		<!-- 处理订单 -->
 		<action name="chuLiOrder" class="orderActionP" method="chuLiOrder">
 			<result type="json">null</result>
@@ -131,6 +138,12 @@
 		<action name="jieShouOrder" class="orderActionP" method="jieShouTongZhi">
 			<result type="json">null</result>
 		</action>
+		
+		
+		
+		
+		
+		
 		<!-- apps -->
 		<action name="getAppsP" class="AppActionP" method="getAppsP">
 			<result type="json">null</result>
@@ -192,5 +205,23 @@
 		<action name="getCJP" class="ChouJiangAction" method="getCJinfo">
 			<result type="json">null</result>
 		</action>
+		
+		
+		<!-- 获取排行 -->
+		<action name="getZhuangQianPaiHangP" class="PaiHangActionP" method="getMoneyPaiHanP">
+			<result type="json">null</result>
+		</action>
+		<action name="getTuiGuangP" class="PaiHangActionP" method="getTGPaiHangP">
+			<result type="json">null</result>
+		</action>
+		
+	<!-- 获取活动 -->
+			<action name="getHuoDongP" class="HuoDongActionP" method="getHuoDong">
+			<result type="json">null</result>
+		</action>
+		<action name="getHuoDongUrlP" class="HuoDongActionP" method="getHuoDongUrl">
+			<result type="json">null</result>
+		</action>
+		
 	</package>
 </struts>

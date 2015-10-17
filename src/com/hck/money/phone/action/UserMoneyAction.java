@@ -187,6 +187,7 @@ public class UserMoneyAction extends BaseAction {
 				+ "平台任务,您获取推广金币: " + jinbi + "个=" + jinbi * 0.001 + "元");
 		tg.setTime(new Timestamp(System.currentTimeMillis()));
 		tg.setUserName(jishu + "级徒弟" + uName);
+		tg.setType(1);
 		tgServer.addTg(tg);
 	}
 

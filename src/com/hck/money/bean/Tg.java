@@ -15,8 +15,17 @@ public class Tg implements java.io.Serializable {
 	private String content;
 	private Timestamp time;
 	private String userName;
-
+    private int type;
+    
 	// Constructors
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
 
 	public String getUserName() {
 		return userName;

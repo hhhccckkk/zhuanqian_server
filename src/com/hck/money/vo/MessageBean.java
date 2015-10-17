@@ -9,7 +9,22 @@ private String time;
 private int state;
 private long uid;
 private String laizi;
+private int type;
+private long sendUserId;
 
+
+public long getSendUserId() {
+	return sendUserId;
+}
+public void setSendUserId(long sendUserId) {
+	this.sendUserId = sendUserId;
+}
+public int getType() {
+	return type;
+}
+public void setType(int type) {
+	this.type = type;
+}
 public String getLaizi() {
 	return laizi;
 }

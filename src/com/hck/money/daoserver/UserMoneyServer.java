@@ -35,7 +35,7 @@ public class UserMoneyServer extends HibernateDaoSupport implements UserMoneyDao
 
 	public List<Usermoney> getPH() {
 		String sql="from Usermoney u order by u.allmoney desc";
-		return getList(sql, 1, 20);
+		return getList(sql, 1, 50);
 	}
 	public List<Usermoney> getTG() {
 		String sql="from Usermoney u order by u.tjmoney desc";

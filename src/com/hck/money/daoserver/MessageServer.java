@@ -20,8 +20,9 @@ public class MessageServer extends HibernateDaoSupport implements Messagedao {
 
 	}
 
-	public List<Message> getMessages(int page) {
-		String sql = "from Message m order by m.id desc";
+	public List<Message> getMessages(int page, int type) {
+		String sql = "from Message m where m.type=" +type
+				+ " order by m.id desc";
 		ActionContext.getContext().getSession().put("mSize", getCount(sql));
 		return getList(sql, page, 12);
 	}
@@ -73,7 +74,7 @@ public class MessageServer extends HibernateDaoSupport implements Messagedao {
 		} catch (Exception e) {
 			return false;
 		}
-		
+
 	}
 
 	@SuppressWarnings("unchecked")

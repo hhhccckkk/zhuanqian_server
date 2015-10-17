@@ -101,6 +101,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td></td>
         <td></td>
       </tr>
+       <tr>
+        <td height="32"></td>
+       
+        <td colspan="3" valign="top"><a
+						href="admin/getTGInfo?uid=<h:property value="user.id"/>&page=1">推广赚钱</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
       <tr>
         <td height="81"></td>
         <td>&nbsp;<input name="uid" value="<h:property value="#u.id"/>" type="hidden"/></td>
