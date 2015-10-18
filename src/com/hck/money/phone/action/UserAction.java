@@ -100,6 +100,7 @@ public class UserAction extends BaseAction {
 		String userId = getStringData("userId");
 		String userName = getStringData("userName");
 		String userTX = getStringData("userTX");
+		String ip=getStringData("ip");
 		long point = 0;
 		if (initPoint != null) {
 			point = Long.parseLong(initPoint);
@@ -119,6 +120,7 @@ public class UserAction extends BaseAction {
 				user.setNicheng(userName);
 				user.setTouxiang(userTX);
 				user.setUserID(userId);
+				user.setIps(ip);
 				user.setTime(new Timestamp(System.currentTimeMillis()));
 				user.setXinghao(xh);
 				if (shangjia1 > 0) {
@@ -291,13 +293,9 @@ public class UserAction extends BaseAction {
 
 	private void addHongBaoXIT(long uid, String uname) {
 		Hongbao hongbao = new Hongbao();
-		hongbao.setContent("欢迎新用户,系统奖励您一个0.1-0.5元的红包,在赚钱区随便做几个任务,就可以提现了,推广用户可以无限获取红包");
+		hongbao.setContent("欢迎新用户,系统奖励您一个0.1元的红包,在赚钱区随便做几个任务,就可以提现了,推广用户可以无限获取红包");
 		hongbao.setIsOpen(0);
-		if (hongBao <= 0) {
-			hongBao = getTgJinBi();
-			;
-		}
-		hongbao.setPoint(hongBao);
+		hongbao.setPoint(100);
 		hongbao.setIsXiTong(1);
 		hongbao.setTime(new Timestamp(System.currentTimeMillis()).toString());
 		hongbao.setUid(uid);
@@ -478,11 +476,11 @@ public class UserAction extends BaseAction {
 			return 400;
 		} else if (4 < postion && postion < 9) {
 			return 100;
-		} else if (9 < postion && postion < 20) {
+		} else if (9 < postion && postion < 14) {
 			return 200;
 		} else if (20 < postion && postion < 90) {
 			return 100;
-		} else if (95 < postion && postion < 100) {
+		} else if (96 < postion && postion < 100) {
 			return 300;
 		} else if (postion == 5) {
 			return 500;

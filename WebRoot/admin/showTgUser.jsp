@@ -89,7 +89,7 @@ body {
 		<!--表格控件 -->
 		<div id="widget table-widget">
 			<div class="pageTitle">
-				推广用户：
+				推广用户：<%=maxnum %>
 
 				<h:property value="moneyBean.allMoney" />
 				<h:property value="moneyBean.content" />
@@ -107,6 +107,7 @@ body {
 						<th width="">型号</th>
 						<th width="">sdk</th>
 						<th width="">imei</th>
+						<th width="">ip</th>
 						<th width="">qq</th>
 						<th width="">上家1</th>
 						<th width="">上家2</th>
@@ -129,6 +130,7 @@ body {
 								<td><h:property value="#u.xinghao" /></td>
 								<td><h:property value="#u.sdk" /></td>
 								<td><h:property value="#u.mac" /></td>
+								<td><h:property value="#u.ips" /></td>
 								<td><h:property value="#u.qq" /></td>
 								<td><h:property value="#u.shangjia1" /></td>
 								<td><h:property value="#u.shangjia2" /></td>

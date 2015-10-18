@@ -19,14 +19,41 @@ import com.opensymphony.xwork2.ActionContext;
 
 @SuppressWarnings("serial")
 public class OrderAction extends BaseAction {
-	
+
 	private List<Orders> ordList;
 	private Orders oneOrders;
 	private OrderDao oDao;
 	private String idString;
-    private long uid;
-    private UserDao userDao;
-  
+	private long uid;
+	private UserDao userDao;
+    private int point;
+    private int type;
+    private int page;
+    
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	public UserDao getUserDao() {
 		return userDao;
 	}
@@ -85,7 +112,7 @@ public class OrderAction extends BaseAction {
 
 	public String showOverOrder() {
 		ordList = oDao.getNoChuLiOrders(page);
-		ordList=changeBean(ordList);
+		ordList = changeBean(ordList);
 		if (ordList != null && !ordList.isEmpty()) {
 			ActionContext.getContext().getSession().put("orderPage", page);
 		}
@@ -93,15 +120,16 @@ public class OrderAction extends BaseAction {
 	}
 
 	public String dealOrder() {
-		User user =userDao.getUser(uid);
+		User user = userDao.getUser(uid);
 		boolean b = oDao.dealOrder(id);
-		
+
 		if (!b) {
 			addActionError("¥¶¿Ì ß∞‹");
-		}
-		else {
-			if(user!=null && user.getPushid()!=null){
-				BaiduPushManger.sendMsgToOneUser(user.getPushid(), Contans.PUSH_TYPE_NOTIFY, PushMessage.ORDER_MSG_TITLE, PushMessage.ORDER_MSG_CONTENT);
+		} else {
+			if (user != null && user.getPushid() != null) {
+				BaiduPushManger.sendMsgToOneUser(user.getPushid(),
+						Contans.PUSH_TYPE_NOTIFY, PushMessage.ORDER_MSG_TITLE,
+						PushMessage.ORDER_MSG_CONTENT);
 			}
 		}
 		return SUCCESS;
@@ -155,10 +183,40 @@ public class OrderAction extends BaseAction {
 		}
 		return orders2;
 	}
+
 	public String getUserOrder() {
-		ordList=null;
+		ordList = null;
 		ordList = oDao.getUserOrder(uid);
-		ordList=changeBean(ordList);
+		ordList = changeBean(ordList);
+		return SUCCESS;
+	}
+
+	public String getUserHuoDong() {
+		ordList = null;
+		ordList = oDao.getHuoDongOrder(uid);
+		ordList = changeBean(ordList);
+		point=huafeiHuoDong(ordList);
+		return SUCCESS;
+	}
+
+	private int huafeiHuoDong(List<Orders> order) {
+		if (order == null) {
+			return 0;
+		}
+		int point = 0;
+		for (int i = 0; i < order.size(); i++) {
+			point = (int) (point + order.get(i).getKedoubi());
+		}
+
+		return point;
+	}
+	
+	
+	public String getHuoDong(){
+		ordList = null;
+		ordList = oDao.getHuoDong(page, type);
+		ActionContext.getContext().getSession().put("huodongPage", page);
+		ActionContext.getContext().getSession().put("huodongType", type);
 		return SUCCESS;
 	}
 

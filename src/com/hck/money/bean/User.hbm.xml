@@ -82,6 +82,9 @@
         <property name="tj" type="java.lang.Long">
             <column name="tj" length="255"/>
         </property>
+        <property name="ips" type="java.lang.String">
+            <column name="ips" length="200" />
+        </property>
         <set name="orderses" inverse="false" cascade="all" lazy="false">
             <key>
                 <column name="uid" />

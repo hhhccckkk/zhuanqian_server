@@ -277,7 +277,7 @@ public class OrderAction extends BaseAction {
 			String uid = params.getUid();// 用户id
 			Long credits = params.getCredits();
 			String type = params.getType();// 获取兑换类型
-			System.out.println("type: "+type);
+			System.out.println("type: " + type);
 			String description = params.getDescription();
 			String orderNum = params.getOrderNum();
 			String content = null;
@@ -294,19 +294,18 @@ public class OrderAction extends BaseAction {
 				content = "提现话费" + size + "元";
 				info = "电话号码:" + params.getPhone() + "提现: " + size + "元";
 			} else {
-				System.out.println("活动 ");
 				info = description;
 				content = description;
 				orderType = Contans.ORDER_HUODONG;
 			}
 			String bizId = null;
-			System.out.println("orderType: " + orderType);
 			if (orderType == Contans.ORDER_ORDER) {
-				System.out.print("增加订单");
 				bizId = addOrderDuiBa(content, credits, info,
 						Long.parseLong(uid), orderNum, orderType);
 			} else {
-				bizId = uid + orderNum;
+			      addOrderDuiBa(content, credits, info,
+						Long.parseLong(uid), "", orderType);
+				bizId = uid +System.currentTimeMillis();
 			}
 
 			if (bizId != null) {
@@ -317,9 +316,7 @@ public class OrderAction extends BaseAction {
 					result.setBizId(bizId);
 					response.getWriter().write(result.toString());
 				}
-			} else {
-
-			}
+			} 
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -349,7 +346,6 @@ public class OrderAction extends BaseAction {
 	 * 接收兑吧返回的订单处理通知.
 	 */
 	public void jieShouTongZhi() {
-		System.out.println("通知");
 		init();
 		CreditTool tool = new CreditTool(Contans.DUIHUANG_BA_KEY,
 				Contans.DUIHUANG_BA_Secret);
@@ -358,18 +354,15 @@ public class OrderAction extends BaseAction {
 			CreditNotifyParams params = tool.parseCreditNotify(request);// 利用tool来解析这个请求
 			String orderNum = params.getOrderNum();
 			String errorMsg = params.getErrorMessage();
-			System.out.println("通知111111: " + params.getErrorMessage());
 
 			if (orderIsChuLi(orderNum)) {
 				return;
 			}
 			if (params.isSuccess()) {
-				System.out.println("通知22222222");
 				chuLiOrderOK(orderNum, Contans.DUIHUAN_SUCCESS, null);
 				// 兑换成功
 			} else {
 				// 兑换失败，根据orderNum，对用户的金币进行返还，回滚操作
-				System.out.println("通知3333");
 				if (Contans.ERROR_MSG.equals(errorMsg)) {
 					chuLiOrderOK(orderNum, Contans.DUIHUAN_ERROR_SHEHE,
 							errorMsg);
@@ -380,14 +373,12 @@ public class OrderAction extends BaseAction {
 
 			}
 		} catch (Exception e) {
-			System.out.println("通知3333: " + e.toString());
 			e.printStackTrace();
 		}
 	}
 
 	private void chuLiOrderOK(String orderNum, int state, String errorMsg) {
 		Orders order = oDao.chuLiOrder(orderNum, state);
-		System.out.println("chuLiOrderOK: " + orderNum + "state; " + state);
 		if (order != null) {
 			long uid = order.getUser().getId();
 			if (state == Contans.DUIHUAN_ERROR_OTHER) {// 失败,不是审核失败
@@ -397,21 +388,20 @@ public class OrderAction extends BaseAction {
 						Contans.PUSH_TYPE_MSG, "金币返回", errorMsg);
 				addMsg(errorMsgContent, uid);
 
-			}
-			else if (state == Contans.DUIHUAN_ERROR_SHEHE) {
+			} else if (state == Contans.DUIHUAN_ERROR_SHEHE) {
 				String errorMsgContent = "您的订单审核失败,请检查是否存在刷量行为,有疑问请联系客服处理";
 				BaiduPushManger.sendMsgToOneUser(order.getUser().getPushid(),
 						Contans.PUSH_TYPE_MSG, "订单审核失败", errorMsgContent);
-				addMsg(errorMsgContent, uid); 
+				addMsg(errorMsgContent, uid);
 			} else {// 成功
 				BaiduPushManger.sendMsgToOneUser(order.getUser().getPushid(),
 						Contans.PUSH_TYPE_MSG, "订单处理完成", "您的订单已经成功处理,请查收是否到帐");
 			}
-			try {
-				response.getWriter().write("ok");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		}
+		try {
+			response.getWriter().write("ok");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}

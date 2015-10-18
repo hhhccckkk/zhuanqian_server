@@ -15,26 +15,31 @@
 		<property name="content" type="java.lang.String">
 			<column name="content" />
 		</property>
-		<property name="info" type="java.lang.String">
-			<column name="info" />
-		</property>
-		<property name="orderNum" type="java.lang.String">
-			<column name="order_num" />
-		</property>
 		<property name="state" type="java.lang.Integer">
 			<column name="state" />
-		</property>
-		<property name="type" type="java.lang.Integer">
-			<column name="type" />
 		</property>
 		<property name="kedoubi" type="java.lang.Long">
 			<column name="kedoubi" length="255" />
 		</property>
+		
 		<property name="time" type="java.sql.Timestamp">
 			<column name="time" length="19" />
 		</property>
 		<property name="ismy" type="java.lang.Integer">
 			<column name="ismy" />
 		</property>
+		<property name="info" type="java.lang.String">
+			<column name="info" />
+		</property>
+		<property name="orderNum" type="java.lang.String">
+			<column name="order_num" />
+		</property>
+		
+		<property name="type" type="java.lang.Integer">
+			<column name="type" />
+		</property>
+		
+		
+		
 	</class>
 </hibernate-mapping>

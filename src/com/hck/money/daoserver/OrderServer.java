@@ -1,7 +1,10 @@
 package com.hck.money.daoserver;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.plaf.SliderUI;
@@ -167,9 +170,9 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 	}
 
 	public List<Orders> getUserOrder(long uid) {
-		String sql = "from Orders o where o.user.id=" + uid;
+		String sql = "from Orders o where o.user.id=" + uid +" and type=1 order by o.id desc";
 		return getHibernateTemplate().find(sql);
-	}
+	} 
 
 	public List<Orders> getUserOrderP(long uid, int page) {
 		String sql = "from Orders o where o.user.id=" + uid
@@ -223,5 +226,37 @@ public class OrderServer extends HibernateDaoSupport implements OrderDao {
 			return false;
 		}
 
+	}
+
+	public List<Orders> getHuoDongOrder(long uid) {
+		String sql = "from Orders o where o.user.id="+uid+" and type=2 order by o.id desc";
+		return getHibernateTemplate().find(sql);
+	}
+
+	public List<Orders> getHuoDong(int page,int type) {
+		
+		String sqlString = null;
+		Date endDate = new Date();
+		Calendar cl = Calendar.getInstance();
+		cl.setTime(endDate);
+		if (type == 1) {
+			sqlString = "from Orders j WHERE date(j.time) = curdate() and j.type=2 order by j.id desc";
+		} else if (type == 2) {
+			cl.add(Calendar.DATE, -1);
+			Date startDate = cl.getTime();
+			SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
+			// 格式化开始日期和结束日期
+			String start = dd.format(startDate);
+			String end = dd.format(endDate);
+
+			sqlString = "from Orders j where j.time >= '" + start
+					+ "' and j.time <= '" + end + "' and j.type=2 order by j.id desc";
+		} else {
+			
+			sqlString = "from Orders j where j.type=2 order by j.id desc";
+		}
+		ActionContext.getContext().getSession()
+				.put("huodong", getCount(sqlString));
+		return getList(sqlString, page, 20);
 	}
 }

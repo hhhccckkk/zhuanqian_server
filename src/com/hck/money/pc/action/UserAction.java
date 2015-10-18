@@ -170,8 +170,8 @@ public class UserAction extends ActionSupport {
 		addActionError("Î´Öª´íÎó");
 		return SUCCESS;
 	}
-	
-	public String deleteTgUser(){
+
+	public String deleteTgUser() {
 		uDao.deleteUser(id);
 		return SUCCESS;
 	}
@@ -190,7 +190,7 @@ public class UserAction extends ActionSupport {
 	}
 
 	public String searchUser() {
-	System.out.print("uid: "+id);
+		System.out.print("uid: " + id);
 		user = uDao.SearchUser(id);
 		if (user != null) {
 			usermoney = userMoneyDao.getUsermoney(user.getId());
@@ -234,12 +234,11 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 
 	}
-	
-	public String getTgUsers(){
-		users= uDao.getTGUserPC(id, page);
+
+	public String getTgUsers() {
+		users = uDao.getTGUserPC(id, page);
 		ActionContext.getContext().getSession().put("tgUserPage", page);
-		ActionContext.getContext().getSession()
-		.put("tguid", id);
+		ActionContext.getContext().getSession().put("tguid", id);
 		return SUCCESS;
 	}
 

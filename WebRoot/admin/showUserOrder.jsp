@@ -33,7 +33,7 @@ body {
 
 	<!--表格控件 -->
   <div id="widget table-widget">
-    <div class="pageTitle">未处理订单</div>
+    <div class="pageTitle">活动花费:<h:property value="point"/></div>
     <div class="pageColumn">
       <div class="pageButton"></div>
       <table>
@@ -42,6 +42,7 @@ body {
           <th width="">id</th>
           <th width="">兑换</th>
           <th width="">用户</th>
+           <th width="">花费</th>
           <th width="">状态</th>
             <th width="">时间</th>
             <th width="">操作</th>
@@ -52,6 +53,7 @@ body {
             <td class="checkBox"><input name="plid" type="checkbox" value="<h:property value="#o.id"/>" /></td>
             <td><h:property value="#o.id"/></td>
             <td><h:property value="#o.user.nicheng"/></td>
+            <td><h:property value="#o.kedoubi"/></td>
             <td><h:property value="#o.info"/></td>
             <td><h:property value="#o.state"/></td>
              <td><h:property value="#o.time"/></td>

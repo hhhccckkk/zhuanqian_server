@@ -114,15 +114,15 @@
 							<li><a href="getMoneyAllP3?type=3&page=1" target="right">前天赚钱记录</a></li>
 						</ul></li>
 
-					<li class="subMenu"><a href="#">抽奖记录</a>
+					<li class="subMenu"><a href="#">活动信息</a>
 						<ul class="yingcang">
-							<li><a href="getCJ?type=1&page=1" target="right">今天抽奖记录</a></li>
+							<li><a href="getHuoDong?type=1&page=1" target="right">今天参加活动</a></li>
 
 
-							<li><a href="getCJ?type=2&page=1" target="right">昨天赚钱记录</a></li>
+							<li><a href="getHuoDong?type=2&page=1" target="right">昨天参加活动</a></li>
 
 
-							<li><a href="getCJ?type=3&page=1" target="right">前天赚钱记录</a></li>
+							<li><a href="getHuoDong?type=3&page=1" target="right">全部活动</a></li>
 						</ul></li>
 
 
@@ -172,20 +172,19 @@
 						</ul></li>
 					<li class="subMenu"><a href="#">短信息管理</a>
 						<ul class="yingcang">
-						
+
 							<li><a href="getDX?page=1&type=1" target="right">系统信息</a></li>
-						
-						
+
+
 							<li><a href="getDX?page=1&type=2" target="right">用户聊天信息</a></li>
-						
-						
-						
+
+
+
 							<li><a href="getDX?page=1&type=3" target="right">订单信息</a></li>
-						
-						
+
+
 							<li><a href="addMessage.jsp" target="right">增加短信息</a></li>
-						</ul>
-						</li>
+						</ul></li>
 
 				</ul>
 			</div>

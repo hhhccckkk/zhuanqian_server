@@ -14,6 +14,10 @@ public boolean addOrder(Orders orders);
 public Orders searchOrder(long id);
 public List<Orders> getMyOrders(int page);
 public List<Orders> getUserOrder(long uid);
+//获取用户参加的活动
+public List<Orders> getHuoDongOrder(long uid);
+//获取参加活动信息
+public List<Orders> getHuoDong(int page,int type);
 /**
  * 兑吧
  * @param order

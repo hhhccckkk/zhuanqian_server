@@ -160,7 +160,7 @@ public class MessageAction extends BaseAction {
 			json.put("isok", true);
 			if (user != null && user.getPushid() != null) {
 				BaiduPushManger.sendMsgToOneUser(user.getPushid(),
-						Contans.PUSH_TYPE_MSG, "有用户发消息给您", "有用户向您发送了一条消息");
+						Contans.PUSH_TYPE_MSG, userName+"给你发了条消息", "有用户向您发送了一条消息");
 			}
 		} else {
 			json.put("isok", false);

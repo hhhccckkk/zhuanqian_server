@@ -35,7 +35,17 @@ public class User implements java.io.Serializable {
 	private int choujiang;
 	private String sdk;
 	private String pushid;
+	private String ips;
 	
+	
+	public String getIps() {
+		return ips;
+	}
+
+	public void setIps(String ips) {
+		this.ips = ips;
+	}
+
 	public String getPushid() {
 		return pushid;
 	}

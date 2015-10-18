@@ -43,7 +43,7 @@
 					<td width="233"><a
 						href="admin/getTgUsers?page=1&id=<h:property value="user.id"/>">推广用户</a></td>
 					<td width="233"><a
-						href="admin/getUserCJ?uid=<h:property value="user.id"/>">抽奖信息</a></td>
+						href="admin/getUserHuoDongOrder?uid=<h:property value="user.id"/>">参加活动</a></td>
 						<td><a href="deleteUser?id=<h:property value="user.id"/>">
 										删除<img src="images/icon/del.png" width="16" height="16" />
 								</a></td>
@@ -60,7 +60,11 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					  <td><img src="<h:property value="#u.touxiang"/>" width="40" height="40"></td>
+					<td height="31">&nbsp;</td>
+					<td colspan="4">头像:</td>
+					<td><img src="<h:property value="user.touxiang"/>" width="40" height="40"></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td height="31">&nbsp;</td>
@@ -113,6 +117,13 @@
 					<td height="37">&nbsp;</td>
 					<td colspan="4">mac：</td>
 					<td><h:property value="user.mac" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="34">&nbsp;</td>
+					<td colspan="4">ip：</td>
+					<td><h:property value="user.ips" /></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 				</tr>
