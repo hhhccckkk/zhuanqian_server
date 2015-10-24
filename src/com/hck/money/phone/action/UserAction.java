@@ -166,14 +166,16 @@ public class UserAction extends BaseAction {
 				user.setIsok(1);
 				user.setTj(0l);
 				long uid = uDao.addUser(user);
+				System.out.println("uid uid: "+uid);
 				if (uid <= 0) {
 					json.put("type", 0);
 				} else {
 					user.setId(uid);
 					if (!userMoneyDao.isExit(uid)) {
-						addMoney(user2, point);
+						addMoney(user, point);
 					}
 					Usermoney usermoney1 = userMoneyDao.getUsermoney(uid);
+					System.out.println("增加红包 444");
 				    addHongBaoXIT(uid, "蝌蚪手机赚钱官方");
 					json.put("type", 1);
 					json.put("user", changeBean(user, usermoney1));

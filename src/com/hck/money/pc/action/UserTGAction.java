@@ -86,26 +86,30 @@ public class UserTGAction extends BaseAction {
 	}
 
 	public String getUserTgInfo() {
-		tgApp = new TGApp();
+		tgApp=null;
 		if (uid <= 0) {
+			tgApp = new TGApp();
 			tgApp.setDownUrl("apk/app.apk");
 		} else {
-			long id = uid - 1000;
-			User user = uDao.getUser(id);
+			long id2 = uid - 1000;
+			User user = null;
+			user = uDao.getUser(id2);
 			if (user == null || user.getIsok() == 0) {
+				tgApp = new TGApp();
 				tgApp.setDownUrl("apk/app.apk");
-			}
-			tgApp = tAppServer.getUserTGUrl(id);
-			if (tgApp == null) {
-				if (!daBao()) {
-					tgApp = new TGApp();
-					tgApp.setDownUrl("apk/app.apk");
-				} else {
-					if (app != null) {
+			} else {
+				tgApp = tAppServer.getUserTGUrl(id2);
+				if (tgApp == null) {
+					TGApp app = daBao(user);
+					if (app == null) {
+						tgApp = new TGApp();
+						tgApp.setDownUrl("apk/app.apk");
+					} else {
 						tgApp = app;
 					}
 				}
 			}
+
 		}
 		List<Usermoney> userMoney = moneyServer.getPH();
 		if (userMoney != null && !userMoney.isEmpty()) {
@@ -171,9 +175,8 @@ public class UserTGAction extends BaseAction {
 
 	}
 
-	public boolean daBao() {
-		long id = uid - 1000;
-		User user = uDao.getOneUser(id);
+	public TGApp daBao(User user) {
+
 		long uid1 = 0l;
 		long uid2 = 0l;
 		long uid3 = 0l;
@@ -209,53 +212,45 @@ public class UserTGAction extends BaseAction {
 			}
 
 		} else {
-			return false;
+			return null;
 		}
-
 		try {
-			appName = user.getMac();
-			if (appName == null) {
-				return false;
-			}
-			if (appName.length() > 5) {
-				appName = appName.substring(0, 5);
-			}
-			appName = appName + id;
-			DaBao daBao =new DaBao();
-			daBao.getAppUrl(appName, id, uid1, uid2, uid3, uid4, uid5, uid6,
-					uid7, new DaoBaoOnErrorListener() {
+			appName = null;
+			appName = user.getId() + 1000 + "";
+			DaBao.getAppUrl(appName, user.getId(), uid1, uid2, uid3, uid4,
+					uid5, uid6, uid7, new DaoBaoOnErrorListener() {
 
 						public void onErrorListener(String errorString) {
-
+							app = null;
 						}
 
 						public void onSuccess() {
-							boolean success = addDownUrl(appName);
-							if (success) {
-								isok = true;
-							} else {
-								isok = false;
-							}
+							app = null;
+							app = addDownUrl(appName);
 
 						}
 					});
 		} catch (IOException e) {
 			e.printStackTrace();
-			isok = false;
+			app = null;
 		}
 
-		return isok;
+		return app;
 	}
 
-	private boolean addDownUrl(String appName) {
+	private TGApp addDownUrl(String appName) {
 		long id2 = uid - 1000;
-		app = new TGApp();
+		TGApp app = new TGApp();
 		app.setDownUrl("apk/" + appName + ".apk");
 		app.setSize(0);
 		app.setTime(new Timestamp(System.currentTimeMillis()).toString());
 		app.setUid(id2);
 		boolean isok = tAppServer.addTgApp(app);
-		return isok;
+		if (isok) {
+			return app;
+		} else {
+			return null;
+		}
 
 	}
 

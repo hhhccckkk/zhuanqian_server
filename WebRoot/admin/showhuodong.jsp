@@ -49,6 +49,7 @@ body {
         <th width="25"><input class="select-all" name="" type="checkbox" value=""  /></th>
           <th width="">id</th>
           <th width="">用户</th>
+            <th width="">用户id</th>
            <th width="">花费</th>
            <th width="">兑换</th>
           <th width="">状态</th>
@@ -61,6 +62,8 @@ body {
             <td class="checkBox"><input name="plid" type="checkbox" value="<h:property value="#o.id"/>" /></td>
             <td><h:property value="#o.id"/></td>
             <td><h:property value="#o.user.nicheng"/></td>
+             <td><a href="getOneUser?id=<h:property value="#o.user.id"/>"><h:property
+											value="#o.user.id" /></a></td>
             <td><h:property value="#o.kedoubi"/></td>
             <td><h:property value="#o.info"/></td>
             <td><h:property value="#o.state"/></td>

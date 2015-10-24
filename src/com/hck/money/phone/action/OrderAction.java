@@ -267,7 +267,7 @@ public class OrderAction extends BaseAction {
 	 * 兑吧,增加订单.
 	 */
 	public void chuLiOrder() {
-		//
+		
 		init();
 		CreditTool tool = new CreditTool(Contans.DUIHUANG_BA_KEY,
 				Contans.DUIHUANG_BA_Secret);
@@ -277,13 +277,11 @@ public class OrderAction extends BaseAction {
 			String uid = params.getUid();// 用户id
 			Long credits = params.getCredits();
 			String type = params.getType();// 获取兑换类型
-			System.out.println("type: " + type);
 			String description = params.getDescription();
 			String orderNum = params.getOrderNum();
 			String content = null;
 			String info = null;
 			int size = (int) (credits / 1000);
-			System.out.println("type: " + type);
 			if (type.equals("alipay")) {
 				content = "提现支付宝" + size + "元";
 				info = "支付宝帐号:" + params.getAlipay() + "提现: " + size + "元";

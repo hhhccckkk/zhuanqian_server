@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class DaBao {
-	public  void getAppUrl(String appName,long uid1, long uid2, long uid3, long uid4,
-			long uid5,long uid6,long uid7,long uid8, DaoBaoOnErrorListener listener) throws IOException {
+	public static void getAppUrl(String appName, long uid1, long uid2, long uid3,
+			long uid4, long uid5, long uid6, long uid7, long uid8,
+			DaoBaoOnErrorListener listener) throws IOException {
 		OutputStreamWriter osw = null;
 		Process process = null;
 		try {
@@ -19,11 +20,11 @@ public class DaBao {
 					"cmd.exe /c apktool d " + appPath + "app.apk " + appPath
 							+ "app", null, file);
 			if (process.waitFor() != 0) {
-				 listener.onErrorListener("½âÑ¹Ê§°Ü11111");
+				listener.onErrorListener("½âÑ¹Ê§°Ü11111");
 			}
 			String targetPath = appPath + "app\\res\\raw\\id.txt";
 			String content = uid1 + "," + uid2 + "," + uid3 + "," + uid4 + ","
-					+ uid5 +","+uid6+","+uid7+","+uid8;
+					+ uid5 + "," + uid6 + "," + uid7 + "," + uid8;
 			osw = new OutputStreamWriter(new FileOutputStream(targetPath));
 			osw.write(content, 0, content.length());
 			osw.flush();
@@ -46,12 +47,15 @@ public class DaBao {
 				return;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			listener.onErrorListener("´ò°üÊ§°Ü2222"+e.toString());
+			listener.onErrorListener("´ò°üÊ§°Ü2222" + e.toString());
 			return;
 		} finally {
-			osw.close();
+			if (osw != null) {
+				osw.close();
+			}
+
 		}
+		
 		listener.onSuccess();
 	}
 }
