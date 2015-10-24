@@ -166,7 +166,6 @@ public class UserAction extends BaseAction {
 				user.setIsok(1);
 				user.setTj(0l);
 				long uid = uDao.addUser(user);
-				System.out.println("uid uid: "+uid);
 				if (uid <= 0) {
 					json.put("type", 0);
 				} else {
