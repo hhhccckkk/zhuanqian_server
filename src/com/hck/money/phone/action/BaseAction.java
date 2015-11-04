@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.hck.money.vo.Contans;
+
 import net.sf.json.JSONObject;
 
 public class BaseAction {
@@ -20,6 +22,13 @@ public class BaseAction {
 	public boolean isPasswordOk(String password) {
 		if (password == null || "".equals(password)
 				|| !"HCK123hck".equals(password)) {
+			return false;
+		}
+		return true;
+	}
+	public boolean isKeyOK(String key) {
+		if (password == null || "".equals(key)
+				|| !Contans.key.equals(key)) {
 			return false;
 		}
 		return true;

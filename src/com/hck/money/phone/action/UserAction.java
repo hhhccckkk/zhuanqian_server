@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.catalina.connector.Request;
+
 import com.hck.money.bean.Hongbao;
 import com.hck.money.bean.TGUserSizeBean;
 import com.hck.money.bean.Jilu;
@@ -19,6 +21,7 @@ import com.hck.money.dao.UserMoneyDao;
 import com.hck.money.daoserver.HongBaoServer;
 import com.hck.money.daoserver.TGAppServer;
 import com.hck.money.push.BaiduPushManger;
+import com.hck.money.util.JIAMI;
 import com.hck.money.util.StringUtils;
 import com.hck.money.vo.Contans;
 import com.hck.money.vo.UserBean;
@@ -81,12 +84,12 @@ public class UserAction extends BaseAction {
 		usermoney = new Usermoney();
 		User user2 = null;
 		init();
-		if (!isPasswordOk(request.getParameter("password"))) {
+		System.out.print("methoe: " + request.getMethod());
+		if (!request.getMethod().equals("POST")) {
 			return;
 		}
 		imie = request.getParameter("mac");
 		String phone = request.getParameter("phone");
-		String initPoint = request.getParameter("point");
 		String xh = request.getParameter("xh");
 		long shangjia1 = getLongData("shangjia1");
 		long shangjia2 = getLongData("shangjia2");
@@ -100,11 +103,7 @@ public class UserAction extends BaseAction {
 		String userId = getStringData("userId");
 		String userName = getStringData("userName");
 		String userTX = getStringData("userTX");
-		String ip=getStringData("ip");
-		long point = 0;
-		if (initPoint != null) {
-			point = Long.parseLong(initPoint);
-		}
+		String ip = getStringData("ip");
 		if (phone == null || "".equals(phone)) {
 			phone = "无";
 		}
@@ -171,11 +170,11 @@ public class UserAction extends BaseAction {
 				} else {
 					user.setId(uid);
 					if (!userMoneyDao.isExit(uid)) {
-						addMoney(user, point);
+						addMoney(user, 0);
 					}
 					Usermoney usermoney1 = userMoneyDao.getUsermoney(uid);
 					System.out.println("增加红包 444");
-				    addHongBaoXIT(uid, "蝌蚪手机赚钱官方");
+					addHongBaoXIT(uid, "蝌蚪手机赚钱官方");
 					json.put("type", 1);
 					json.put("user", changeBean(user, usermoney1));
 				}
@@ -190,7 +189,7 @@ public class UserAction extends BaseAction {
 				} else {
 					try {
 						if (!userMoneyDao.isExit(user2.getId())) {
-							addMoney(user2, point);
+							addMoney(user2, 0);
 						}
 					} catch (Exception e) {
 					}
@@ -351,7 +350,6 @@ public class UserAction extends BaseAction {
 		user2.setPhone(user.getPhone());
 		user2.setZhifubao(user.getZhifubao());
 		user2.setTGMoney(usermoney.getTjmoney());
-		user2.setUserID(user.getUserID());
 		user2.setTouxiang(user.getTouxiang());
 		user2.setPushId(user.getPushid());
 		if (user.getShangjia1() != null) {

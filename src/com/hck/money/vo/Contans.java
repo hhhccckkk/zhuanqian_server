@@ -1,6 +1,7 @@
 package com.hck.money.vo;
 
 public class Contans {
+	public static final String key="huangchengkeHCKkedou123";
 	public static final String PATH = "D:\\tomcat7\\webapps\\ROOT\\";
 	public static final long QQ_EXIT = 100; // qq帮定了其他的mac
 	public static final long QQ_ERROR = 200; // qq和当前手机的mac没帮定

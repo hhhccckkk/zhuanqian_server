@@ -11,13 +11,11 @@ import java.util.Map;
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.tomcat.util.buf.UDecoder;
 
 import com.hck.money.bean.Message;
 import com.hck.money.bean.Orders;
 import com.hck.money.bean.User;
 import com.hck.money.bean.Usermoney;
-import com.hck.money.dao.OrderDao;
 import com.hck.money.dao.UserMoneyDao;
 import com.hck.money.daoserver.HongBaoServer;
 import com.hck.money.daoserver.OrderServer;
@@ -267,7 +265,6 @@ public class OrderAction extends BaseAction {
 	 * 兑吧,增加订单.
 	 */
 	public void chuLiOrder() {
-		
 		init();
 		CreditTool tool = new CreditTool(Contans.DUIHUANG_BA_KEY,
 				Contans.DUIHUANG_BA_Secret);
@@ -275,49 +272,70 @@ public class OrderAction extends BaseAction {
 		try {
 			CreditConsumeParams params = tool.parseCreditConsume(request);// 利用tool来解析这个请求
 			String uid = params.getUid();// 用户id
-			Long credits = params.getCredits();
-			String type = params.getType();// 获取兑换类型
-			String description = params.getDescription();
-			String orderNum = params.getOrderNum();
-			String content = null;
-			String info = null;
-			int size = (int) (credits / 1000);
-			if (type.equals("alipay")) {
-				content = "提现支付宝" + size + "元";
-				info = "支付宝帐号:" + params.getAlipay() + "提现: " + size + "元";
-			} else if (type.equals("qb")) {
-				content = "兑换Q币" + size + "个";
-				info = "QQ号码:" + params.getQq() + "兑换: " + size + "个";
-			} else if (type.equals("phonebill")) {
-				content = "提现话费" + size + "元";
-				info = "电话号码:" + params.getPhone() + "提现: " + size + "元";
+			long uid2 = Long.parseLong(uid);
+			Usermoney money = moneyDao.getUsermoney(uid2);
+			if (money == null || money.getAlljifeng() <= 0
+					|| money.getUser() == null
+					|| money.getUser().getIsok() == 0) {
+				CreditConsumeResult result = new CreditConsumeResult(false);
+				result.setBizId(System.currentTimeMillis() + "");
+				result.setErrorMessage("失败");
+				response.getWriter().write(result.toString());
 			} else {
-				info = description;
-				content = description;
-				orderType = Contans.ORDER_HUODONG;
-			}
-			String bizId = null;
-			if (orderType == Contans.ORDER_ORDER) {
-				bizId = addOrderDuiBa(content, credits, info,
-						Long.parseLong(uid), orderNum, orderType);
-			} else {
-			      addOrderDuiBa(content, credits, info,
-						Long.parseLong(uid), "", orderType);
-				bizId = uid +System.currentTimeMillis();
-			}
-
-			if (bizId != null) {
-				boolean b = moneyDao.updateMoney(Long.parseLong(uid), credits,
-						2, false);
-				if (b) {
-					CreditConsumeResult result = new CreditConsumeResult(true);
-					result.setBizId(bizId);
-					response.getWriter().write(result.toString());
+				Long credits = params.getCredits();
+				String type = params.getType();// 获取兑换类型
+				String description = params.getDescription();
+				String orderNum = params.getOrderNum();
+				String content = null;
+				String info = null;
+				int size = (int) (credits / 1000);
+				if (type.equals("alipay")) {
+					content = "提现支付宝" + size + "元";
+					info = "支付宝帐号:" + params.getAlipay() + "提现: " + size + "元";
+				} else if (type.equals("qb")) {
+					content = "兑换Q币" + size + "个";
+					info = "QQ号码:" + params.getQq() + "兑换: " + size + "个";
+				} else if (type.equals("phonebill")) {
+					content = "提现话费" + size + "元";
+					info = "电话号码:" + params.getPhone() + "提现: " + size + "元";
+				} else {
+					info = description;
+					content = description;
+					orderType = Contans.ORDER_HUODONG;
 				}
-			} 
+				String bizId = null;
+				if (orderType == Contans.ORDER_ORDER) {
+					bizId = addOrderDuiBa(content, credits, info,
+							Long.parseLong(uid), orderNum, orderType);
+				} else {
+					addOrderDuiBa(content, credits, info, Long.parseLong(uid),
+							"", orderType);
+					bizId = uid + System.currentTimeMillis();
+				}
+
+				if (bizId != null) {
+					boolean b = moneyDao.updateMoney(Long.parseLong(uid),
+							credits, 2, false);
+					if (b) {
+						CreditConsumeResult result = new CreditConsumeResult(
+								true);
+						result.setBizId(bizId);
+						response.getWriter().write(result.toString());
+					}
+				}
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				CreditConsumeResult result = new CreditConsumeResult(false);
+				result.setBizId(System.currentTimeMillis() + "");
+				result.setErrorMessage("未知错误");
+				response.getWriter().write(result.toString());
+			} catch (Exception e2) {
+
+			}
+
 		}
 
 	}
