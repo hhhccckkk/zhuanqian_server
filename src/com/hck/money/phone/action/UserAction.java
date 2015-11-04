@@ -471,20 +471,14 @@ public class UserAction extends BaseAction {
 	}
 
 	private int getJiangPingSizeByciShu(int postion) {
-		if (1 < postion && postion < 4) {
+		if (1 < postion && postion < 10) {
 			return 400;
-		} else if (4 < postion && postion < 9) {
-			return 100;
-		} else if (9 < postion && postion < 14) {
-			return 200;
-		} else if (20 < postion && postion < 90) {
-			return 100;
-		} else if (96 < postion && postion < 100) {
+		} else if (10 < postion && postion < 95) {
 			return 300;
-		} else if (postion == 5) {
+		} else if (95 < postion && postion < 100) {
 			return 500;
 		} else {
-			return 100;
+			return 300;
 		}
 	}
 
