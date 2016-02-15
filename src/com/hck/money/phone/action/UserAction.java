@@ -21,7 +21,7 @@ import com.hck.money.dao.UserMoneyDao;
 import com.hck.money.daoserver.HongBaoServer;
 import com.hck.money.daoserver.TGAppServer;
 import com.hck.money.push.BaiduPushManger;
-import com.hck.money.util.JIAMI;
+
 import com.hck.money.util.StringUtils;
 import com.hck.money.vo.Contans;
 import com.hck.money.vo.UserBean;
